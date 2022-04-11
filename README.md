@@ -1,2 +1,2 @@
-# Fl-Midi-Docs
+# FL-Midi-Docs
 Automatically generated documentation for my FL Studio API Stubs
