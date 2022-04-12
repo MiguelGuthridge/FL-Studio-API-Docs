@@ -55,19 +55,20 @@ import midi
 
 
 def channelNumber(canBeNone: int = 0, offset: int = 0) -&gt; int:
-    &#34;&#34;&#34;Returns the global index of the first selected channel, otherwise the nth
-    selected channel where n is `offset` + 1. If n is greater than the number of
-    selected channels, the global index of the last selected channel will be
-    returned.
+    &#34;&#34;&#34;Returns the global index of the first selected channel, otherwise the
+    nth selected channel where n is `offset` + 1. If n is greater than the
+    number of selected channels, the global index of the last selected channel
+    will be returned.
 
-    If `canBeNone` is `1`, no selection will return `-1`. Otherwise, no selection
-    will return `0` (representing the first channel).
+    If `canBeNone` is `1`, no selection will return `-1`. Otherwise, no
+    selection will return `0` (representing the first channel).
 
     ## Args:
-     * `canBeNone` (`int`, optional): Whether the function will return `-1` or `0`
-       when there is no selection. Defaults to `0` (returning `0`).
+     * `canBeNone` (`int`, optional): Whether the function will return `-1` or
+       `0` when there is no selection. Defaults to `0` (returning `0`).
 
-     * `offset` (`int`, optional): return other selected channels after offset. Defaults to 0.
+     * `offset` (`int`, optional): return other selected channels after offset.
+       Defaults to 0.
 
     ## Returns:
      * `int`: global index of first selected channel
@@ -857,20 +858,21 @@ version 3).</p></div>
 <span>def <span class="ident">channelNumber</span></span>(<span>canBeNone: int = 0, offset: int = 0) ‑> int</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns the global index of the first selected channel, otherwise the nth
-selected channel where n is <code>offset</code> + 1. If n is greater than the number of
-selected channels, the global index of the last selected channel will be
-returned.</p>
-<p>If <code>canBeNone</code> is <code>1</code>, no selection will return <code>-1</code>. Otherwise, no selection
-will return <code>0</code> (representing the first channel).</p>
+<div class="desc"><p>Returns the global index of the first selected channel, otherwise the
+nth selected channel where n is <code>offset</code> + 1. If n is greater than the
+number of selected channels, the global index of the last selected channel
+will be returned.</p>
+<p>If <code>canBeNone</code> is <code>1</code>, no selection will return <code>-1</code>. Otherwise, no
+selection will return <code>0</code> (representing the first channel).</p>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
-<p><code>canBeNone</code> (<code>int</code>, optional): Whether the function will return <code>-1</code> or <code>0</code>
-when there is no selection. Defaults to <code>0</code> (returning <code>0</code>).</p>
+<p><code>canBeNone</code> (<code>int</code>, optional): Whether the function will return <code>-1</code> or
+<code>0</code> when there is no selection. Defaults to <code>0</code> (returning <code>0</code>).</p>
 </li>
 <li>
-<p><code>offset</code> (<code>int</code>, optional): return other selected channels after offset. Defaults to 0.</p>
+<p><code>offset</code> (<code>int</code>, optional): return other selected channels after offset.
+Defaults to 0.</p>
 </li>
 </ul>
 <h2 id="returns">Returns:</h2>
@@ -883,19 +885,20 @@ when there is no selection. Defaults to <code>0</code> (returning <code>0</code>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def channelNumber(canBeNone: int = 0, offset: int = 0) -&gt; int:
-    &#34;&#34;&#34;Returns the global index of the first selected channel, otherwise the nth
-    selected channel where n is `offset` + 1. If n is greater than the number of
-    selected channels, the global index of the last selected channel will be
-    returned.
+    &#34;&#34;&#34;Returns the global index of the first selected channel, otherwise the
+    nth selected channel where n is `offset` + 1. If n is greater than the
+    number of selected channels, the global index of the last selected channel
+    will be returned.
 
-    If `canBeNone` is `1`, no selection will return `-1`. Otherwise, no selection
-    will return `0` (representing the first channel).
+    If `canBeNone` is `1`, no selection will return `-1`. Otherwise, no
+    selection will return `0` (representing the first channel).
 
     ## Args:
-     * `canBeNone` (`int`, optional): Whether the function will return `-1` or `0`
-       when there is no selection. Defaults to `0` (returning `0`).
+     * `canBeNone` (`int`, optional): Whether the function will return `-1` or
+       `0` when there is no selection. Defaults to `0` (returning `0`).
 
-     * `offset` (`int`, optional): return other selected channels after offset. Defaults to 0.
+     * `offset` (`int`, optional): return other selected channels after offset.
+       Defaults to 0.
 
     ## Returns:
      * `int`: global index of first selected channel
