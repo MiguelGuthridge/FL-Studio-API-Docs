@@ -79,12 +79,12 @@ def channelNumber(canBeNone: int = 0, offset: int = 0) -&gt; int:
 
 
 def channelCount(mode: int = 0) -&gt; int:
-    &#34;&#34;&#34;Returns the number of channels on the channel rack. Respect for groups is
-    controlled by the `mode` flag.
+    &#34;&#34;&#34;Returns the number of channels on the channel rack. Respect for groups
+    is controlled by the `mode` flag.
 
     ## Args:
-     * `mode` (`int`, optional): Whether the number of channels respects groups.
-       Defaults to 0.
+     * `mode` (`int`, optional): Whether the number of channels respects
+       groups. Defaults to 0.
 
     ## Returns:
      * `int`: number of channels
@@ -229,7 +229,11 @@ def getChannelVolume(index: int, mode: int = 0) -&gt; float:
     return 0.0
 
 
-def setChannelVolume(index: int, volume: float, pickupMode: int = midi.PIM_None) -&gt; None:
+def setChannelVolume(
+    index: int,
+    volume: float,
+    pickupMode: int = midi.PIM_None
+) -&gt; None:
     &#34;&#34;&#34;Sets the normalised volume of the channel at `index`, where `0.0` is
     the minimum value, and `1.0` is the maximum value. Note that the default
     volume for channels is `0.78125`. Use the pickup mode flag to set pickup
@@ -820,12 +824,12 @@ def updateGraphEditor() -&gt; None:
 <span>def <span class="ident">channelCount</span></span>(<span>mode: int = 0) ‑> int</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns the number of channels on the channel rack. Respect for groups is
-controlled by the <code>mode</code> flag.</p>
+<div class="desc"><p>Returns the number of channels on the channel rack. Respect for groups
+is controlled by the <code>mode</code> flag.</p>
 <h2 id="args">Args:</h2>
 <ul>
-<li><code>mode</code> (<code>int</code>, optional): Whether the number of channels respects groups.
-Defaults to 0.</li>
+<li><code>mode</code> (<code>int</code>, optional): Whether the number of channels respects
+groups. Defaults to 0.</li>
 </ul>
 <h2 id="returns">Returns:</h2>
 <ul>
@@ -838,12 +842,12 @@ version 3).</p></div>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def channelCount(mode: int = 0) -&gt; int:
-    &#34;&#34;&#34;Returns the number of channels on the channel rack. Respect for groups is
-    controlled by the `mode` flag.
+    &#34;&#34;&#34;Returns the number of channels on the channel rack. Respect for groups
+    is controlled by the `mode` flag.
 
     ## Args:
-     * `mode` (`int`, optional): Whether the number of channels respects groups.
-       Defaults to 0.
+     * `mode` (`int`, optional): Whether the number of channels respects
+       groups. Defaults to 0.
 
     ## Returns:
      * `int`: number of channels
@@ -2342,7 +2346,11 @@ the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manu
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def setChannelVolume(index: int, volume: float, pickupMode: int = midi.PIM_None) -&gt; None:
+<pre><code class="python">def setChannelVolume(
+    index: int,
+    volume: float,
+    pickupMode: int = midi.PIM_None
+) -&gt; None:
     &#34;&#34;&#34;Sets the normalised volume of the channel at `index`, where `0.0` is
     the minimum value, and `1.0` is the maximum value. Note that the default
     volume for channels is `0.78125`. Use the pickup mode flag to set pickup
