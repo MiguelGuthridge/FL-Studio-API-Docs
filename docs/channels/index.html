@@ -25,7 +25,7 @@
 <p>Channels Module (FL Studio built-in)</p>
 <p>Allows you to control and interact with the FL Studio Channel Rack, and with
 instrument channels.</p>
-<h2 id="notes">NOTES:</h2>
+<h2 id="note">NOTE:</h2>
 <ul>
 <li>
 <p>In this documentation, an index respects channel groups, whereas a
@@ -44,7 +44,7 @@ global index does not.</p>
 Allows you to control and interact with the FL Studio Channel Rack, and with
 instrument channels.
 
-## NOTES:
+## NOTE:
  * In this documentation, an index respects channel groups, whereas a
    global index does not.
 
@@ -422,9 +422,10 @@ def selectedChannel(canBeNone: int = 0, offset: int = 0, indexGlobal: int = 0) -
     returned. If `indexGlobal` is set to `1`, this will replicate the behaviour
     of `channelNumber()` by returning global indexes.
 
-    NOTE: This function replaces the functionality of `channelNumber()`
-    entirely, with the added functionality of providing indexes respecting
-    groups (when `indexGlobal` is not set).
+    ## NOTE:
+    * This function replaces the functionality of `channelNumber()`
+      entirely, with the added functionality of providing indexes respecting
+      groups (when `indexGlobal` is not set).
 
     If `canBeNone` is `1`, no selection will return `-1`. Otherwise, no selection
     will return `0` (representing the first channel).
@@ -464,13 +465,18 @@ def deselectAll() -&gt; None:
 def getChannelMidiInPort(index: int) -&gt; int:
     &#34;&#34;&#34;Returns the MIDI port associated with the channel at `index`.
 
-    TODO: Write use cases
+    This can be used to send data directly to channels that are associated with
+    a MIDI in port. Although channels are unassigned by default, a user can
+    configure plugins to receive MIDI on a certain channel which can unlock
+    many useful plugin-specific features.
 
     ## Args:
      * `index` (`int`): channel index
 
     ## Returns:
      * `int`: MIDI port associated with channel
+
+     * `-2`: Channel not assigned to a MIDI port
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -524,8 +530,9 @@ def isHighlighted() -&gt; bool:
 def processRECEvent(eventId: int, value: int, flags: int) -&gt; int:
     &#34;&#34;&#34;Processes a recording event.
 
-    WARNING: This function is depreciated here, and moved to the `general`
-    module as of API version 7.
+    ## WARNING:
+    * This function is depreciated here, and moved to the `general` module as
+      of API version 7.
 
     ## Args:
      * `eventId` (`int`): Refer to the [official documentation](https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#RecEventParams)
@@ -549,12 +556,14 @@ def incEventValue(eventId: int, step: int, res: float = 1/24) -&gt; int:
 
     Use result as new value in processRECEvent
 
-    Example (to increase volume of first channel):
-
+    ## Example usage:
+    ```py
+    # Increase volume of first channel
     step = 1
     eventId = midi.REC_Chan_Vol + channels.getRecEventId(0)
     newValue = channels.incEventValue(eventId, step)
     general.processRECEvent(eventId, newValue, midi.REC_UpdateValue | midi.REC_UpdateControl)
+    ```
 
     ## Args:
      * `eventId` (`int`): event ID, see the [official documentation](https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#RecEventParams)
@@ -621,12 +630,13 @@ def getStepParam(step: int, param: int, ofset: int, startPos: int,
                  padsStride: int = 16) -&gt; int:
     &#34;&#34;&#34;Get step parameter for `step`.
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `step` (`int`): ?
 
-     * `param` (`int`): ?? at least there&#39;s the [offical documentation](https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#stepParams)
+     * `param` (`int`): ?? at least there&#39;s the [official documentation](https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#stepParams)
        (actually, tbh the docs on this looks kinda dodgy for some values)
 
      * `ofset` (`int`): ??? (this typo is in the official docs too)
@@ -646,10 +656,12 @@ def getStepParam(step: int, param: int, ofset: int, startPos: int,
 def getCurrentStepParam(index: int, step: int, param: int) -&gt; int:
     &#34;&#34;&#34;Get current step parameter for channel at `index` and for step at `step`.
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
-    TODO: Official documentation says this returns None, but it actually seems
-    to return an int.
+    ## NOTE:
+    * Official documentation says this returns None, but it actually seems to
+      return an int.
 
     ## Args:
      * `index` (`int`): channel index
@@ -668,8 +680,9 @@ def getGridBitWithLoop(index: int, position: int) -&gt; bool:
     &#34;&#34;&#34;Get value of grid bit on channel `index` in `position` accounting for
     loops.
 
-    NOTE: Official documentations say this returns None, but it doesn&#39;t. This
-    documentation reflects the actual behaviour.
+    ## NOTE:
+    * Official documentations say this returns None, but it doesn&#39;t. This
+      documentation reflects the actual behaviour.
 
     ## Args:
      * `index` (`int`): channel index`
@@ -723,7 +736,10 @@ def showEditor(index: int, value: int = -1) -&gt; None:
      * `value` (`int`): whether to hide (`0`) or show (`1`) the plugin window.
        Defaults to `-1` (toggle).
 
-    Included since API version 1, with optional parameter added in version 3.
+    Included since API version 1
+
+    ## API Changes:
+    * v3: Add `value` parameter
     &#34;&#34;&#34;
 
 
@@ -759,14 +775,17 @@ def midiNoteOn(indexGlobal: int, note: int, velocity: int, channel: int = -1
 
     This can be used to create extra notes (eg mapping one note to a chord).
 
+    ## WARNING:
+    * Specifying a `channel` doesn&#39;t appear to do anything
+
     ## Args:
-     * `indexGlobal` (`int`): channel index (not respecting groups)
+    * `indexGlobal` (`int`): channel index (not respecting groups)
 
-     * `note` (`int`): note number (0-127)
+    * `note` (`int`): note number (0-127)
 
-     * `velocity` (`int`): note velocity (1-127, 0 is note off)
+    * `velocity` (`int`): note velocity (1-127, 0 is note off)
 
-     * `channel` (`int`, optional): MIDI channel to use. Defaults to -1.
+    * `channel` (`int`, optional): MIDI channel to use. Defaults to -1.
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -792,8 +811,9 @@ def quickQuantize(index: int, startOnly: int = 1) -&gt; None:
     &#34;&#34;&#34;
     Perform a quick quantize operation on the channel at index
 
-    NOTE: The API documentation lists this as returning a float, however it
-    actually returns None, which is documented here.
+    ## NOTE:
+    * The API documentation lists this as returning a float, however it
+      actually returns None, which is what is documented here.
 
     ## Args:
     * `index` (`int`): channel index, respecting groups
@@ -807,9 +827,10 @@ def updateGraphEditor() -&gt; None:
     &#34;&#34;&#34;
     ???
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
-    Included since API Version 20
+    Included since API Version 20?
     &#34;&#34;&#34;</code></pre>
 </details>
 </section>
@@ -1075,14 +1096,22 @@ functions provided in the module <code>utils</code></p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the MIDI port associated with the channel at <code>index</code>.</p>
-<p>TODO: Write use cases</p>
+<p>This can be used to send data directly to channels that are associated with
+a MIDI in port. Although channels are unassigned by default, a user can
+configure plugins to receive MIDI on a certain channel which can unlock
+many useful plugin-specific features.</p>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>index</code> (<code>int</code>): channel index</li>
 </ul>
 <h2 id="returns">Returns:</h2>
 <ul>
-<li><code>int</code>: MIDI port associated with channel</li>
+<li>
+<p><code>int</code>: MIDI port associated with channel</p>
+</li>
+<li>
+<p><code>-2</code>: Channel not assigned to a MIDI port</p>
+</li>
 </ul>
 <p>Included since API version 1</p></div>
 <details class="source">
@@ -1092,13 +1121,18 @@ functions provided in the module <code>utils</code></p>
 <pre><code class="python">def getChannelMidiInPort(index: int) -&gt; int:
     &#34;&#34;&#34;Returns the MIDI port associated with the channel at `index`.
 
-    TODO: Write use cases
+    This can be used to send data directly to channels that are associated with
+    a MIDI in port. Although channels are unassigned by default, a user can
+    configure plugins to receive MIDI on a certain channel which can unlock
+    many useful plugin-specific features.
 
     ## Args:
      * `index` (`int`): channel index
 
     ## Returns:
      * `int`: MIDI port associated with channel
+
+     * `-2`: Channel not assigned to a MIDI port
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -1366,9 +1400,15 @@ of a value in dB</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Get current step parameter for channel at <code>index</code> and for step at <code>step</code>.</p>
-<p>HELP WANTED: What does this do?</p>
-<p>TODO: Official documentation says this returns None, but it actually seems
-to return an int.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>Official documentation says this returns None, but it actually seems to
+return an int.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1390,10 +1430,12 @@ although it looks kinda dodgy for some values)</p>
 <pre><code class="python">def getCurrentStepParam(index: int, step: int, param: int) -&gt; int:
     &#34;&#34;&#34;Get current step parameter for channel at `index` and for step at `step`.
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
-    TODO: Official documentation says this returns None, but it actually seems
-    to return an int.
+    ## NOTE:
+    * Official documentation says this returns None, but it actually seems to
+      return an int.
 
     ## Args:
      * `index` (`int`): channel index
@@ -1453,8 +1495,11 @@ although it looks kinda dodgy for some values)</p>
 <dd>
 <div class="desc"><p>Get value of grid bit on channel <code>index</code> in <code>position</code> accounting for
 loops.</p>
-<p>NOTE: Official documentations say this returns None, but it doesn't. This
-documentation reflects the actual behaviour.</p>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>Official documentations say this returns None, but it doesn't. This
+documentation reflects the actual behaviour.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1477,8 +1522,9 @@ documentation reflects the actual behaviour.</p>
     &#34;&#34;&#34;Get value of grid bit on channel `index` in `position` accounting for
     loops.
 
-    NOTE: Official documentations say this returns None, but it doesn&#39;t. This
-    documentation reflects the actual behaviour.
+    ## NOTE:
+    * Official documentations say this returns None, but it doesn&#39;t. This
+      documentation reflects the actual behaviour.
 
     ## Args:
      * `index` (`int`): channel index`
@@ -1533,14 +1579,17 @@ documentation reflects the actual behaviour.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Get step parameter for <code>step</code>.</p>
-<p>HELP WANTED: What does this do?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
 <p><code>step</code> (<code>int</code>): ?</p>
 </li>
 <li>
-<p><code>param</code> (<code>int</code>): ?? at least there's the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#stepParams">offical documentation</a>
+<p><code>param</code> (<code>int</code>): ?? at least there's the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#stepParams">official documentation</a>
 (actually, tbh the docs on this looks kinda dodgy for some values)</p>
 </li>
 <li>
@@ -1566,12 +1615,13 @@ documentation reflects the actual behaviour.</p>
                  padsStride: int = 16) -&gt; int:
     &#34;&#34;&#34;Get step parameter for `step`.
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `step` (`int`): ?
 
-     * `param` (`int`): ?? at least there&#39;s the [offical documentation](https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#stepParams)
+     * `param` (`int`): ?? at least there&#39;s the [official documentation](https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#stepParams)
        (actually, tbh the docs on this looks kinda dodgy for some values)
 
      * `ofset` (`int`): ??? (this typo is in the official docs too)
@@ -1627,11 +1677,13 @@ documentation reflects the actual behaviour.</p>
 <div class="desc"><p>Get event value increased by step. Use (optional) res paremeter to
 specify increment resolution.</p>
 <p>Use result as new value in processRECEvent</p>
-<p>Example (to increase volume of first channel):</p>
-<p>step = 1
+<h2 id="example-usage">Example usage:</h2>
+<pre><code class="language-py"># Increase volume of first channel
+step = 1
 eventId = midi.REC_Chan_Vol + channels.getRecEventId(0)
 newValue = channels.incEventValue(eventId, step)
-general.processRECEvent(eventId, newValue, midi.REC_UpdateValue | midi.REC_UpdateControl)</p>
+general.processRECEvent(eventId, newValue, midi.REC_UpdateValue | midi.REC_UpdateControl)
+</code></pre>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1659,12 +1711,14 @@ general.processRECEvent(eventId, newValue, midi.REC_UpdateValue | midi.REC_Updat
 
     Use result as new value in processRECEvent
 
-    Example (to increase volume of first channel):
-
+    ## Example usage:
+    ```py
+    # Increase volume of first channel
     step = 1
     eventId = midi.REC_Chan_Vol + channels.getRecEventId(0)
     newValue = channels.incEventValue(eventId, step)
     general.processRECEvent(eventId, newValue, midi.REC_UpdateValue | midi.REC_UpdateControl)
+    ```
 
     ## Args:
      * `eventId` (`int`): event ID, see the [official documentation](https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#RecEventParams)
@@ -1819,6 +1873,10 @@ script is mapping to.</p>
 <dd>
 <div class="desc"><p>Set a MIDI Note for the channel at <code>indexGlobal</code> (not respecting groups)</p>
 <p>This can be used to create extra notes (eg mapping one note to a chord).</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>Specifying a <code>channel</code> doesn't appear to do anything</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1845,14 +1903,17 @@ script is mapping to.</p>
 
     This can be used to create extra notes (eg mapping one note to a chord).
 
+    ## WARNING:
+    * Specifying a `channel` doesn&#39;t appear to do anything
+
     ## Args:
-     * `indexGlobal` (`int`): channel index (not respecting groups)
+    * `indexGlobal` (`int`): channel index (not respecting groups)
 
-     * `note` (`int`): note number (0-127)
+    * `note` (`int`): note number (0-127)
 
-     * `velocity` (`int`): note velocity (1-127, 0 is note off)
+    * `velocity` (`int`): note velocity (1-127, 0 is note off)
 
-     * `channel` (`int`, optional): MIDI channel to use. Defaults to -1.
+    * `channel` (`int`, optional): MIDI channel to use. Defaults to -1.
 
     Included since API version 1
     &#34;&#34;&#34;</code></pre>
@@ -1884,8 +1945,11 @@ script is mapping to.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Processes a recording event.</p>
-<p>WARNING: This function is depreciated here, and moved to the <code>general</code>
-module as of API version 7.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function is depreciated here, and moved to the <code>general</code> module as
+of API version 7.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1911,8 +1975,9 @@ Depreciated since API version 7</p></div>
 <pre><code class="python">def processRECEvent(eventId: int, value: int, flags: int) -&gt; int:
     &#34;&#34;&#34;Processes a recording event.
 
-    WARNING: This function is depreciated here, and moved to the `general`
-    module as of API version 7.
+    ## WARNING:
+    * This function is depreciated here, and moved to the `general` module as
+      of API version 7.
 
     ## Args:
      * `eventId` (`int`): Refer to the [official documentation](https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#RecEventParams)
@@ -1935,8 +2000,11 @@ Depreciated since API version 7</p></div>
 </code></dt>
 <dd>
 <div class="desc"><p>Perform a quick quantize operation on the channel at index</p>
-<p>NOTE: The API documentation lists this as returning a float, however it
-actually returns None, which is documented here.</p>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>The API documentation lists this as returning a float, however it
+actually returns None, which is what is documented here.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1955,8 +2023,9 @@ actually returns None, which is documented here.</p>
     &#34;&#34;&#34;
     Perform a quick quantize operation on the channel at index
 
-    NOTE: The API documentation lists this as returning a float, however it
-    actually returns None, which is documented here.
+    ## NOTE:
+    * The API documentation lists this as returning a float, however it
+      actually returns None, which is what is documented here.
 
     ## Args:
     * `index` (`int`): channel index, respecting groups
@@ -2066,9 +2135,12 @@ selected channel where n is <code>offset</code> + 1. If n is greater than the nu
 selected channels, the global index of the last selected channel will be
 returned. If <code>indexGlobal</code> is set to <code>1</code>, this will replicate the behaviour
 of <code><a title="src.channels.channelNumber" href="#src.channels.channelNumber">channelNumber()</a></code> by returning global indexes.</p>
-<p>NOTE: This function replaces the functionality of <code><a title="src.channels.channelNumber" href="#src.channels.channelNumber">channelNumber()</a></code>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>This function replaces the functionality of <code><a title="src.channels.channelNumber" href="#src.channels.channelNumber">channelNumber()</a></code>
 entirely, with the added functionality of providing indexes respecting
-groups (when <code>indexGlobal</code> is not set).</p>
+groups (when <code>indexGlobal</code> is not set).</li>
+</ul>
 <p>If <code>canBeNone</code> is <code>1</code>, no selection will return <code>-1</code>. Otherwise, no selection
 will return <code>0</code> (representing the first channel).</p>
 <h2 id="args">Args:</h2>
@@ -2102,9 +2174,10 @@ or the global index (<code>1</code>).</p>
     returned. If `indexGlobal` is set to `1`, this will replicate the behaviour
     of `channelNumber()` by returning global indexes.
 
-    NOTE: This function replaces the functionality of `channelNumber()`
-    entirely, with the added functionality of providing indexes respecting
-    groups (when `indexGlobal` is not set).
+    ## NOTE:
+    * This function replaces the functionality of `channelNumber()`
+      entirely, with the added functionality of providing indexes respecting
+      groups (when `indexGlobal` is not set).
 
     If `canBeNone` is `1`, no selection will return `-1`. Otherwise, no selection
     will return `0` (representing the first channel).
@@ -2458,7 +2531,11 @@ The value parameter chan be used to set to a specific value.</p>
 Defaults to <code>-1</code> (toggle).</p>
 </li>
 </ul>
-<p>Included since API version 1, with optional parameter added in version 3.</p></div>
+<p>Included since API version 1</p>
+<h2 id="api-changes">API Changes:</h2>
+<ul>
+<li>v3: Add <code>value</code> parameter</li>
+</ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2473,7 +2550,10 @@ Defaults to <code>-1</code> (toggle).</p>
      * `value` (`int`): whether to hide (`0`) or show (`1`) the plugin window.
        Defaults to `-1` (toggle).
 
-    Included since API version 1, with optional parameter added in version 3.
+    Included since API version 1
+
+    ## API Changes:
+    * v3: Add `value` parameter
     &#34;&#34;&#34;</code></pre>
 </details>
 </dd>
@@ -2568,8 +2648,11 @@ not (<code>0</code>). Defaults to <code>1</code>.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>???</p>
-<p>WARNING: This function has no official documentation</p>
-<p>Included since API Version 20</p></div>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function has no official documentation</li>
+</ul>
+<p>Included since API Version 20?</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2578,9 +2661,10 @@ not (<code>0</code>). Defaults to <code>1</code>.</p>
     &#34;&#34;&#34;
     ???
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
-    Included since API Version 20
+    Included since API Version 20?
     &#34;&#34;&#34;</code></pre>
 </details>
 </dd>
@@ -2593,7 +2677,7 @@ not (<code>0</code>). Defaults to <code>1</code>.</p>
 <h1>Index</h1>
 <div class="toc">
 <ul>
-<li><a href="#notes">NOTES:</a></li>
+<li><a href="#note">NOTE:</a></li>
 </ul>
 </div>
 <ul id="index">

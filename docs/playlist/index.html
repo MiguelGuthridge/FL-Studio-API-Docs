@@ -30,13 +30,8 @@
 </ul>
 <h2 id="known-issues">KNOWN ISSUES:</h2>
 <ul>
-<li>
-<p>When a track index is required, track zero can be accessed, but does not give
-results (as track indexes start at 1)</p>
-</li>
-<li>
-<p>Trying to access track <code>500</code> raises an Index out of range <code>TypeError</code></p>
-</li>
+<li>For all API versions below 20, the accessible range is 0-499 rather than
+1-500.</li>
 </ul>
 <h2 id="help-wanted">HELP WANTED:</h2>
 <ul>
@@ -59,10 +54,8 @@ Allows you to control and interact with the FL Studio Playlist.
  * Playlist tracks are 1-indexed.
 
 ## KNOWN ISSUES:
- * When a track index is required, track zero can be accessed, but does not give
-   results (as track indexes start at 1)
-
- * Trying to access track `500` raises an Index out of range `TypeError`
+ * For all API versions below 20, the accessible range is 0-499 rather than
+   1-500.
 
 ## HELP WANTED:
  * Explanations for display zone functions
@@ -100,9 +93,6 @@ def getTrackName(index: int) -&gt; str:
     ## Raises:
      * `TypeError`: Index out of range
 
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
-
     Included since API version 1
     &#34;&#34;&#34;
     return &#34;&#34;
@@ -119,9 +109,6 @@ def setTrackName(index: int, name: str) -&gt; None:
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -148,9 +135,6 @@ def getTrackColor(index: int) -&gt; int:
     ## Raises:
      * `TypeError`: Index out of range
 
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
-
     Included since API version 1
     &#34;&#34;&#34;
     return 0
@@ -176,9 +160,6 @@ def setTrackColor(index: int, color: int) -&gt; None:
     ## Raises:
      * `TypeError`: Index out of range
 
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
-
     Included since API version 1
     &#34;&#34;&#34;
 
@@ -195,9 +176,6 @@ def isTrackMuted(index: int) -&gt; bool:
     ## Raises:
      * `TypeError`: Index out of range
 
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
-
     Included since API version 1
     &#34;&#34;&#34;
     return False
@@ -212,9 +190,6 @@ def muteTrack(index: int) -&gt; None:
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -233,9 +208,6 @@ def isTrackMuteLock(index: int) -&gt; bool:
     ## Raises:
      * `TypeError`: Index out of range
 
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
-
     Included since API version 2
     &#34;&#34;&#34;
     return False
@@ -250,9 +222,6 @@ def muteTrackLock(index: int) -&gt; None:
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 2
     &#34;&#34;&#34;
@@ -269,9 +238,6 @@ def isTrackSolo(index: int) -&gt; bool:
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -291,9 +257,6 @@ def soloTrack(index: int, value: int = -1) -&gt; None:
     ## Raises:
      * `TypeError`: Index out of range
 
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
-
     Included since API version 1
     &#34;&#34;&#34;
 
@@ -310,9 +273,6 @@ def isTrackSelected(index: int) -&gt; bool:
     ## Raises:
      * `TypeError`: Index out of range
 
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
-
     Included since API version 12
     &#34;&#34;&#34;
     return False
@@ -327,9 +287,6 @@ def selectTrack(index: int) -&gt; None:
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 12
     &#34;&#34;&#34;
@@ -358,19 +315,17 @@ def getTrackActivityLevel(index: int) -&gt; float:
      * `index` (`int`): track index
 
     ## Returns:
-     * `float`: activity level
-          * `0.0`: No clip is active
+    * `float`: activity level
+         * `0.0`: No clip is active
 
-          * `0.5`: A clip is active at the play head
+         * `0.5`: A clip is active at the play head
 
     ## Raises:
      * `TypeError`: Index out of range
 
     ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
-
-     * This function will only return 0.0 or 0.5, and nothing in between. There
-       is no documentation for whether this is by design.
+    * This function will only return 0.0 or 0.5, and nothing in between. There
+      is no documentation for whether this is by design.
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -395,9 +350,6 @@ def getTrackActivityLevelVis(index: int) -&gt; float:
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -1273,13 +1225,8 @@ active at the playhead. Compare to <code>playlist.getTrackActivityLevelVis()</co
 </ul>
 <h2 id="known-issues">Known Issues:</h2>
 <ul>
-<li>
-<p>Trying to access track 500 raises an Index out of range <code>TypeError</code></p>
-</li>
-<li>
-<p>This function will only return 0.0 or 0.5, and nothing in between. There
-is no documentation for whether this is by design.</p>
-</li>
+<li>This function will only return 0.0 or 0.5, and nothing in between. There
+is no documentation for whether this is by design.</li>
 </ul>
 <p>Included since API version 1</p></div>
 <details class="source">
@@ -1295,19 +1242,17 @@ is no documentation for whether this is by design.</p>
      * `index` (`int`): track index
 
     ## Returns:
-     * `float`: activity level
-          * `0.0`: No clip is active
+    * `float`: activity level
+         * `0.0`: No clip is active
 
-          * `0.5`: A clip is active at the play head
+         * `0.5`: A clip is active at the play head
 
     ## Raises:
      * `TypeError`: Index out of range
 
     ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
-
-     * This function will only return 0.0 or 0.5, and nothing in between. There
-       is no documentation for whether this is by design.
+    * This function will only return 0.0 or 0.5, and nothing in between. There
+      is no documentation for whether this is by design.
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -1345,10 +1290,6 @@ represent more recent note-on events.</p>
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 1</p></div>
 <details class="source">
 <summary>
@@ -1372,9 +1313,6 @@ represent more recent note-on events.</p>
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -1409,10 +1347,6 @@ functions provided in the module <code>utils</code></p>
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 1</p></div>
 <details class="source">
 <summary>
@@ -1439,9 +1373,6 @@ functions provided in the module <code>utils</code></p>
     ## Raises:
      * `TypeError`: Index out of range
 
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
-
     Included since API version 1
     &#34;&#34;&#34;
     return 0</code></pre>
@@ -1466,10 +1397,6 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 1</p></div>
 <details class="source">
 <summary>
@@ -1489,9 +1416,6 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -1736,10 +1660,6 @@ that solo/unsolo commands won't affect its mute status).</p>
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 2</p></div>
 <details class="source">
 <summary>
@@ -1757,9 +1677,6 @@ that solo/unsolo commands won't affect its mute status).</p>
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 2
     &#34;&#34;&#34;
@@ -1783,10 +1700,6 @@ that solo/unsolo commands won't affect its mute status).</p>
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 1</p></div>
 <details class="source">
 <summary>
@@ -1803,9 +1716,6 @@ that solo/unsolo commands won't affect its mute status).</p>
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -1829,10 +1739,6 @@ that solo/unsolo commands won't affect its mute status).</p>
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 12</p></div>
 <details class="source">
 <summary>
@@ -1849,9 +1755,6 @@ that solo/unsolo commands won't affect its mute status).</p>
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 12
     &#34;&#34;&#34;
@@ -1875,10 +1778,6 @@ that solo/unsolo commands won't affect its mute status).</p>
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 1</p></div>
 <details class="source">
 <summary>
@@ -1895,9 +1794,6 @@ that solo/unsolo commands won't affect its mute status).</p>
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 1
     &#34;&#34;&#34;
@@ -2008,10 +1904,6 @@ become muted and a muted track will become unmuted.</p>
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 1</p></div>
 <details class="source">
 <summary>
@@ -2026,9 +1918,6 @@ become muted and a muted track will become unmuted.</p>
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 1
     &#34;&#34;&#34;</code></pre>
@@ -2048,10 +1937,6 @@ solo/unsolo commands won't affect its mute status).</p>
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 2</p></div>
 <details class="source">
 <summary>
@@ -2066,9 +1951,6 @@ solo/unsolo commands won't affect its mute status).</p>
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 2
     &#34;&#34;&#34;</code></pre>
@@ -2139,10 +2021,6 @@ become selected and a selected track will become deselected.</p>
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 12</p></div>
 <details class="source">
 <summary>
@@ -2157,9 +2035,6 @@ become selected and a selected track will become deselected.</p>
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 12
     &#34;&#34;&#34;</code></pre>
@@ -2194,10 +2069,6 @@ functions provided in the module <code>utils</code></p>
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 1</p></div>
 <details class="source">
 <summary>
@@ -2223,9 +2094,6 @@ functions provided in the module <code>utils</code></p>
     ## Raises:
      * `TypeError`: Index out of range
 
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
-
     Included since API version 1
     &#34;&#34;&#34;</code></pre>
 </details>
@@ -2245,10 +2113,6 @@ Setting the name to an empty string ("") will reset the name to "Track n"</p>
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 1</p></div>
 <details class="source">
 <summary>
@@ -2265,9 +2129,6 @@ Setting the name to an empty string ("") will reset the name to "Track n"</p>
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 1
     &#34;&#34;&#34;</code></pre>
@@ -2293,10 +2154,6 @@ control what the new value will be (<code>1</code>: solo, <code>0</code>: unsolo
 <ul>
 <li><code>TypeError</code>: Index out of range</li>
 </ul>
-<h2 id="known-issues">Known Issues:</h2>
-<ul>
-<li>Trying to access track 500 raises an Index out of range <code>TypeError</code></li>
-</ul>
 <p>Included since API version 1</p></div>
 <details class="source">
 <summary>
@@ -2314,9 +2171,6 @@ control what the new value will be (<code>1</code>: solo, <code>0</code>: unsolo
 
     ## Raises:
      * `TypeError`: Index out of range
-
-    ## Known Issues:
-     * Trying to access track 500 raises an Index out of range `TypeError`
 
     Included since API version 1
     &#34;&#34;&#34;</code></pre>
