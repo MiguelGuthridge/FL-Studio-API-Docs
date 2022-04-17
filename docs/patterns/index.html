@@ -26,7 +26,7 @@
 <p>Allows you to control and interact with FL Studio Patterns.</p>
 <h2 id="notes">NOTES:</h2>
 <ul>
-<li>Patterns are 1-indexed</li>
+<li>Patterns are 1-indexed, with a range from <code>1</code> - <code>999</code></li>
 </ul>
 <details class="source">
 <summary>
@@ -37,7 +37,7 @@
 Allows you to control and interact with FL Studio Patterns.
 
 ## NOTES:
- * Patterns are 1-indexed
+ * Patterns are 1-indexed, with a range from `1` - `999`
 &#34;&#34;&#34;
 
 
@@ -173,8 +173,9 @@ def getBlockSetStatus(left: int, top: int, right: int, bottom: int) -&gt; int:
 def ensureValidNoteRecord(index: int, playNow: int = 0) -&gt; int:
     &#34;&#34;&#34;Ensures valid note on the pattern at `index`.
 
-    HELP WANTED: What does this do? I haven&#39;t managed to get it to return
-    anything other than zero.
+    ## HELP WANTED:
+    * What does this do? I haven&#39;t managed to get it to return
+      anything other than zero.
 
     ## Args:
      * `index` (`int`): pattern index
@@ -192,8 +193,11 @@ def ensureValidNoteRecord(index: int, playNow: int = 0) -&gt; int:
 def jumpToPattern(index: int) -&gt; None:
     &#34;&#34;&#34;Scroll the patterns list to the pattern at `index`, and select it.
 
-    NOTE: This function seems to cause some extremely buggy behaviour as of FL
-    20.8.4, and as such, using it is not recommended.
+    ## NOTE:
+    * It is possible to jump to non-existent patterns. They will be created at
+      the requested index. Script writers should be careful not to create
+      patterns at unusual indexes. For example, creating a &#34;Pattern 999&#34; as the
+      second pattern in a project would be somewhat confusing for user.
 
     ## Args:
      * index (`int`): pattern index
@@ -271,7 +275,8 @@ def deselectAll() -&gt; None:
 def burnLoop(index: int, storeUndo: int = 1, updateUi: int = 1) -&gt; None:
     &#34;&#34;&#34;???
 
-    HELP WANTED: The documentation for this doesn&#39;t make sense.
+    ## HELP WANTED:
+    * The documentation for this doesn&#39;t make sense.
 
     ## Args:
      * `index` (`int`): ???
@@ -296,7 +301,10 @@ def burnLoop(index: int, storeUndo: int = 1, updateUi: int = 1) -&gt; None:
 </code></dt>
 <dd>
 <div class="desc"><p>???</p>
-<p>HELP WANTED: The documentation for this doesn't make sense.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>The documentation for this doesn't make sense.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -317,7 +325,8 @@ def burnLoop(index: int, storeUndo: int = 1, updateUi: int = 1) -&gt; None:
 <pre><code class="python">def burnLoop(index: int, storeUndo: int = 1, updateUi: int = 1) -&gt; None:
     &#34;&#34;&#34;???
 
-    HELP WANTED: The documentation for this doesn&#39;t make sense.
+    ## HELP WANTED:
+    * The documentation for this doesn&#39;t make sense.
 
     ## Args:
      * `index` (`int`): ???
@@ -352,8 +361,11 @@ def burnLoop(index: int, storeUndo: int = 1, updateUi: int = 1) -&gt; None:
 </code></dt>
 <dd>
 <div class="desc"><p>Ensures valid note on the pattern at <code>index</code>.</p>
-<p>HELP WANTED: What does this do? I haven't managed to get it to return
-anything other than zero.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do? I haven't managed to get it to return
+anything other than zero.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -375,8 +387,9 @@ anything other than zero.</p>
 <pre><code class="python">def ensureValidNoteRecord(index: int, playNow: int = 0) -&gt; int:
     &#34;&#34;&#34;Ensures valid note on the pattern at `index`.
 
-    HELP WANTED: What does this do? I haven&#39;t managed to get it to return
-    anything other than zero.
+    ## HELP WANTED:
+    * What does this do? I haven&#39;t managed to get it to return
+      anything other than zero.
 
     ## Args:
      * `index` (`int`): pattern index
@@ -643,8 +656,13 @@ doesn't seem to work)</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Scroll the patterns list to the pattern at <code>index</code>, and select it.</p>
-<p>NOTE: This function seems to cause some extremely buggy behaviour as of FL
-20.8.4, and as such, using it is not recommended.</p>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>It is possible to jump to non-existent patterns. They will be created at
+the requested index. Script writers should be careful not to create
+patterns at unusual indexes. For example, creating a "Pattern 999" as the
+second pattern in a project would be somewhat confusing for user.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>index (<code>int</code>): pattern index</li>
@@ -657,8 +675,11 @@ doesn't seem to work)</p>
 <pre><code class="python">def jumpToPattern(index: int) -&gt; None:
     &#34;&#34;&#34;Scroll the patterns list to the pattern at `index`, and select it.
 
-    NOTE: This function seems to cause some extremely buggy behaviour as of FL
-    20.8.4, and as such, using it is not recommended.
+    ## NOTE:
+    * It is possible to jump to non-existent patterns. They will be created at
+      the requested index. Script writers should be careful not to create
+      patterns at unusual indexes. For example, creating a &#34;Pattern 999&#34; as the
+      second pattern in a project would be somewhat confusing for user.
 
     ## Args:
      * index (`int`): pattern index

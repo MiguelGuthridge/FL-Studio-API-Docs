@@ -51,11 +51,11 @@ parameter values for plugins on the mixer and the channel rack.
 Module added in API version 8.
 
 ## NOTES:
- * `index` either refers to the index of the plugin on the channel rack, or the
-   index of the mixer track containing the plugin on the mixer.
+* `index` either refers to the index of the plugin on the channel rack, or the
+  index of the mixer track containing the plugin on the mixer.
 
- * `slotIndex` refers the the mixer slot of the plugin if it is on the mixer.
-   Leave this parameter empty if the plugin is on the channel rack.
+* `slotIndex` refers the the mixer slot of the plugin if it is on the mixer.
+  Leave this parameter empty if the plugin is on the channel rack.
 &#34;&#34;&#34;
 
 import midi
@@ -64,7 +64,8 @@ import midi
 def isValid(index: int, slotIndex: int = -1) -&gt; bool:
     &#34;&#34;&#34;Returns whether there is a valid plugin at `index`/`slotIndex`.
 
-    NOTE: Audio samples are not considered to be plugins in FL Studio.
+    ## NOTE:
+    * Audio samples are not considered to be plugins in FL Studio.
 
     ## Args:
      * `index` (`int`): index on channel rack or mixer
@@ -102,18 +103,19 @@ def getParamCount(index: int, slotIndex: int = -1) -&gt; int:
     &#34;&#34;&#34;Returns the number of parameters that the plugin at `index`/`slotIndex`
     has.
 
-    NOTE: VST plugins are listed as having `4240` parameters, but not all of
-    these are necessarily used by the plugin. The first `4096` are for
-    parameters, then the next `128` are used for MIDI CC sends `0` to `127`.
-    The final `16` are used for aftertouch for each MIDI channel.
+    ## NOTE:
+    * VST plugins are listed as having `4240` parameters, but not all of
+      these are necessarily used by the plugin. The first `4096` are for
+      parameters, then the next `128` are used for MIDI CC sends `0` to `127`.
+      The final `16` are used for aftertouch for each MIDI channel.
 
     ## Args:
-     * `index` (`int`): index on channel rack or mixer
+    * `index` (`int`): index on channel rack or mixer
 
-     * `slotIndex` (`int`, optional): mixer slot if on mixer. Defaults to -1.
+    * `slotIndex` (`int`, optional): mixer slot if on mixer. Defaults to -1.
 
     ## Returns:
-     * `int`: number of parameters
+    * `int`: number of parameters
 
     Included since API version 8
     &#34;&#34;&#34;
@@ -124,18 +126,19 @@ def getParamName(paramIndex: int, index: int, slotIndex: int = -1) -&gt; str:
     &#34;&#34;&#34;Returns the name of the parameter at `paramIndex` for the plugin at
     `index`/`slotIndex`.
 
-    WARNING: FL Studio&#39;s Python environment will crash if an invalid
-    paramIndex is provided to this function.
+    ## WARNING:
+    * In API versions &lt; v20, FL Studio&#39;s Python environment will crash if an
+      invalid paramIndex is provided to this function.
 
     ## Args:
-     * `paramIndex` (`int`): index of parameter
+    * `paramIndex` (`int`): index of parameter
 
-     * `index` (`int`): index of plugin on channel rack or mixer
+    * `index` (`int`): index of plugin on channel rack or mixer
 
-     * `slotIndex` (`int`, optional): mixer slot if on mixer. Defaults to -1.
+    * `slotIndex` (`int`, optional): mixer slot if on mixer. Defaults to -1.
 
     ## Returns:
-     * `str`: name of parameter
+    * `str`: name of parameter
 
     Included since API version 8
     &#34;&#34;&#34;
@@ -146,8 +149,9 @@ def getParamValue(paramIndex: int, index: int, slotIndex: int = -1) -&gt; float:
     &#34;&#34;&#34;Returns the value of the parameter at `paramIndex` for the plugin at
     `index`/`slotIndex`.
 
-    KNOWN ISSUE: The return values of this function for VST plugins seem to be
-    very broken, often being incorrect by orders of magnitude
+    ## WARNING:
+    * In API versions &lt; v20, the return values of this function for VST plugins
+      seem to be very broken, often being incorrect by orders of magnitude.
 
     ## Args:
      * `paramIndex` (`int`): index of parameter
@@ -164,13 +168,14 @@ def getParamValue(paramIndex: int, index: int, slotIndex: int = -1) -&gt; float:
     return 0.0
 
 
-def setParamValue(value: float, paramIndex: int, index: int, slotIndex: int = -1)\
-        -&gt; None:
+def setParamValue(
+    value: float,
+    paramIndex: int,
+    index: int,
+    slotIndex: int = -1
+) -&gt; None:
     &#34;&#34;&#34;Sets the value of the parameter at `paramIndex` for the plugin at
     `index`/`slotIndex`.
-
-    NOTE: Although there are issues with the return values of `getParamValue()`,
-    these issues don&#39;t appear to be present for setting the values of paramters.
 
     ## Args:
      * `value` (`float`): new value of parameter (between `0.0` and `1.0`)
@@ -186,14 +191,18 @@ def setParamValue(value: float, paramIndex: int, index: int, slotIndex: int = -1
 
 
 def getParamValueString(
-    paramIndex: int, index: int, slotIndex: int = -1, pickupMode: int = midi.PIM_None
+    paramIndex: int,
+    index: int,
+    slotIndex: int = -1,
+    pickupMode: int = midi.PIM_None,
 ) -&gt; str:
     &#34;&#34;&#34;Returns a string value of the parameter at `paramIndex` for the plugin at
     `index`/`slotIndex`. This function is only supported by some FL Studio
     plugins.
 
-    WARNING: FL Studio&#39;s Python environment will crash if an invalid
-    paramIndex is provided to this function.
+    ## WARNING:
+    * In API versions &lt; v20, FL Studio&#39;s Python environment will crash if an
+      invalid paramIndex is provided to this function.
 
     ## Args:
      * `paramIndex` (`int`): index of parameter
@@ -210,8 +219,11 @@ def getParamValueString(
     return &#34;&#34;
 
 
-def getColor(index: int, slotIndex: int = -1, flag: int = midi.GC_BackgroundColor)\
-        -&gt; int:
+def getColor(
+    index: int,
+    slotIndex: int = -1,
+    flag: int = midi.GC_BackgroundColor
+) -&gt; int:
     &#34;&#34;&#34;Returns various plugin colour parameter values for the plugin at
     `index`/`slotIndex`.
 
@@ -235,49 +247,55 @@ def getColor(index: int, slotIndex: int = -1, flag: int = midi.GC_BackgroundColo
     return 0
 
 
-def getName(index: int, slotIndex: int = -1, flag: int = midi.FPN_Param,
-            paramIndex: int = 0) -&gt; str:
+def getName(
+    index: int,
+    slotIndex: int = -1,
+    flag: int = midi.FPN_Param,
+    paramIndex: int = 0
+) -&gt; str:
     &#34;&#34;&#34;Returns various names for parts of plugins for the plugin at
     `index`/`slotIndex`.
 
-    TODO: Verify this all works on release of API version 13.
+    ## HELP WANTED:
+    * Explanation of `flag` values from `3` onwards, excluding `6`.
+    * Fixing the markdown formatting here: I can&#39;t get it to behave in VS Code.
 
     ## Args:
      * `index` (`int`): index of plugin on channel rack or mixer
 
      * `slotIndex` (`int`, optional): mixer slot if on mixer. Defaults to -1.
 
-     * `flag` (`int`, optional): name type to return:
-          * `FPN_Param` (`0`, default): Name of plugin parameter (requires
-            `paramIndex`)
+     * `flag` (`int`, optional): name type to return. Names marked with a *
+       require the `paramIndex` parameter in order to work correctly.
+          * `FPN_Param` (`0`, default) * : Name of plugin parameter.
+              * Eg: `&#34;Expression&#34;`
 
-          * `FPN_ParamValue` (`1`): Text value of plugin parameter (requires
-            `paramIndex`)
+          * `FPN_ParamValue` (`1`) * : Text value of plugin parameter.
+              * Eg: `&#34;62%&#34;`
 
-          * `FPN_Semitone` (`2`): Name of note as defined by plugin (for
-            example the name of the sample linked to a note in FPC), (requires
-            `paramIndex` as note)
+          * `FPN_Semitone` (`2`) * : Name of note as defined by plugin.
+              * `paramIndex` should be the note number (eg `60` for middle C)
 
-          * `FPN_Patch` (`3`): Name of the patch defined by plugin (requires
-            `paramIndex`)
+              * If note names aren&#39;t defined by the plugin, an empty string is given.
 
-          * `FPN_VoiceLevel` (`4`): Name of per-voice parameter defined by
-            plugin (requires `paramIndex`)
+              * Eg: `&#34;Kick&#34;`
 
-          * `FPN_VoiceLevelHint` (`5`): Hint for per-voice parameter defined
-            byplugin (requires `paramIndex`)
+          * `FPN_Patch` (`3`): Name of the patch defined by plugin?
 
-          * `FPN_Preset` (`6`): For plugins that support internal presets,
-            mainly VST plugins, the name of the current preset?
+          * `FPN_VoiceLevel` (`4`) * : Name of per-voice parameter defined by plugin
 
-          * `FPN_OutCtrl` (`7`): For plugins that output controllers, the name
-            of the output controller?
+          * `FPN_VoiceLevelHint` (`5`) * : Hint for per-voice parameter defined by plugin
 
-          * `FPN_VoiceColor` (`8`): Name of per-voice colour (requires
-            `paramIndex` as MIDI channel)?
+          * `FPN_Preset` (`6`) * : For plugins that support internal presets, the name of the preset at `paramIndex`.
+              * Eg: `&#34;Dystopian lead&#34;`
 
-          * `FPN_VoiceColor` (`9`): For plugins that output voices, the name
-            of output voice (requires `paramIndex` as voice number)?
+          * `FPN_OutCtrl` (`7`): For plugins that output controllers, the name of the output controller?
+
+          * `FPN_VoiceColor` (`8`): Name of per-voice colour
+              * `paramIndex` as MIDI channel?
+
+          * `FPN_VoiceColor` (`9`): For plugins that output voices, the name of output voice
+              * `paramIndex` as voice number?
 
      * `paramIndex` (`int`, optional): index required by requested flag (if
        necessary)
@@ -301,10 +319,12 @@ def getPadInfo(
 
     Currently only supported by FPC
 
-    WARNING: None of the parameters can be given as keyword arguments
+    ## WARNING:
+    * None of the parameters can be given as keyword arguments
 
-    WARNING: The official documentation lists this as returning a string, but it
-    actually returns an int.
+    ## WARNING:
+    * The official documentation lists this as returning a string, but it
+      actually returns an int.
 
     ## Args:
     * `chanIndex` (`int`): channel of plugin to check
@@ -413,8 +433,11 @@ colour of drum pads).</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def getColor(index: int, slotIndex: int = -1, flag: int = midi.GC_BackgroundColor)\
-        -&gt; int:
+<pre><code class="python">def getColor(
+    index: int,
+    slotIndex: int = -1,
+    flag: int = midi.GC_BackgroundColor
+) -&gt; int:
     &#34;&#34;&#34;Returns various plugin colour parameter values for the plugin at
     `index`/`slotIndex`.
 
@@ -444,7 +467,11 @@ colour of drum pads).</p>
 <dd>
 <div class="desc"><p>Returns various names for parts of plugins for the plugin at
 <code>index</code>/<code>slotIndex</code>.</p>
-<p>TODO: Verify this all works on release of API version 13.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>Explanation of <code>flag</code> values from <code>3</code> onwards, excluding <code>6</code>.</li>
+<li>Fixing the markdown formatting here: I can't get it to behave in VS Code.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -454,48 +481,64 @@ colour of drum pads).</p>
 <p><code>slotIndex</code> (<code>int</code>, optional): mixer slot if on mixer. Defaults to -1.</p>
 </li>
 <li>
-<p><code>flag</code> (<code>int</code>, optional): name type to return:</p>
+<p><code>flag</code> (<code>int</code>, optional): name type to return. Names marked with a *
+require the <code>paramIndex</code> parameter in order to work correctly.</p>
 <ul>
 <li>
-<p><code>FPN_Param</code> (<code>0</code>, default): Name of plugin parameter (requires
-<code>paramIndex</code>)</p>
+<p><code>FPN_Param</code> (<code>0</code>, default) * : Name of plugin parameter.</p>
+<ul>
+<li>Eg: <code>"Expression"</code></li>
+</ul>
 </li>
 <li>
-<p><code>FPN_ParamValue</code> (<code>1</code>): Text value of plugin parameter (requires
-<code>paramIndex</code>)</p>
+<p><code>FPN_ParamValue</code> (<code>1</code>) * : Text value of plugin parameter.</p>
+<ul>
+<li>Eg: <code>"62%"</code></li>
+</ul>
 </li>
 <li>
-<p><code>FPN_Semitone</code> (<code>2</code>): Name of note as defined by plugin (for
-example the name of the sample linked to a note in FPC), (requires
-<code>paramIndex</code> as note)</p>
+<p><code>FPN_Semitone</code> (<code>2</code>) * : Name of note as defined by plugin.</p>
+<ul>
+<li>
+<p><code>paramIndex</code> should be the note number (eg <code>60</code> for middle C)</p>
 </li>
 <li>
-<p><code>FPN_Patch</code> (<code>3</code>): Name of the patch defined by plugin (requires
-<code>paramIndex</code>)</p>
+<p>If note names aren't defined by the plugin, an empty string is given.</p>
 </li>
 <li>
-<p><code>FPN_VoiceLevel</code> (<code>4</code>): Name of per-voice parameter defined by
-plugin (requires <code>paramIndex</code>)</p>
+<p>Eg: <code>"Kick"</code></p>
+</li>
+</ul>
 </li>
 <li>
-<p><code>FPN_VoiceLevelHint</code> (<code>5</code>): Hint for per-voice parameter defined
-byplugin (requires <code>paramIndex</code>)</p>
+<p><code>FPN_Patch</code> (<code>3</code>): Name of the patch defined by plugin?</p>
 </li>
 <li>
-<p><code>FPN_Preset</code> (<code>6</code>): For plugins that support internal presets,
-mainly VST plugins, the name of the current preset?</p>
+<p><code>FPN_VoiceLevel</code> (<code>4</code>) * : Name of per-voice parameter defined by plugin</p>
 </li>
 <li>
-<p><code>FPN_OutCtrl</code> (<code>7</code>): For plugins that output controllers, the name
-of the output controller?</p>
+<p><code>FPN_VoiceLevelHint</code> (<code>5</code>) * : Hint for per-voice parameter defined by plugin</p>
 </li>
 <li>
-<p><code>FPN_VoiceColor</code> (<code>8</code>): Name of per-voice colour (requires
-<code>paramIndex</code> as MIDI channel)?</p>
+<p><code>FPN_Preset</code> (<code>6</code>) * : For plugins that support internal presets, the name of the preset at <code>paramIndex</code>.</p>
+<ul>
+<li>Eg: <code>"Dystopian lead"</code></li>
+</ul>
 </li>
 <li>
-<p><code>FPN_VoiceColor</code> (<code>9</code>): For plugins that output voices, the name
-of output voice (requires <code>paramIndex</code> as voice number)?</p>
+<p><code>FPN_OutCtrl</code> (<code>7</code>): For plugins that output controllers, the name of the output controller?</p>
+</li>
+<li>
+<p><code>FPN_VoiceColor</code> (<code>8</code>): Name of per-voice colour</p>
+<ul>
+<li><code>paramIndex</code> as MIDI channel?</li>
+</ul>
+</li>
+<li>
+<p><code>FPN_VoiceColor</code> (<code>9</code>): For plugins that output voices, the name of output voice</p>
+<ul>
+<li><code>paramIndex</code> as voice number?</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -513,49 +556,55 @@ necessary)</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def getName(index: int, slotIndex: int = -1, flag: int = midi.FPN_Param,
-            paramIndex: int = 0) -&gt; str:
+<pre><code class="python">def getName(
+    index: int,
+    slotIndex: int = -1,
+    flag: int = midi.FPN_Param,
+    paramIndex: int = 0
+) -&gt; str:
     &#34;&#34;&#34;Returns various names for parts of plugins for the plugin at
     `index`/`slotIndex`.
 
-    TODO: Verify this all works on release of API version 13.
+    ## HELP WANTED:
+    * Explanation of `flag` values from `3` onwards, excluding `6`.
+    * Fixing the markdown formatting here: I can&#39;t get it to behave in VS Code.
 
     ## Args:
      * `index` (`int`): index of plugin on channel rack or mixer
 
      * `slotIndex` (`int`, optional): mixer slot if on mixer. Defaults to -1.
 
-     * `flag` (`int`, optional): name type to return:
-          * `FPN_Param` (`0`, default): Name of plugin parameter (requires
-            `paramIndex`)
+     * `flag` (`int`, optional): name type to return. Names marked with a *
+       require the `paramIndex` parameter in order to work correctly.
+          * `FPN_Param` (`0`, default) * : Name of plugin parameter.
+              * Eg: `&#34;Expression&#34;`
 
-          * `FPN_ParamValue` (`1`): Text value of plugin parameter (requires
-            `paramIndex`)
+          * `FPN_ParamValue` (`1`) * : Text value of plugin parameter.
+              * Eg: `&#34;62%&#34;`
 
-          * `FPN_Semitone` (`2`): Name of note as defined by plugin (for
-            example the name of the sample linked to a note in FPC), (requires
-            `paramIndex` as note)
+          * `FPN_Semitone` (`2`) * : Name of note as defined by plugin.
+              * `paramIndex` should be the note number (eg `60` for middle C)
 
-          * `FPN_Patch` (`3`): Name of the patch defined by plugin (requires
-            `paramIndex`)
+              * If note names aren&#39;t defined by the plugin, an empty string is given.
 
-          * `FPN_VoiceLevel` (`4`): Name of per-voice parameter defined by
-            plugin (requires `paramIndex`)
+              * Eg: `&#34;Kick&#34;`
 
-          * `FPN_VoiceLevelHint` (`5`): Hint for per-voice parameter defined
-            byplugin (requires `paramIndex`)
+          * `FPN_Patch` (`3`): Name of the patch defined by plugin?
 
-          * `FPN_Preset` (`6`): For plugins that support internal presets,
-            mainly VST plugins, the name of the current preset?
+          * `FPN_VoiceLevel` (`4`) * : Name of per-voice parameter defined by plugin
 
-          * `FPN_OutCtrl` (`7`): For plugins that output controllers, the name
-            of the output controller?
+          * `FPN_VoiceLevelHint` (`5`) * : Hint for per-voice parameter defined by plugin
 
-          * `FPN_VoiceColor` (`8`): Name of per-voice colour (requires
-            `paramIndex` as MIDI channel)?
+          * `FPN_Preset` (`6`) * : For plugins that support internal presets, the name of the preset at `paramIndex`.
+              * Eg: `&#34;Dystopian lead&#34;`
 
-          * `FPN_VoiceColor` (`9`): For plugins that output voices, the name
-            of output voice (requires `paramIndex` as voice number)?
+          * `FPN_OutCtrl` (`7`): For plugins that output controllers, the name of the output controller?
+
+          * `FPN_VoiceColor` (`8`): Name of per-voice colour
+              * `paramIndex` as MIDI channel?
+
+          * `FPN_VoiceColor` (`9`): For plugins that output voices, the name of output voice
+              * `paramIndex` as voice number?
 
      * `paramIndex` (`int`, optional): index required by requested flag (if
        necessary)
@@ -574,9 +623,15 @@ necessary)</p>
 <dd>
 <div class="desc"><p>Returns info about drum pads</p>
 <p>Currently only supported by FPC</p>
-<p>WARNING: None of the parameters can be given as keyword arguments</p>
-<p>WARNING: The official documentation lists this as returning a string, but it
-actually returns an int.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>None of the parameters can be given as keyword arguments</li>
+</ul>
+<h2 id="warning_1">WARNING:</h2>
+<ul>
+<li>The official documentation lists this as returning a string, but it
+actually returns an int.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -632,10 +687,12 @@ actually are, ie. FPC has 32 pads but 33 is returned)</p>
 
     Currently only supported by FPC
 
-    WARNING: None of the parameters can be given as keyword arguments
+    ## WARNING:
+    * None of the parameters can be given as keyword arguments
 
-    WARNING: The official documentation lists this as returning a string, but it
-    actually returns an int.
+    ## WARNING:
+    * The official documentation lists this as returning a string, but it
+      actually returns an int.
 
     ## Args:
     * `chanIndex` (`int`): channel of plugin to check
@@ -670,10 +727,13 @@ actually are, ie. FPC has 32 pads but 33 is returned)</p>
 <dd>
 <div class="desc"><p>Returns the number of parameters that the plugin at <code>index</code>/<code>slotIndex</code>
 has.</p>
-<p>NOTE: VST plugins are listed as having <code>4240</code> parameters, but not all of
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>VST plugins are listed as having <code>4240</code> parameters, but not all of
 these are necessarily used by the plugin. The first <code>4096</code> are for
 parameters, then the next <code>128</code> are used for MIDI CC sends <code>0</code> to <code>127</code>.
-The final <code>16</code> are used for aftertouch for each MIDI channel.</p>
+The final <code>16</code> are used for aftertouch for each MIDI channel.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -696,18 +756,19 @@ The final <code>16</code> are used for aftertouch for each MIDI channel.</p>
     &#34;&#34;&#34;Returns the number of parameters that the plugin at `index`/`slotIndex`
     has.
 
-    NOTE: VST plugins are listed as having `4240` parameters, but not all of
-    these are necessarily used by the plugin. The first `4096` are for
-    parameters, then the next `128` are used for MIDI CC sends `0` to `127`.
-    The final `16` are used for aftertouch for each MIDI channel.
+    ## NOTE:
+    * VST plugins are listed as having `4240` parameters, but not all of
+      these are necessarily used by the plugin. The first `4096` are for
+      parameters, then the next `128` are used for MIDI CC sends `0` to `127`.
+      The final `16` are used for aftertouch for each MIDI channel.
 
     ## Args:
-     * `index` (`int`): index on channel rack or mixer
+    * `index` (`int`): index on channel rack or mixer
 
-     * `slotIndex` (`int`, optional): mixer slot if on mixer. Defaults to -1.
+    * `slotIndex` (`int`, optional): mixer slot if on mixer. Defaults to -1.
 
     ## Returns:
-     * `int`: number of parameters
+    * `int`: number of parameters
 
     Included since API version 8
     &#34;&#34;&#34;
@@ -720,8 +781,11 @@ The final <code>16</code> are used for aftertouch for each MIDI channel.</p>
 <dd>
 <div class="desc"><p>Returns the name of the parameter at <code>paramIndex</code> for the plugin at
 <code>index</code>/<code>slotIndex</code>.</p>
-<p>WARNING: FL Studio's Python environment will crash if an invalid
-paramIndex is provided to this function.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>In API versions &lt; v20, FL Studio's Python environment will crash if an
+invalid paramIndex is provided to this function.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -747,18 +811,19 @@ paramIndex is provided to this function.</p>
     &#34;&#34;&#34;Returns the name of the parameter at `paramIndex` for the plugin at
     `index`/`slotIndex`.
 
-    WARNING: FL Studio&#39;s Python environment will crash if an invalid
-    paramIndex is provided to this function.
+    ## WARNING:
+    * In API versions &lt; v20, FL Studio&#39;s Python environment will crash if an
+      invalid paramIndex is provided to this function.
 
     ## Args:
-     * `paramIndex` (`int`): index of parameter
+    * `paramIndex` (`int`): index of parameter
 
-     * `index` (`int`): index of plugin on channel rack or mixer
+    * `index` (`int`): index of plugin on channel rack or mixer
 
-     * `slotIndex` (`int`, optional): mixer slot if on mixer. Defaults to -1.
+    * `slotIndex` (`int`, optional): mixer slot if on mixer. Defaults to -1.
 
     ## Returns:
-     * `str`: name of parameter
+    * `str`: name of parameter
 
     Included since API version 8
     &#34;&#34;&#34;
@@ -771,8 +836,11 @@ paramIndex is provided to this function.</p>
 <dd>
 <div class="desc"><p>Returns the value of the parameter at <code>paramIndex</code> for the plugin at
 <code>index</code>/<code>slotIndex</code>.</p>
-<p>KNOWN ISSUE: The return values of this function for VST plugins seem to be
-very broken, often being incorrect by orders of magnitude</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>In API versions &lt; v20, the return values of this function for VST plugins
+seem to be very broken, often being incorrect by orders of magnitude.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -798,8 +866,9 @@ very broken, often being incorrect by orders of magnitude</p>
     &#34;&#34;&#34;Returns the value of the parameter at `paramIndex` for the plugin at
     `index`/`slotIndex`.
 
-    KNOWN ISSUE: The return values of this function for VST plugins seem to be
-    very broken, often being incorrect by orders of magnitude
+    ## WARNING:
+    * In API versions &lt; v20, the return values of this function for VST plugins
+      seem to be very broken, often being incorrect by orders of magnitude.
 
     ## Args:
      * `paramIndex` (`int`): index of parameter
@@ -823,8 +892,11 @@ very broken, often being incorrect by orders of magnitude</p>
 <div class="desc"><p>Returns a string value of the parameter at <code>paramIndex</code> for the plugin at
 <code>index</code>/<code>slotIndex</code>. This function is only supported by some FL Studio
 plugins.</p>
-<p>WARNING: FL Studio's Python environment will crash if an invalid
-paramIndex is provided to this function.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>In API versions &lt; v20, FL Studio's Python environment will crash if an
+invalid paramIndex is provided to this function.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -847,14 +919,18 @@ paramIndex is provided to this function.</p>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def getParamValueString(
-    paramIndex: int, index: int, slotIndex: int = -1, pickupMode: int = midi.PIM_None
+    paramIndex: int,
+    index: int,
+    slotIndex: int = -1,
+    pickupMode: int = midi.PIM_None,
 ) -&gt; str:
     &#34;&#34;&#34;Returns a string value of the parameter at `paramIndex` for the plugin at
     `index`/`slotIndex`. This function is only supported by some FL Studio
     plugins.
 
-    WARNING: FL Studio&#39;s Python environment will crash if an invalid
-    paramIndex is provided to this function.
+    ## WARNING:
+    * In API versions &lt; v20, FL Studio&#39;s Python environment will crash if an
+      invalid paramIndex is provided to this function.
 
     ## Args:
      * `paramIndex` (`int`): index of parameter
@@ -953,7 +1029,10 @@ plugin as set by the user.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns whether there is a valid plugin at <code>index</code>/<code>slotIndex</code>.</p>
-<p>NOTE: Audio samples are not considered to be plugins in FL Studio.</p>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>Audio samples are not considered to be plugins in FL Studio.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -975,7 +1054,8 @@ plugin as set by the user.</p>
 <pre><code class="python">def isValid(index: int, slotIndex: int = -1) -&gt; bool:
     &#34;&#34;&#34;Returns whether there is a valid plugin at `index`/`slotIndex`.
 
-    NOTE: Audio samples are not considered to be plugins in FL Studio.
+    ## NOTE:
+    * Audio samples are not considered to be plugins in FL Studio.
 
     ## Args:
      * `index` (`int`): index on channel rack or mixer
@@ -1053,8 +1133,6 @@ plugin as set by the user.</p>
 <dd>
 <div class="desc"><p>Sets the value of the parameter at <code>paramIndex</code> for the plugin at
 <code>index</code>/<code>slotIndex</code>.</p>
-<p>NOTE: Although there are issues with the return values of <code><a title="src.plugins.getParamValue" href="#src.plugins.getParamValue">getParamValue()</a></code>,
-these issues don't appear to be present for setting the values of paramters.</p>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1075,13 +1153,14 @@ these issues don't appear to be present for setting the values of paramters.</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def setParamValue(value: float, paramIndex: int, index: int, slotIndex: int = -1)\
-        -&gt; None:
+<pre><code class="python">def setParamValue(
+    value: float,
+    paramIndex: int,
+    index: int,
+    slotIndex: int = -1
+) -&gt; None:
     &#34;&#34;&#34;Sets the value of the parameter at `paramIndex` for the plugin at
     `index`/`slotIndex`.
-
-    NOTE: Although there are issues with the return values of `getParamValue()`,
-    these issues don&#39;t appear to be present for setting the values of paramters.
 
     ## Args:
      * `value` (`float`): new value of parameter (between `0.0` and `1.0`)

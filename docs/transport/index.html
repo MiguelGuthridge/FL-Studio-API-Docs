@@ -36,19 +36,25 @@ Handles transport in FL Studio (for example play/pause or record)
 import midi
 
 
-def globalTransport(command: int, value: int, pmeflags: int = midi.PME_System,
-                    flags=midi.GT_All) -&gt; int:
+def globalTransport(
+    command: int,
+    value: int,
+    pmeflags: int = midi.PME_System,
+    flags=midi.GT_All
+) -&gt; int:
     &#34;&#34;&#34;Used as a generic way to run transport commands if a specific function
     doesn&#39;t exist for it.
 
-    WARNING: It is not recommended to use this function if a dedicated
-    function is available for it. Its usage can make code difficult to read and
-    comprehend. Almost all functionality provided by this function can be done
-    more easily and cleanly by using the dedicated functions.
+    ## WARNING:
+    * It is not recommended to use this function if a dedicated
+      function is available for it. Its usage can make code difficult to read and
+      comprehend. Almost all functionality provided by this function can be done
+      more easily and cleanly by using the dedicated functions.
 
-    WARNING: Some commands will echo keypresses (such as `FPT_F1`), meaning they
-    can affect windows outside FL Studio. Make sure you test your code
-    thoroughly if you decide to use this function.
+    ## WARNING:
+    * Some commands will echo keypresses (such as `FPT_F1`), meaning they
+      can affect windows outside FL Studio. Make sure you test your code
+      thoroughly if you decide to use this function.
 
     ## Args:
      * `command` (`int`): command to execute, refer to
@@ -126,8 +132,9 @@ def setLoopMode() -&gt; None:
 def getSongPos(mode: int = -1) -&gt; &#39;float | int&#39;:
     &#34;&#34;&#34;Returns the playback position
 
-    NOTE: This will set the position in the song in song mode, or the position
-    in the pattern
+    ## NOTE:
+    * This will set the position in the song in song mode, or the position
+      in the pattern
 
     ## Args:
      * `mode` (`int`, optional): mode for return:
@@ -150,7 +157,9 @@ def getSongPos(mode: int = -1) -&gt; &#39;float | int&#39;:
           * `SONGLENGTH_TICKS` (`5`): bars-steps-ticks format, ticks component
             (as `int`)
 
-    NOTE: An overall bars-steps-ticks position can be gathered through making
+    ## Example Usage:
+
+    An overall bars-steps-ticks position can be gathered through making
     three calls to the function as follows:
     ```py
     bars = transport.getSongPosition(3)
@@ -170,8 +179,8 @@ def getSongPos(mode: int = -1) -&gt; &#39;float | int&#39;:
 def setSongPos(position: &#39;float | int&#39;, mode: int = -1) -&gt; None:
     &#34;&#34;&#34;Sets the playback position
 
-    NOTE: This will set the position in the song in song mode, or the position
-    in the pattern
+    This will set the position in the song in song mode, or the position
+    in the pattern.
 
     ## Args:
      * `position` (`float` or `int`): new song position (type depends on `mode`).
@@ -196,8 +205,9 @@ def setSongPos(position: &#39;float | int&#39;, mode: int = -1) -&gt; None:
           * `SONGLENGTH_TICKS` (`5`): bars-steps-ticks format, ticks component
             (as `int`)
 
-    WARNING: Positions currently won&#39;t work when using bars (`mode = 3`),
-    steps (`mode = 4`) or ticks (`mode = 5`).
+    ## WARNING:
+    * Positions currently won&#39;t work when using bars (`mode = 3`),
+      steps (`mode = 4`) or ticks (`mode = 5`).
 
     Included since API version 1, with optional parameter added in API version 4
     &#34;&#34;&#34;
@@ -206,10 +216,9 @@ def setSongPos(position: &#39;float | int&#39;, mode: int = -1) -&gt; None:
 def getSongLength(mode: int) -&gt; int:
     &#34;&#34;&#34;Returns the total length of the song
 
-    NOTE: This only applies to the full song, not to the currently selected
-    pattern when in pattern mode. It will NOT return the length of the current
-    pattern. For that, use `patterns.getPatternLength()` with the index of the
-    current pattern.
+    This only applies to the full song, not to the currently selected pattern
+    when in pattern mode. To get the length of the current pattern, use
+    `patterns.getPatternLength()` with the index of the current pattern.
 
     ## Args:
      * `mode` (`int`): mode for length:
@@ -225,9 +234,10 @@ def getSongLength(mode: int) -&gt; int:
 
           * `SONGLENGTH_TICKS` (`5`): bars-steps-ticks format, ticks component
 
-    NOTE: The official documentation states that this function has no return,
-    but in practice, it returns an `int`. The actual behaviour is used by this
-    documentation.
+    ## NOTE:
+    * The official documentation states that this function has no return,
+      but in practice, it returns an `int`. The actual behaviour is used by this
+      documentation.
 
     ## Returns:
      * `int`: song length
@@ -240,7 +250,7 @@ def getSongLength(mode: int) -&gt; int:
 def getSongPosHint() -&gt; str:
     &#34;&#34;&#34;Returns a hint for the current playback position as `&#34;bars:steps:ticks&#34;`.
 
-    NOTE: This applies to both pattern mode and song mode
+    This applies to both pattern mode and song mode
 
     ## Returns:
      * `str`: song position
@@ -290,7 +300,8 @@ def markerSelJog(value: int, flags: int = midi.GT_All) -&gt; None:
 def getHWBeatLEDState() -&gt; int:
     &#34;&#34;&#34;Returns the state of the beat indicator.
 
-    HELP WANTED: I couldn&#39;t get this to return anything other than zero
+    ## HELP WANTED:
+    * I couldn&#39;t get this to return anything other than zero
 
     ## Returns:
      * `int`: beat indicator state
@@ -303,7 +314,7 @@ def getHWBeatLEDState() -&gt; int:
 def rewind(startStop: int, flags: int = midi.GT_All) -&gt; None:
     &#34;&#34;&#34;Rewinds the playback position.
 
-    NOTE: Rewinding should be considered as a toggle. All calls to this function
+    Rewinding should be considered as a toggle. All calls to this function
     beginning rewinding with the `SS_Start` or `SS_StartStep` should have a pair
     call where rewinding is stopped using the `SS_Stop` option, otherwise FL
     Studio will rewind forever.
@@ -327,7 +338,7 @@ def rewind(startStop: int, flags: int = midi.GT_All) -&gt; None:
 def fastForward(startStop: int, flags: int = midi.GT_All) -&gt; None:
     &#34;&#34;&#34;Fast-fowards the playback position.
 
-    NOTE: Fast-forwarding should be considered as a toggle. All calls to this
+    Fast-forwarding should be considered as a toggle. All calls to this
     function beginning fast-forwarding with the `SS_Start` or `SS_StartStep`
     should have a pair call where fast-forwarding is stopped using the `SS_Stop`
     option, otherwise FL Studio will fast-forward forever.
@@ -351,7 +362,7 @@ def fastForward(startStop: int, flags: int = midi.GT_All) -&gt; None:
 def continuousMove(speed: int, startStop: int) -&gt; None:
     &#34;&#34;&#34;Sets playback speed, allowing a scrub-like functionality
 
-    NOTE: scrubbing should be considered as a toggle. All calls to this
+    Scrubbing should be considered as a toggle. All calls to this
     function beginning scrubbing with the `SS_Start` or `SS_StartStep`
     should have a pair call where scrubbing is stopped using the `SS_Stop`
     option, otherwise FL Studio will scrub forever.
@@ -375,9 +386,10 @@ def continuousMove(speed: int, startStop: int) -&gt; None:
 def continuousMovePos(speed: int, startStop: int) -&gt; None:
     &#34;&#34;&#34;Sets playback speed, allowing a scrub-like functionality
 
-    HELP WANTED: How is this different to `continuousMove()`?
+    ## HELP WANTED:
+    * How is this different to `continuousMove()`?
 
-    NOTE: scrubbing should be considered as a toggle. All calls to this
+    Scrubbing should be considered as a toggle. All calls to this
     function beginning scrubbing with the `SS_Start` or `SS_StartStep`
     should have a pair call where scrubbing is stopped using the `SS_Stop`
     option, otherwise FL Studio will scrub forever.
@@ -401,7 +413,7 @@ def continuousMovePos(speed: int, startStop: int) -&gt; None:
 def setPlaybackSpeed(speedMultiplier: float) -&gt; None:
     &#34;&#34;&#34;Sets a playback speed multiplier.
 
-    NOTE: This differs from the `continuousMove` function as it only controls
+    This differs from the `continuousMove` function as it only controls
     speed when playback is active, rather than scrubbing through song or
     pattern regardless of whether playback is active.
 
@@ -429,7 +441,7 @@ def setPlaybackSpeed(speedMultiplier: float) -&gt; None:
 </code></dt>
 <dd>
 <div class="desc"><p>Sets playback speed, allowing a scrub-like functionality</p>
-<p>NOTE: scrubbing should be considered as a toggle. All calls to this
+<p>Scrubbing should be considered as a toggle. All calls to this
 function beginning scrubbing with the <code>SS_Start</code> or <code>SS_StartStep</code>
 should have a pair call where scrubbing is stopped using the <code>SS_Stop</code>
 option, otherwise FL Studio will scrub forever.</p>
@@ -463,7 +475,7 @@ step editing mode</p>
 <pre><code class="python">def continuousMove(speed: int, startStop: int) -&gt; None:
     &#34;&#34;&#34;Sets playback speed, allowing a scrub-like functionality
 
-    NOTE: scrubbing should be considered as a toggle. All calls to this
+    Scrubbing should be considered as a toggle. All calls to this
     function beginning scrubbing with the `SS_Start` or `SS_StartStep`
     should have a pair call where scrubbing is stopped using the `SS_Stop`
     option, otherwise FL Studio will scrub forever.
@@ -489,8 +501,11 @@ step editing mode</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Sets playback speed, allowing a scrub-like functionality</p>
-<p>HELP WANTED: How is this different to <code><a title="src.transport.continuousMove" href="#src.transport.continuousMove">continuousMove()</a></code>?</p>
-<p>NOTE: scrubbing should be considered as a toggle. All calls to this
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>How is this different to <code><a title="src.transport.continuousMove" href="#src.transport.continuousMove">continuousMove()</a></code>?</li>
+</ul>
+<p>Scrubbing should be considered as a toggle. All calls to this
 function beginning scrubbing with the <code>SS_Start</code> or <code>SS_StartStep</code>
 should have a pair call where scrubbing is stopped using the <code>SS_Stop</code>
 option, otherwise FL Studio will scrub forever.</p>
@@ -524,9 +539,10 @@ step editing mode</p>
 <pre><code class="python">def continuousMovePos(speed: int, startStop: int) -&gt; None:
     &#34;&#34;&#34;Sets playback speed, allowing a scrub-like functionality
 
-    HELP WANTED: How is this different to `continuousMove()`?
+    ## HELP WANTED:
+    * How is this different to `continuousMove()`?
 
-    NOTE: scrubbing should be considered as a toggle. All calls to this
+    Scrubbing should be considered as a toggle. All calls to this
     function beginning scrubbing with the `SS_Start` or `SS_StartStep`
     should have a pair call where scrubbing is stopped using the `SS_Stop`
     option, otherwise FL Studio will scrub forever.
@@ -552,7 +568,7 @@ step editing mode</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Fast-fowards the playback position.</p>
-<p>NOTE: Fast-forwarding should be considered as a toggle. All calls to this
+<p>Fast-forwarding should be considered as a toggle. All calls to this
 function beginning fast-forwarding with the <code>SS_Start</code> or <code>SS_StartStep</code>
 should have a pair call where fast-forwarding is stopped using the <code>SS_Stop</code>
 option, otherwise FL Studio will fast-forward forever.</p>
@@ -586,7 +602,7 @@ step editing mode</p>
 <pre><code class="python">def fastForward(startStop: int, flags: int = midi.GT_All) -&gt; None:
     &#34;&#34;&#34;Fast-fowards the playback position.
 
-    NOTE: Fast-forwarding should be considered as a toggle. All calls to this
+    Fast-forwarding should be considered as a toggle. All calls to this
     function beginning fast-forwarding with the `SS_Start` or `SS_StartStep`
     should have a pair call where fast-forwarding is stopped using the `SS_Stop`
     option, otherwise FL Studio will fast-forward forever.
@@ -612,7 +628,10 @@ step editing mode</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the state of the beat indicator.</p>
-<p>HELP WANTED: I couldn't get this to return anything other than zero</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>I couldn't get this to return anything other than zero</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: beat indicator state</li>
@@ -625,7 +644,8 @@ step editing mode</p>
 <pre><code class="python">def getHWBeatLEDState() -&gt; int:
     &#34;&#34;&#34;Returns the state of the beat indicator.
 
-    HELP WANTED: I couldn&#39;t get this to return anything other than zero
+    ## HELP WANTED:
+    * I couldn&#39;t get this to return anything other than zero
 
     ## Returns:
      * `int`: beat indicator state
@@ -678,10 +698,9 @@ step editing mode</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the total length of the song</p>
-<p>NOTE: This only applies to the full song, not to the currently selected
-pattern when in pattern mode. It will NOT return the length of the current
-pattern. For that, use <code>patterns.getPatternLength()</code> with the index of the
-current pattern.</p>
+<p>This only applies to the full song, not to the currently selected pattern
+when in pattern mode. To get the length of the current pattern, use
+<code>patterns.getPatternLength()</code> with the index of the current pattern.</p>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -708,9 +727,12 @@ current pattern.</p>
 </ul>
 </li>
 </ul>
-<p>NOTE: The official documentation states that this function has no return,
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>The official documentation states that this function has no return,
 but in practice, it returns an <code>int</code>. The actual behaviour is used by this
-documentation.</p>
+documentation.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: song length</li>
@@ -723,10 +745,9 @@ documentation.</p>
 <pre><code class="python">def getSongLength(mode: int) -&gt; int:
     &#34;&#34;&#34;Returns the total length of the song
 
-    NOTE: This only applies to the full song, not to the currently selected
-    pattern when in pattern mode. It will NOT return the length of the current
-    pattern. For that, use `patterns.getPatternLength()` with the index of the
-    current pattern.
+    This only applies to the full song, not to the currently selected pattern
+    when in pattern mode. To get the length of the current pattern, use
+    `patterns.getPatternLength()` with the index of the current pattern.
 
     ## Args:
      * `mode` (`int`): mode for length:
@@ -742,9 +763,10 @@ documentation.</p>
 
           * `SONGLENGTH_TICKS` (`5`): bars-steps-ticks format, ticks component
 
-    NOTE: The official documentation states that this function has no return,
-    but in practice, it returns an `int`. The actual behaviour is used by this
-    documentation.
+    ## NOTE:
+    * The official documentation states that this function has no return,
+      but in practice, it returns an `int`. The actual behaviour is used by this
+      documentation.
 
     ## Returns:
      * `int`: song length
@@ -759,8 +781,11 @@ documentation.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the playback position</p>
-<p>NOTE: This will set the position in the song in song mode, or the position
-in the pattern</p>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>This will set the position in the song in song mode, or the position
+in the pattern</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -795,7 +820,8 @@ song). Returns as <code>float</code>.</p>
 </ul>
 </li>
 </ul>
-<p>NOTE: An overall bars-steps-ticks position can be gathered through making
+<h2 id="example-usage">Example Usage:</h2>
+<p>An overall bars-steps-ticks position can be gathered through making
 three calls to the function as follows:</p>
 <pre><code class="language-py">bars = transport.getSongPosition(3)
 steps = transport.getSongPosition(4)
@@ -814,8 +840,9 @@ overall_str = f&quot;{bars}:{steps}:{ticks}&quot;
 <pre><code class="python">def getSongPos(mode: int = -1) -&gt; &#39;float | int&#39;:
     &#34;&#34;&#34;Returns the playback position
 
-    NOTE: This will set the position in the song in song mode, or the position
-    in the pattern
+    ## NOTE:
+    * This will set the position in the song in song mode, or the position
+      in the pattern
 
     ## Args:
      * `mode` (`int`, optional): mode for return:
@@ -838,7 +865,9 @@ overall_str = f&quot;{bars}:{steps}:{ticks}&quot;
           * `SONGLENGTH_TICKS` (`5`): bars-steps-ticks format, ticks component
             (as `int`)
 
-    NOTE: An overall bars-steps-ticks position can be gathered through making
+    ## Example Usage:
+
+    An overall bars-steps-ticks position can be gathered through making
     three calls to the function as follows:
     ```py
     bars = transport.getSongPosition(3)
@@ -860,7 +889,7 @@ overall_str = f&quot;{bars}:{steps}:{ticks}&quot;
 </code></dt>
 <dd>
 <div class="desc"><p>Returns a hint for the current playback position as <code>"bars:steps:ticks"</code>.</p>
-<p>NOTE: This applies to both pattern mode and song mode</p>
+<p>This applies to both pattern mode and song mode</p>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>str</code>: song position</li>
@@ -873,7 +902,7 @@ overall_str = f&quot;{bars}:{steps}:{ticks}&quot;
 <pre><code class="python">def getSongPosHint() -&gt; str:
     &#34;&#34;&#34;Returns a hint for the current playback position as `&#34;bars:steps:ticks&#34;`.
 
-    NOTE: This applies to both pattern mode and song mode
+    This applies to both pattern mode and song mode
 
     ## Returns:
      * `str`: song position
@@ -889,13 +918,19 @@ overall_str = f&quot;{bars}:{steps}:{ticks}&quot;
 <dd>
 <div class="desc"><p>Used as a generic way to run transport commands if a specific function
 doesn't exist for it.</p>
-<p>WARNING: It is not recommended to use this function if a dedicated
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>It is not recommended to use this function if a dedicated
 function is available for it. Its usage can make code difficult to read and
 comprehend. Almost all functionality provided by this function can be done
-more easily and cleanly by using the dedicated functions.</p>
-<p>WARNING: Some commands will echo keypresses (such as <code>FPT_F1</code>), meaning they
+more easily and cleanly by using the dedicated functions.</li>
+</ul>
+<h2 id="warning_1">WARNING:</h2>
+<ul>
+<li>Some commands will echo keypresses (such as <code>FPT_F1</code>), meaning they
 can affect windows outside FL Studio. Make sure you test your code
-thoroughly if you decide to use this function.</p>
+thoroughly if you decide to use this function.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -923,19 +958,25 @@ thoroughly if you decide to use this function.</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def globalTransport(command: int, value: int, pmeflags: int = midi.PME_System,
-                    flags=midi.GT_All) -&gt; int:
+<pre><code class="python">def globalTransport(
+    command: int,
+    value: int,
+    pmeflags: int = midi.PME_System,
+    flags=midi.GT_All
+) -&gt; int:
     &#34;&#34;&#34;Used as a generic way to run transport commands if a specific function
     doesn&#39;t exist for it.
 
-    WARNING: It is not recommended to use this function if a dedicated
-    function is available for it. Its usage can make code difficult to read and
-    comprehend. Almost all functionality provided by this function can be done
-    more easily and cleanly by using the dedicated functions.
+    ## WARNING:
+    * It is not recommended to use this function if a dedicated
+      function is available for it. Its usage can make code difficult to read and
+      comprehend. Almost all functionality provided by this function can be done
+      more easily and cleanly by using the dedicated functions.
 
-    WARNING: Some commands will echo keypresses (such as `FPT_F1`), meaning they
-    can affect windows outside FL Studio. Make sure you test your code
-    thoroughly if you decide to use this function.
+    ## WARNING:
+    * Some commands will echo keypresses (such as `FPT_F1`), meaning they
+      can affect windows outside FL Studio. Make sure you test your code
+      thoroughly if you decide to use this function.
 
     ## Args:
      * `command` (`int`): command to execute, refer to
@@ -1095,7 +1136,7 @@ thoroughly if you decide to use this function.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Rewinds the playback position.</p>
-<p>NOTE: Rewinding should be considered as a toggle. All calls to this function
+<p>Rewinding should be considered as a toggle. All calls to this function
 beginning rewinding with the <code>SS_Start</code> or <code>SS_StartStep</code> should have a pair
 call where rewinding is stopped using the <code>SS_Stop</code> option, otherwise FL
 Studio will rewind forever.</p>
@@ -1129,7 +1170,7 @@ step editing mode</p>
 <pre><code class="python">def rewind(startStop: int, flags: int = midi.GT_All) -&gt; None:
     &#34;&#34;&#34;Rewinds the playback position.
 
-    NOTE: Rewinding should be considered as a toggle. All calls to this function
+    Rewinding should be considered as a toggle. All calls to this function
     beginning rewinding with the `SS_Start` or `SS_StartStep` should have a pair
     call where rewinding is stopped using the `SS_Stop` option, otherwise FL
     Studio will rewind forever.
@@ -1172,7 +1213,7 @@ step editing mode</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Sets a playback speed multiplier.</p>
-<p>NOTE: This differs from the <code><a title="src.transport.continuousMove" href="#src.transport.continuousMove">continuousMove()</a></code> function as it only controls
+<p>This differs from the <code><a title="src.transport.continuousMove" href="#src.transport.continuousMove">continuousMove()</a></code> function as it only controls
 speed when playback is active, rather than scrubbing through song or
 pattern regardless of whether playback is active.</p>
 <h2 id="args">Args:</h2>
@@ -1200,7 +1241,7 @@ pattern regardless of whether playback is active.</p>
 <pre><code class="python">def setPlaybackSpeed(speedMultiplier: float) -&gt; None:
     &#34;&#34;&#34;Sets a playback speed multiplier.
 
-    NOTE: This differs from the `continuousMove` function as it only controls
+    This differs from the `continuousMove` function as it only controls
     speed when playback is active, rather than scrubbing through song or
     pattern regardless of whether playback is active.
 
@@ -1221,8 +1262,8 @@ pattern regardless of whether playback is active.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Sets the playback position</p>
-<p>NOTE: This will set the position in the song in song mode, or the position
-in the pattern</p>
+<p>This will set the position in the song in song mode, or the position
+in the pattern.</p>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1260,8 +1301,11 @@ song). Returns as <code>float</code>.</p>
 </ul>
 </li>
 </ul>
-<p>WARNING: Positions currently won't work when using bars (<code>mode = 3</code>),
-steps (<code>mode = 4</code>) or ticks (<code>mode = 5</code>).</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>Positions currently won't work when using bars (<code>mode = 3</code>),
+steps (<code>mode = 4</code>) or ticks (<code>mode = 5</code>).</li>
+</ul>
 <p>Included since API version 1, with optional parameter added in API version 4</p></div>
 <details class="source">
 <summary>
@@ -1270,8 +1314,8 @@ steps (<code>mode = 4</code>) or ticks (<code>mode = 5</code>).</p>
 <pre><code class="python">def setSongPos(position: &#39;float | int&#39;, mode: int = -1) -&gt; None:
     &#34;&#34;&#34;Sets the playback position
 
-    NOTE: This will set the position in the song in song mode, or the position
-    in the pattern
+    This will set the position in the song in song mode, or the position
+    in the pattern.
 
     ## Args:
      * `position` (`float` or `int`): new song position (type depends on `mode`).
@@ -1296,8 +1340,9 @@ steps (<code>mode = 4</code>) or ticks (<code>mode = 5</code>).</p>
           * `SONGLENGTH_TICKS` (`5`): bars-steps-ticks format, ticks component
             (as `int`)
 
-    WARNING: Positions currently won&#39;t work when using bars (`mode = 3`),
-    steps (`mode = 4`) or ticks (`mode = 5`).
+    ## WARNING:
+    * Positions currently won&#39;t work when using bars (`mode = 3`),
+      steps (`mode = 4`) or ticks (`mode = 5`).
 
     Included since API version 1, with optional parameter added in API version 4
     &#34;&#34;&#34;</code></pre>

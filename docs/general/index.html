@@ -128,7 +128,8 @@ def restoreUndo() -&gt; int:
 
     This seems to behave in the same way as `undo()`.
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Returns:
      * `int`: ?
@@ -143,7 +144,8 @@ def restoreUndoLevel(level: int) -&gt; int:
 
     This seems to behave in the same way as `undo()`.
 
-    HELP WANTED: What does this do? What is the parameter for?
+    ## HELP WANTED:
+    * What does this do? What is the parameter for?
 
     ## Args:
      * `level` (`int`): ???
@@ -174,8 +176,9 @@ def getUndoLevelHint() -&gt; str:
 def getUndoHistoryPos() -&gt; int:
     &#34;&#34;&#34;Returns the length of the undo history
 
-    HELP WANTED: This seems to behave the same as `getUndoHistoryCount()`.
-    What&#39;s the difference?
+    ## HELP WANTED:
+    * This seems to behave the same as `getUndoHistoryCount()`. What&#39;s the
+      difference?
 
     ## Returns:
      * `int`: number of elements in undo history
@@ -245,7 +248,8 @@ def getRecPPB() -&gt; int:
     &#34;&#34;&#34;Returns the current timebase (PPQN) multiplied by the number of beats in
     a bar.
 
-    NOTE: This DOES NOT respect time signature markers
+    ## NOTE:
+    * This DOES NOT respect time signature markers
 
     ## Returns:
      * `int`: timebase * numerator
@@ -332,13 +336,15 @@ def processRECEvent(eventId: int, value: int, flags: int) -&gt; int:
 
     REC events have some other properties available:
 
-     * Descriptive name: `device.getLinkedParamName`
+    * Descriptive name: `device.getLinkedParamName()`
 
-     * Current value: `device.getLinkedValue`
+    * Current value: `device.getLinkedValue()`
 
-     * Current value as an appropriately formatted string: `device.getLinkedValueString`
+    * Current value as an appropriately formatted string:
+      `device.getLinkedValueString()`
 
-    HELP WANTED: More information from Image-Line? More details on what `flags` can do?
+    ## HELP WANTED:
+    * More information from Image-Line? More details on what `flags` can do?
 
     ## Args:
      * `eventId` (`int`): Refer to the [official documentation](https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#RecEventParams)
@@ -506,7 +512,10 @@ not (<code>0</code>)</p>
 <dd>
 <div class="desc"><p>Returns the current timebase (PPQN) multiplied by the number of beats in
 a bar.</p>
-<p>NOTE: This DOES NOT respect time signature markers</p>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>This DOES NOT respect time signature markers</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: timebase * numerator</li>
@@ -520,7 +529,8 @@ a bar.</p>
     &#34;&#34;&#34;Returns the current timebase (PPQN) multiplied by the number of beats in
     a bar.
 
-    NOTE: This DOES NOT respect time signature markers
+    ## NOTE:
+    * This DOES NOT respect time signature markers
 
     ## Returns:
      * `int`: timebase * numerator
@@ -612,8 +622,11 @@ position is <code>0</code>, with earlier points in the history having higher ind
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the length of the undo history</p>
-<p>HELP WANTED: This seems to behave the same as <code><a title="src.general.getUndoHistoryCount" href="#src.general.getUndoHistoryCount">getUndoHistoryCount()</a></code>.
-What's the difference?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>This seems to behave the same as <code><a title="src.general.getUndoHistoryCount" href="#src.general.getUndoHistoryCount">getUndoHistoryCount()</a></code>. What's the
+difference?</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: number of elements in undo history</li>
@@ -626,8 +639,9 @@ What's the difference?</p>
 <pre><code class="python">def getUndoHistoryPos() -&gt; int:
     &#34;&#34;&#34;Returns the length of the undo history
 
-    HELP WANTED: This seems to behave the same as `getUndoHistoryCount()`.
-    What&#39;s the difference?
+    ## HELP WANTED:
+    * This seems to behave the same as `getUndoHistoryCount()`. What&#39;s the
+      difference?
 
     ## Returns:
      * `int`: number of elements in undo history
@@ -745,16 +759,20 @@ and so on.</p>
 <p>REC events have some other properties available:</p>
 <ul>
 <li>
-<p>Descriptive name: <code>device.getLinkedParamName</code></p>
+<p>Descriptive name: <code>device.getLinkedParamName()</code></p>
 </li>
 <li>
-<p>Current value: <code>device.getLinkedValue</code></p>
+<p>Current value: <code>device.getLinkedValue()</code></p>
 </li>
 <li>
-<p>Current value as an appropriately formatted string: <code>device.getLinkedValueString</code></p>
+<p>Current value as an appropriately formatted string:
+<code>device.getLinkedValueString()</code></p>
 </li>
 </ul>
-<p>HELP WANTED: More information from Image-Line? More details on what <code>flags</code> can do?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>More information from Image-Line? More details on what <code>flags</code> can do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -792,13 +810,15 @@ and so on.</p>
 
     REC events have some other properties available:
 
-     * Descriptive name: `device.getLinkedParamName`
+    * Descriptive name: `device.getLinkedParamName()`
 
-     * Current value: `device.getLinkedValue`
+    * Current value: `device.getLinkedValue()`
 
-     * Current value as an appropriately formatted string: `device.getLinkedValueString`
+    * Current value as an appropriately formatted string:
+      `device.getLinkedValueString()`
 
-    HELP WANTED: More information from Image-Line? More details on what `flags` can do?
+    ## HELP WANTED:
+    * More information from Image-Line? More details on what `flags` can do?
 
     ## Args:
      * `eventId` (`int`): Refer to the [official documentation](https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#RecEventParams)
@@ -821,7 +841,10 @@ and so on.</p>
 <dd>
 <div class="desc"><p>???</p>
 <p>This seems to behave in the same way as <code><a title="src.general.undo" href="#src.general.undo">undo()</a></code>.</p>
-<p>HELP WANTED: What does this do?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: ?</li>
@@ -836,7 +859,8 @@ and so on.</p>
 
     This seems to behave in the same way as `undo()`.
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Returns:
      * `int`: ?
@@ -852,7 +876,10 @@ and so on.</p>
 <dd>
 <div class="desc"><p>???</p>
 <p>This seems to behave in the same way as <code><a title="src.general.undo" href="#src.general.undo">undo()</a></code>.</p>
-<p>HELP WANTED: What does this do? What is the parameter for?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do? What is the parameter for?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>level</code> (<code>int</code>): ???</li>
@@ -871,7 +898,8 @@ and so on.</p>
 
     This seems to behave in the same way as `undo()`.
 
-    HELP WANTED: What does this do? What is the parameter for?
+    ## HELP WANTED:
+    * What does this do? What is the parameter for?
 
     ## Args:
      * `level` (`int`): ???

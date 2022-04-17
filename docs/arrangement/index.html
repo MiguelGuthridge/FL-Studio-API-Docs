@@ -79,7 +79,8 @@ def liveSelection(time: int, stop: int) -&gt; None:
 
     Set `stop` to True, to use end point of the selection (instead of start).
 
-    HELP WANTED: A better explanation would be good
+    ## HELP WANTED:
+    * A better explanation would be good
 
     ## Args:
      * `time` (`int`): ???
@@ -117,10 +118,13 @@ def currentTime(snap: int) -&gt; int:
     return 0
 
 
-def currentTimeHint(mode: int, time: int, setRecPPB: int = 0, isLength: int = 0)\
-        -&gt; str:
-    &#34;&#34;&#34;Returns a hint string for the given time, formatted as:
-    Bar:Beat?:Tick
+def currentTimeHint(
+    mode: int,
+    time: int,
+    setRecPPB: int = 0,
+    isLength: int = 0
+) -&gt; str:
+    &#34;&#34;&#34;Returns a hint string for the given time, formatted as: Bar:Beat?:Tick
 
     ## Args:
      * `mode` (`int`): pattern mode (`0`) or song mode (`1`)
@@ -239,8 +243,7 @@ to get the PPQ of the project.</p>
 <span>def <span class="ident">currentTimeHint</span></span>(<span>mode: int, time: int, setRecPPB: int = 0, isLength: int = 0) ‑> str</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Returns a hint string for the given time, formatted as:
-Bar:Beat?:Tick</p>
+<div class="desc"><p>Returns a hint string for the given time, formatted as: Bar:Beat?:Tick</p>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -265,10 +268,13 @@ Bar:Beat?:Tick</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def currentTimeHint(mode: int, time: int, setRecPPB: int = 0, isLength: int = 0)\
-        -&gt; str:
-    &#34;&#34;&#34;Returns a hint string for the given time, formatted as:
-    Bar:Beat?:Tick
+<pre><code class="python">def currentTimeHint(
+    mode: int,
+    time: int,
+    setRecPPB: int = 0,
+    isLength: int = 0
+) -&gt; str:
+    &#34;&#34;&#34;Returns a hint string for the given time, formatted as: Bar:Beat?:Tick
 
     ## Args:
      * `mode` (`int`): pattern mode (`0`) or song mode (`1`)
@@ -356,7 +362,10 @@ Bar:Beat?:Tick</p>
 <dd>
 <div class="desc"><p>Set a live selection point at <code>time</code>.</p>
 <p>Set <code>stop</code> to True, to use end point of the selection (instead of start).</p>
-<p>HELP WANTED: A better explanation would be good</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>A better explanation would be good</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -376,7 +385,8 @@ Bar:Beat?:Tick</p>
 
     Set `stop` to True, to use end point of the selection (instead of start).
 
-    HELP WANTED: A better explanation would be good
+    ## HELP WANTED:
+    * A better explanation would be good
 
     ## Args:
      * `time` (`int`): ???

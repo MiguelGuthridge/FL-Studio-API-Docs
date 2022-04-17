@@ -24,6 +24,13 @@
 <section id="section-intro">
 <p>User Interface Module (FL Studio built-in)</p>
 <p>Allows you to control and interact with FL Studio's UI.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>Many of the functions in this module will simply echo a hotkey into whatever
+application is active, meaning that actions can potentially be sent to the
+wrong application. Functions that have this behaviour are listed with a short
+warning saying so.</li>
+</ul>
 <h2 id="help-wanted">HELP WANTED:</h2>
 <ul>
 <li>What do the return values mean?</li>
@@ -36,8 +43,14 @@
 
 Allows you to control and interact with FL Studio&#39;s UI.
 
+## WARNING:
+* Many of the functions in this module will simply echo a hotkey into whatever
+  application is active, meaning that actions can potentially be sent to the
+  wrong application. Functions that have this behaviour are listed with a short
+  warning saying so.
+
 ## HELP WANTED:
- * What do the return values mean?
+* What do the return values mean?
 &#34;&#34;&#34;
 
 
@@ -78,7 +91,8 @@ def jog2(value: int) -&gt; int:
 def strip(value: int) -&gt; int:
     &#34;&#34;&#34;Used by touch-sensitive strip controls.
 
-    HELP WANTED: What does this apply to?
+    ## HELP WANTED:
+    * What controls does this apply to?
 
     ## Args:
      * `value` (`int`): ???
@@ -167,7 +181,8 @@ def next() -&gt; int:
 def moveJog(value: int) -&gt; int:
     &#34;&#34;&#34;Used to relocate items with a jog control.
 
-    HELP WANTED: How does this differ from `jog2()`?
+    ## HELP WANTED:
+    * How does this differ from `jog2()`?
 
     ## Args:
      * `value` (`int`): delta value (increment)
@@ -183,10 +198,12 @@ def moveJog(value: int) -&gt; int:
 def up(value: int = 1) -&gt; int:
     &#34;&#34;&#34;Generic up control.
 
-    WARNING: This function echoes the up arrow key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the up arrow key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
-    HELP WANTED: What does the `value` variable do?
+    ## HELP WANTED:
+    * What does the `value` variable do?
 
     ## Args:
      * `value` (`int`, optional): ???. Defaults to 1.
@@ -202,10 +219,12 @@ def up(value: int = 1) -&gt; int:
 def down(value: int = 1) -&gt; int:
     &#34;&#34;&#34;Generic down control.
 
-    WARNING: This function echoes the down arrow key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the down arrow key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
-    HELP WANTED: What does the `value` variable do?
+    ## HELP WANTED:
+    * What does the `value` variable do?
 
     ## Args:
      * `value` (`int`, optional): ???. Defaults to 1.
@@ -221,10 +240,12 @@ def down(value: int = 1) -&gt; int:
 def left(value: int = 1) -&gt; int:
     &#34;&#34;&#34;Generic left control.
 
-    WARNING: This function echoes the left arrow key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the left arrow key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
-    HELP WANTED: What does the `value` variable do?
+    ## HELP WANTED:
+    * What does the `value` variable do?
 
     ## Args:
      * `value` (`int`, optional): ???. Defaults to 1.
@@ -240,10 +261,12 @@ def left(value: int = 1) -&gt; int:
 def right(value: int = 1) -&gt; int:
     &#34;&#34;&#34;Generic right control.
 
-    WARNING: This function echoes the right arrow key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the right arrow key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
-    HELP WANTED: What does the `value` variable do?
+    ## HELP WANTED:
+    * What does the `value` variable do?
 
     ## Args:
      * `value` (`int`, optional): ???. Defaults to 1.
@@ -300,8 +323,9 @@ def snapOnOff() -&gt; int:
 def cut() -&gt; int:
     &#34;&#34;&#34;Cut the selection.
 
-    WARNING: This function echoes the hotkey to cut, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the hotkey to cut, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -314,8 +338,9 @@ def cut() -&gt; int:
 def copy() -&gt; int:
     &#34;&#34;&#34;Copy the selection.
 
-    WARNING: This function echoes the hotkey to copy, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the hotkey to copy, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -328,8 +353,9 @@ def copy() -&gt; int:
 def paste() -&gt; int:
     &#34;&#34;&#34;Paste the selection.
 
-    WARNING: This function echoes the hotkey to paste, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the hotkey to paste, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -342,8 +368,9 @@ def paste() -&gt; int:
 def insert() -&gt; int:
     &#34;&#34;&#34;Press the insert key.
 
-    WARNING: This function echoes the insert key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the insert key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -356,8 +383,9 @@ def insert() -&gt; int:
 def delete() -&gt; int:
     &#34;&#34;&#34;Press the delete key.
 
-    WARNING: This function echoes the delete key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the delete key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -370,8 +398,9 @@ def delete() -&gt; int:
 def enter() -&gt; int:
     &#34;&#34;&#34;Press the enter key.
 
-    WARNING: This function echoes the enter key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the enter key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -384,8 +413,9 @@ def enter() -&gt; int:
 def escape() -&gt; int:
     &#34;&#34;&#34;Press the escape key.
 
-    WARNING: This function echoes the escape key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the escape key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -398,8 +428,9 @@ def escape() -&gt; int:
 def yes() -&gt; int:
     &#34;&#34;&#34;Press the y key.
 
-    WARNING: This function echoes the y key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the y key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -412,13 +443,15 @@ def yes() -&gt; int:
 def no() -&gt; int:
     &#34;&#34;&#34;Press the n key.
 
-    WARNING: This function echoes the n key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the n key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
-    NOTE: This function is listed in the official documentation as `not`,
-    however this is incorrect, and will result in a syntax error since
-    overriding core keywords (such as `if`, `def` and `not`) is not allowed. The
-    function is actually named `no`, which is how this documentation lists it.
+    * This function is listed in the official documentation as `not`,
+      however this is incorrect, and will result in a syntax error since
+      overriding core keywords (such as `if`, `def` and `not`) is not allowed.
+      The function is actually named `no`, which is how this documentation
+      lists it.
 
     ## Returns:
      * `int`: ?
@@ -450,7 +483,8 @@ def setHintMsg(msg: str) -&gt; None:
 def getHintValue(value: int, max: int) -&gt; str:
     &#34;&#34;&#34;Returns hint for `value`.
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `value` (`int`): ???
@@ -550,9 +584,10 @@ def getFocused(index: int) -&gt; bool:
     &#34;&#34;&#34;Returns whether an FL Studio window is focused (meaning it is the
     currently selected Window in FL Studio).
 
-    NOTE: this doesn&#39;t necessarily mean that it is the currently selected window
-    in the host operating system, so functions that rely on keypress emulation
-    (such as `ui.copy()`) may not work as intended, even if this returns `True`.
+    ## NOTE:
+    * this doesn&#39;t necessarily mean that it is the currently selected window
+      in the host operating system, so functions that rely on keypress emulation
+      (such as `ui.copy()`) may not work as intended, even if this returns `True`.
 
     ## Args:
      * `index` (`int`): window index:
@@ -581,10 +616,11 @@ def setFocused(index: int) -&gt; None:
     &#34;&#34;&#34;Sets which FL Studio window should be focused (meaning it is the
     currently selected Window in FL Studio).
 
-    NOTE: this doesn&#39;t necessarily mean that it will be the currently selected
-    window in the host operating system, so functions that rely on keypress
-    emulation (such as `ui.copy()`) may not work as intended, even after calling
-    this function.
+    ## NOTE:
+    * This doesn&#39;t necessarily mean that it will be the currently selected
+      window in the host operating system, so functions that rely on keypress
+      emulation (such as `ui.copy()`) may not work as intended, even after calling
+      this function.
 
     ## Args:
      * `index` (`int`): window index:
@@ -619,8 +655,9 @@ def getFocusedFormID() -&gt; int:
 
     Used to get the channel rack index or mixer plugin ID for plugins
 
-    NOTE: The official documentation says that this function returns a string,
-    which is incorrect.
+    ## NOTE:
+    * The official documentation says that this function returns a string,
+      which is incorrect.
 
     ## Returns:
     * `int`: form ID:
@@ -693,8 +730,9 @@ def selectWindow(shift: int) -&gt; int:
     &#34;&#34;&#34;Switch to the next window by pressing the `Tab` key. If `shift` is true
     (`1`), switch to the previous window by pressing `Shift` and `Tab`.
 
-    WARNING: This function echoes the tab key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the tab key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Args:
      * `shift` (`int`): whether the shift key is pressed.
@@ -713,8 +751,8 @@ def launchAudioEditor(reuse: int, filename: str, index: int, preset: str,
     the editor. Set `reuse` to true (`1`) to reuse an already loaded audio
     editor.
 
-    HELP WANTED: How do I get this to work? I can only get it to open an empty
-    window.
+    ## HELP WANTED:
+    * How do I get this to work? I can only get it to open an empty window.
 
     ## Args:
      * `reuse` (`int`): whether to reuse an already open audio editor
@@ -738,7 +776,8 @@ def launchAudioEditor(reuse: int, filename: str, index: int, preset: str,
 def openEventEditor(eventId: int, mode: int, newWindow: int = 0) -&gt; int:
     &#34;&#34;&#34;Launches an event editor for `eventId`.
 
-    HELP WANTED: Yuck REC events please help me.
+    ## HELP WANTED:
+    * Yuck REC events please help me.
 
     ## Args:
      * `eventId` (`int`): ???
@@ -834,8 +873,8 @@ def isLoopRecEnabled() -&gt; bool:
 def getSnapMode() -&gt; int:
     &#34;&#34;&#34;Returns the current snap mode.
 
-    NOTE: Although the official documentation states that this takes an
-    argument `value`, it does not. This stub reflects the actual behaviour.
+    Although the official documentation states that this takes an argument
+    `value`, it does not. This stub reflects the actual behaviour.
 
     ## Returns:
      * `int`: index in the snap mode list:
@@ -986,7 +1025,8 @@ def getFocusedNodeCaption() -&gt; str:
     Returns the filename associated with the currently selected item in the
     browser
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Returns:
     * `str`: node caption
@@ -1000,7 +1040,8 @@ def getFocusedNodeFileType() -&gt; int:
     &#34;&#34;&#34;
     Returns a value based on the type of the selected file in the browser
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Returns:
     * `int`: ???
@@ -1014,7 +1055,8 @@ def isBrowserAutoHide() -&gt; bool:
     &#34;&#34;&#34;
     Returns whether the browser is set to auto-hide
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Returns:
     * `bool`: auto-hide
@@ -1028,7 +1070,8 @@ def setBrowserAutoHide(value: int):
     &#34;&#34;&#34;
     Toggle whether the browser is set to auto-hide
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Args:
     * `value` (`int`): whether the browser should auto-hide (`1`) or not (`0`)
@@ -1048,7 +1091,8 @@ def miDisplayDockRect(
 
     Compare to: `miDisplayRect()`
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Args:
     * `start` (`int`): the index of the starting point, with `1` being the 1st
@@ -1076,7 +1120,8 @@ def navigateBrowserMenu(*args):
     &#34;&#34;&#34;
     Navigate within the browser window???
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Args:
     * Unknown
@@ -1089,7 +1134,8 @@ def previewBrowserMenuItem():
     &#34;&#34;&#34;
     Preview the currently selected item in the browser
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     Included since API Version 20
     &#34;&#34;&#34;
@@ -1099,7 +1145,8 @@ def selectBrowserMenuItem():
     &#34;&#34;&#34;
     ???
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     Included since API Version 20
     &#34;&#34;&#34;
@@ -1109,10 +1156,11 @@ def showNotification(val: int):
     &#34;&#34;&#34;
     Show a notification to the user
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
-    WARNING: This appears to crash FL Studio&#39;s Python environment when given
-    (seemingly) correct arguments??? Investigation needed
+    * This appears to crash FL Studio&#39;s Python environment when given
+      (seemingly) correct arguments??? Investigation needed
 
     ## Args:
     * `val` (`int`): ???
@@ -1152,8 +1200,11 @@ drop-down menu).</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Copy the selection.</p>
-<p>WARNING: This function echoes the hotkey to copy, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the hotkey to copy, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: ?</li>
@@ -1166,8 +1217,9 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def copy() -&gt; int:
     &#34;&#34;&#34;Copy the selection.
 
-    WARNING: This function echoes the hotkey to copy, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the hotkey to copy, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -1257,8 +1309,11 @@ grid</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Cut the selection.</p>
-<p>WARNING: This function echoes the hotkey to cut, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the hotkey to cut, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: ?</li>
@@ -1271,8 +1326,9 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def cut() -&gt; int:
     &#34;&#34;&#34;Cut the selection.
 
-    WARNING: This function echoes the hotkey to cut, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the hotkey to cut, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -1287,8 +1343,11 @@ programs outside of FL Studio. Use with caution.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Press the delete key.</p>
-<p>WARNING: This function echoes the delete key, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the delete key, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: ?</li>
@@ -1301,8 +1360,9 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def delete() -&gt; int:
     &#34;&#34;&#34;Press the delete key.
 
-    WARNING: This function echoes the delete key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the delete key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -1317,9 +1377,15 @@ programs outside of FL Studio. Use with caution.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Generic down control.</p>
-<p>WARNING: This function echoes the down arrow key, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
-<p>HELP WANTED: What does the <code>value</code> variable do?</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the down arrow key, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does the <code>value</code> variable do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>value</code> (<code>int</code>, optional): ???. Defaults to 1.</li>
@@ -1336,10 +1402,12 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def down(value: int = 1) -&gt; int:
     &#34;&#34;&#34;Generic down control.
 
-    WARNING: This function echoes the down arrow key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the down arrow key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
-    HELP WANTED: What does the `value` variable do?
+    ## HELP WANTED:
+    * What does the `value` variable do?
 
     ## Args:
      * `value` (`int`, optional): ???. Defaults to 1.
@@ -1357,8 +1425,11 @@ programs outside of FL Studio. Use with caution.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Press the enter key.</p>
-<p>WARNING: This function echoes the enter key, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the enter key, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: ?</li>
@@ -1371,8 +1442,9 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def enter() -&gt; int:
     &#34;&#34;&#34;Press the enter key.
 
-    WARNING: This function echoes the enter key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the enter key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -1387,8 +1459,11 @@ programs outside of FL Studio. Use with caution.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Press the escape key.</p>
-<p>WARNING: This function echoes the escape key, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the escape key, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: ?</li>
@@ -1401,8 +1476,9 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def escape() -&gt; int:
     &#34;&#34;&#34;Press the escape key.
 
-    WARNING: This function echoes the escape key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the escape key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -1418,9 +1494,12 @@ programs outside of FL Studio. Use with caution.</p>
 <dd>
 <div class="desc"><p>Returns whether an FL Studio window is focused (meaning it is the
 currently selected Window in FL Studio).</p>
-<p>NOTE: this doesn't necessarily mean that it is the currently selected window
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>this doesn't necessarily mean that it is the currently selected window
 in the host operating system, so functions that rely on keypress emulation
-(such as <code>ui.copy()</code>) may not work as intended, even if this returns <code>True</code>.</p>
+(such as <code>ui.copy()</code>) may not work as intended, even if this returns <code>True</code>.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1461,9 +1540,10 @@ usable in this particular function).</p>
     &#34;&#34;&#34;Returns whether an FL Studio window is focused (meaning it is the
     currently selected Window in FL Studio).
 
-    NOTE: this doesn&#39;t necessarily mean that it is the currently selected window
-    in the host operating system, so functions that rely on keypress emulation
-    (such as `ui.copy()`) may not work as intended, even if this returns `True`.
+    ## NOTE:
+    * this doesn&#39;t necessarily mean that it is the currently selected window
+      in the host operating system, so functions that rely on keypress emulation
+      (such as `ui.copy()`) may not work as intended, even if this returns `True`.
 
     ## Args:
      * `index` (`int`): window index:
@@ -1521,8 +1601,11 @@ necessarily the same as the plugin's name.</p>
 <dd>
 <div class="desc"><p>Returns ID of the focused window.</p>
 <p>Used to get the channel rack index or mixer plugin ID for plugins</p>
-<p>NOTE: The official documentation says that this function returns a string,
-which is incorrect.</p>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>The official documentation says that this function returns a string,
+which is incorrect.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li>
@@ -1553,8 +1636,9 @@ all zero indexed)</p>
 
     Used to get the channel rack index or mixer plugin ID for plugins
 
-    NOTE: The official documentation says that this function returns a string,
-    which is incorrect.
+    ## NOTE:
+    * The official documentation says that this function returns a string,
+      which is incorrect.
 
     ## Returns:
     * `int`: form ID:
@@ -1576,7 +1660,10 @@ all zero indexed)</p>
 <dd>
 <div class="desc"><p>Returns the filename associated with the currently selected item in the
 browser</p>
-<p>WARNING: This function has no official documentation</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function has no official documentation</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>str</code>: node caption</li>
@@ -1591,7 +1678,8 @@ browser</p>
     Returns the filename associated with the currently selected item in the
     browser
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Returns:
     * `str`: node caption
@@ -1606,7 +1694,10 @@ browser</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns a value based on the type of the selected file in the browser</p>
-<p>WARNING: This function has no official documentation</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function has no official documentation</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: ???</li>
@@ -1620,7 +1711,8 @@ browser</p>
     &#34;&#34;&#34;
     Returns a value based on the type of the selected file in the browser
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Returns:
     * `int`: ???
@@ -1684,7 +1776,10 @@ otherwise an empty string.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns hint for <code>value</code>.</p>
-<p>HELP WANTED: What does this do?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1706,7 +1801,8 @@ otherwise an empty string.</p>
 <pre><code class="python">def getHintValue(value: int, max: int) -&gt; str:
     &#34;&#34;&#34;Returns hint for `value`.
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `value` (`int`): ???
@@ -1751,8 +1847,8 @@ otherwise an empty string.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the current snap mode.</p>
-<p>NOTE: Although the official documentation states that this takes an
-argument <code>value</code>, it does not. This stub reflects the actual behaviour.</p>
+<p>Although the official documentation states that this takes an argument
+<code>value</code>, it does not. This stub reflects the actual behaviour.</p>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li>
@@ -1814,8 +1910,8 @@ argument <code>value</code>, it does not. This stub reflects the actual behaviou
 <pre><code class="python">def getSnapMode() -&gt; int:
     &#34;&#34;&#34;Returns the current snap mode.
 
-    NOTE: Although the official documentation states that this takes an
-    argument `value`, it does not. This stub reflects the actual behaviour.
+    Although the official documentation states that this takes an argument
+    `value`, it does not. This stub reflects the actual behaviour.
 
     ## Returns:
      * `int`: index in the snap mode list:
@@ -2107,8 +2203,11 @@ Larger magnitudes zoom more, but the scale doesn't seem consistent.</li>
 </code></dt>
 <dd>
 <div class="desc"><p>Press the insert key.</p>
-<p>WARNING: This function echoes the insert key, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the insert key, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: ?</li>
@@ -2121,8 +2220,9 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def insert() -&gt; int:
     &#34;&#34;&#34;Press the insert key.
 
-    WARNING: This function echoes the insert key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the insert key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -2137,7 +2237,10 @@ programs outside of FL Studio. Use with caution.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns whether the browser is set to auto-hide</p>
-<p>WARNING: This function has no official documentation</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function has no official documentation</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>bool</code>: auto-hide</li>
@@ -2151,7 +2254,8 @@ programs outside of FL Studio. Use with caution.</p>
     &#34;&#34;&#34;
     Returns whether the browser is set to auto-hide
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Returns:
     * `bool`: auto-hide
@@ -2410,8 +2514,10 @@ drop-down menu).</p>
 <div class="desc"><p>Launches an audio editor for track at <code>index</code> and returns the state of
 the editor. Set <code>reuse</code> to true (<code>1</code>) to reuse an already loaded audio
 editor.</p>
-<p>HELP WANTED: How do I get this to work? I can only get it to open an empty
-window.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>How do I get this to work? I can only get it to open an empty window.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -2445,8 +2551,8 @@ window.</p>
     the editor. Set `reuse` to true (`1`) to reuse an already loaded audio
     editor.
 
-    HELP WANTED: How do I get this to work? I can only get it to open an empty
-    window.
+    ## HELP WANTED:
+    * How do I get this to work? I can only get it to open an empty window.
 
     ## Args:
      * `reuse` (`int`): whether to reuse an already open audio editor
@@ -2472,9 +2578,15 @@ window.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Generic left control.</p>
-<p>WARNING: This function echoes the left arrow key, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
-<p>HELP WANTED: What does the <code>value</code> variable do?</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the left arrow key, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does the <code>value</code> variable do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>value</code> (<code>int</code>, optional): ???. Defaults to 1.</li>
@@ -2491,10 +2603,12 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def left(value: int = 1) -&gt; int:
     &#34;&#34;&#34;Generic left control.
 
-    WARNING: This function echoes the left arrow key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the left arrow key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
-    HELP WANTED: What does the `value` variable do?
+    ## HELP WANTED:
+    * What does the `value` variable do?
 
     ## Args:
      * `value` (`int`, optional): ???. Defaults to 1.
@@ -2514,7 +2628,10 @@ programs outside of FL Studio. Use with caution.</p>
 <div class="desc"><p>Display a red guide rectangle on the mixer, but contained to one side of
 the dock.</p>
 <p>Compare to: <code><a title="src.ui.miDisplayRect" href="#src.ui.miDisplayRect">miDisplayRect()</a></code></p>
-<p>WARNING: This function has no official documentation</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function has no official documentation</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -2562,7 +2679,8 @@ means the rectangle will be <code>1</code> track wide</p>
 
     Compare to: `miDisplayRect()`
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Args:
     * `start` (`int`): the index of the starting point, with `1` being the 1st
@@ -2643,7 +2761,10 @@ means the rectangle will be <code>1</code> track wide</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Used to relocate items with a jog control.</p>
-<p>HELP WANTED: How does this differ from <code><a title="src.ui.jog2" href="#src.ui.jog2">jog2()</a></code>?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>How does this differ from <code><a title="src.ui.jog2" href="#src.ui.jog2">jog2()</a></code>?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>value</code> (<code>int</code>): delta value (increment)</li>
@@ -2660,7 +2781,8 @@ means the rectangle will be <code>1</code> track wide</p>
 <pre><code class="python">def moveJog(value: int) -&gt; int:
     &#34;&#34;&#34;Used to relocate items with a jog control.
 
-    HELP WANTED: How does this differ from `jog2()`?
+    ## HELP WANTED:
+    * How does this differ from `jog2()`?
 
     ## Args:
      * `value` (`int`): delta value (increment)
@@ -2678,7 +2800,10 @@ means the rectangle will be <code>1</code> track wide</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Navigate within the browser window???</p>
-<p>WARNING: This function has no official documentation</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function has no official documentation</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>Unknown</li>
@@ -2692,7 +2817,8 @@ means the rectangle will be <code>1</code> track wide</p>
     &#34;&#34;&#34;
     Navigate within the browser window???
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Args:
     * Unknown
@@ -2775,12 +2901,20 @@ means the rectangle will be <code>1</code> track wide</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Press the n key.</p>
-<p>WARNING: This function echoes the n key, and thus will affect
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>
+<p>This function echoes the n key, and thus will affect
 programs outside of FL Studio. Use with caution.</p>
-<p>NOTE: This function is listed in the official documentation as <code>not</code>,
+</li>
+<li>
+<p>This function is listed in the official documentation as <code>not</code>,
 however this is incorrect, and will result in a syntax error since
-overriding core keywords (such as <code>if</code>, <code>def</code> and <code>not</code>) is not allowed. The
-function is actually named <code><a title="src.ui.no" href="#src.ui.no">no()</a></code>, which is how this documentation lists it.</p>
+overriding core keywords (such as <code>if</code>, <code>def</code> and <code>not</code>) is not allowed.
+The function is actually named <code><a title="src.ui.no" href="#src.ui.no">no()</a></code>, which is how this documentation
+lists it.</p>
+</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: ?</li>
@@ -2793,13 +2927,15 @@ function is actually named <code><a title="src.ui.no" href="#src.ui.no">no()</a>
 <pre><code class="python">def no() -&gt; int:
     &#34;&#34;&#34;Press the n key.
 
-    WARNING: This function echoes the n key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the n key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
-    NOTE: This function is listed in the official documentation as `not`,
-    however this is incorrect, and will result in a syntax error since
-    overriding core keywords (such as `if`, `def` and `not`) is not allowed. The
-    function is actually named `no`, which is how this documentation lists it.
+    * This function is listed in the official documentation as `not`,
+      however this is incorrect, and will result in a syntax error since
+      overriding core keywords (such as `if`, `def` and `not`) is not allowed.
+      The function is actually named `no`, which is how this documentation
+      lists it.
 
     ## Returns:
      * `int`: ?
@@ -2814,7 +2950,10 @@ function is actually named <code><a title="src.ui.no" href="#src.ui.no">no()</a>
 </code></dt>
 <dd>
 <div class="desc"><p>Launches an event editor for <code>eventId</code>.</p>
-<p>HELP WANTED: Yuck REC events please help me.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>Yuck REC events please help me.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -2840,7 +2979,8 @@ to 0.</p>
 <pre><code class="python">def openEventEditor(eventId: int, mode: int, newWindow: int = 0) -&gt; int:
     &#34;&#34;&#34;Launches an event editor for `eventId`.
 
-    HELP WANTED: Yuck REC events please help me.
+    ## HELP WANTED:
+    * Yuck REC events please help me.
 
     ## Args:
      * `eventId` (`int`): ???
@@ -2863,8 +3003,11 @@ to 0.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Paste the selection.</p>
-<p>WARNING: This function echoes the hotkey to paste, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the hotkey to paste, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: ?</li>
@@ -2877,8 +3020,9 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def paste() -&gt; int:
     &#34;&#34;&#34;Paste the selection.
 
-    WARNING: This function echoes the hotkey to paste, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the hotkey to paste, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -2893,7 +3037,10 @@ programs outside of FL Studio. Use with caution.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Preview the currently selected item in the browser</p>
-<p>WARNING: This function has no official documentation</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function has no official documentation</li>
+</ul>
 <p>Included since API Version 20</p></div>
 <details class="source">
 <summary>
@@ -2903,7 +3050,8 @@ programs outside of FL Studio. Use with caution.</p>
     &#34;&#34;&#34;
     Preview the currently selected item in the browser
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     Included since API Version 20
     &#34;&#34;&#34;</code></pre>
@@ -2958,9 +3106,15 @@ programs outside of FL Studio. Use with caution.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Generic right control.</p>
-<p>WARNING: This function echoes the right arrow key, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
-<p>HELP WANTED: What does the <code>value</code> variable do?</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the right arrow key, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does the <code>value</code> variable do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>value</code> (<code>int</code>, optional): ???. Defaults to 1.</li>
@@ -2977,10 +3131,12 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def right(value: int = 1) -&gt; int:
     &#34;&#34;&#34;Generic right control.
 
-    WARNING: This function echoes the right arrow key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the right arrow key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
-    HELP WANTED: What does the `value` variable do?
+    ## HELP WANTED:
+    * What does the `value` variable do?
 
     ## Args:
      * `value` (`int`, optional): ???. Defaults to 1.
@@ -3080,7 +3236,10 @@ the Mixer).</p>
 </code></dt>
 <dd>
 <div class="desc"><p>???</p>
-<p>WARNING: This function has no official documentation</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function has no official documentation</li>
+</ul>
 <p>Included since API Version 20</p></div>
 <details class="source">
 <summary>
@@ -3090,7 +3249,8 @@ the Mixer).</p>
     &#34;&#34;&#34;
     ???
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     Included since API Version 20
     &#34;&#34;&#34;</code></pre>
@@ -3102,8 +3262,11 @@ the Mixer).</p>
 <dd>
 <div class="desc"><p>Switch to the next window by pressing the <code>Tab</code> key. If <code>shift</code> is true
 (<code>1</code>), switch to the previous window by pressing <code>Shift</code> and <code>Tab</code>.</p>
-<p>WARNING: This function echoes the tab key, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the tab key, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>shift</code> (<code>int</code>): whether the shift key is pressed.</li>
@@ -3121,8 +3284,9 @@ programs outside of FL Studio. Use with caution.</p>
     &#34;&#34;&#34;Switch to the next window by pressing the `Tab` key. If `shift` is true
     (`1`), switch to the previous window by pressing `Shift` and `Tab`.
 
-    WARNING: This function echoes the tab key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the tab key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Args:
      * `shift` (`int`): whether the shift key is pressed.
@@ -3140,7 +3304,10 @@ programs outside of FL Studio. Use with caution.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Toggle whether the browser is set to auto-hide</p>
-<p>WARNING: This function has no official documentation</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function has no official documentation</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>value</code> (<code>int</code>): whether the browser should auto-hide (<code>1</code>) or not (<code>0</code>)</li>
@@ -3154,7 +3321,8 @@ programs outside of FL Studio. Use with caution.</p>
     &#34;&#34;&#34;
     Toggle whether the browser is set to auto-hide
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
     ## Args:
     * `value` (`int`): whether the browser should auto-hide (`1`) or not (`0`)
@@ -3169,10 +3337,13 @@ programs outside of FL Studio. Use with caution.</p>
 <dd>
 <div class="desc"><p>Sets which FL Studio window should be focused (meaning it is the
 currently selected Window in FL Studio).</p>
-<p>NOTE: this doesn't necessarily mean that it will be the currently selected
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>This doesn't necessarily mean that it will be the currently selected
 window in the host operating system, so functions that rely on keypress
 emulation (such as <code>ui.copy()</code>) may not work as intended, even after calling
-this function.</p>
+this function.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -3205,10 +3376,11 @@ this function.</p>
     &#34;&#34;&#34;Sets which FL Studio window should be focused (meaning it is the
     currently selected Window in FL Studio).
 
-    NOTE: this doesn&#39;t necessarily mean that it will be the currently selected
-    window in the host operating system, so functions that rely on keypress
-    emulation (such as `ui.copy()`) may not work as intended, even after calling
-    this function.
+    ## NOTE:
+    * This doesn&#39;t necessarily mean that it will be the currently selected
+      window in the host operating system, so functions that rely on keypress
+      emulation (such as `ui.copy()`) may not work as intended, even after calling
+      this function.
 
     ## Args:
      * `index` (`int`): window index:
@@ -3274,9 +3446,16 @@ beat.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Show a notification to the user</p>
-<p>WARNING: This function has no official documentation</p>
-<p>WARNING: This appears to crash FL Studio's Python environment when given
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>
+<p>This function has no official documentation</p>
+</li>
+<li>
+<p>This appears to crash FL Studio's Python environment when given
 (seemingly) correct arguments??? Investigation needed</p>
+</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>val</code> (<code>int</code>): ???</li>
@@ -3290,10 +3469,11 @@ beat.</p>
     &#34;&#34;&#34;
     Show a notification to the user
 
-    WARNING: This function has no official documentation
+    ## WARNING:
+    * This function has no official documentation
 
-    WARNING: This appears to crash FL Studio&#39;s Python environment when given
-    (seemingly) correct arguments??? Investigation needed
+    * This appears to crash FL Studio&#39;s Python environment when given
+      (seemingly) correct arguments??? Investigation needed
 
     ## Args:
     * `val` (`int`): ???
@@ -3426,7 +3606,10 @@ documentation, so people can copy it into their code.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Used by touch-sensitive strip controls.</p>
-<p>HELP WANTED: What does this apply to?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What controls does this apply to?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>value</code> (<code>int</code>): ???</li>
@@ -3443,7 +3626,8 @@ documentation, so people can copy it into their code.</p>
 <pre><code class="python">def strip(value: int) -&gt; int:
     &#34;&#34;&#34;Used by touch-sensitive strip controls.
 
-    HELP WANTED: What does this apply to?
+    ## HELP WANTED:
+    * What controls does this apply to?
 
     ## Args:
      * `value` (`int`): ???
@@ -3553,9 +3737,15 @@ documentation, so people can copy it into their code.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Generic up control.</p>
-<p>WARNING: This function echoes the up arrow key, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
-<p>HELP WANTED: What does the <code>value</code> variable do?</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the up arrow key, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does the <code>value</code> variable do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>value</code> (<code>int</code>, optional): ???. Defaults to 1.</li>
@@ -3572,10 +3762,12 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def up(value: int = 1) -&gt; int:
     &#34;&#34;&#34;Generic up control.
 
-    WARNING: This function echoes the up arrow key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the up arrow key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
-    HELP WANTED: What does the `value` variable do?
+    ## HELP WANTED:
+    * What does the `value` variable do?
 
     ## Args:
      * `value` (`int`, optional): ???. Defaults to 1.
@@ -3627,8 +3819,11 @@ Larger magnitudes zoom more, but the scale doesn't seem consistent.</li>
 </code></dt>
 <dd>
 <div class="desc"><p>Press the y key.</p>
-<p>WARNING: This function echoes the y key, and thus will affect
-programs outside of FL Studio. Use with caution.</p>
+<h2 id="warning">WARNING:</h2>
+<ul>
+<li>This function echoes the y key, and thus will affect
+programs outside of FL Studio. Use with caution.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: ?</li>
@@ -3641,8 +3836,9 @@ programs outside of FL Studio. Use with caution.</p>
 <pre><code class="python">def yes() -&gt; int:
     &#34;&#34;&#34;Press the y key.
 
-    WARNING: This function echoes the y key, and thus will affect
-    programs outside of FL Studio. Use with caution.
+    ## WARNING:
+    * This function echoes the y key, and thus will affect
+      programs outside of FL Studio. Use with caution.
 
     ## Returns:
      * `int`: ?
@@ -3661,6 +3857,7 @@ programs outside of FL Studio. Use with caution.</p>
 <h1>Index</h1>
 <div class="toc">
 <ul>
+<li><a href="#warning">WARNING:</a></li>
 <li><a href="#help-wanted">HELP WANTED:</a></li>
 </ul>
 </div>

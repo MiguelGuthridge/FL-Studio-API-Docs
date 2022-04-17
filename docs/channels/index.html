@@ -293,20 +293,17 @@ def getChannelPitch(index: int, mode: int = 0) -&gt; &#39;float | int&#39;:
     * `index` (`int`): index of channel
 
     * `mode` (`int`, optional):
+          * `0` (default): return the current pitch bend as a factor of the current
+              range (usually `-1.0` to `1.0`). Larger values might be reached if the
+              pitch is automated with events, for example.
 
-        * `0` (default): return the current pitch bend as a factor of the current
-            range (usually `-1.0` to `1.0`). Larger values might be reached if the
-            pitch is automated with events, for example.
+          * `1`: return the current pitch offset in cents.
+              * BUG: Official API docs incorrectly state &#34;semitones&#34;.
 
-        * `1`: return the current pitch offset in cents.
-
-            BUG: Official API docs incorrectly state &#34;semitones&#34;.
-
-        * `2`: return the current pitch range in semitones.
-
-            BUG: This is not guaranteed to be correct.
-            For more information, see `setChannelPitch` on
-            modifying the pitch range of a channel.
+          * `2`: return the current pitch range in semitones.
+              * BUG: This is not guaranteed to be correct.
+                For more information, see `setChannelPitch` on
+                modifying the pitch range of a channel.
 
     ## Returns:
      * `float`: channel pitch (when `mode` is `0`)
@@ -329,7 +326,6 @@ def setChannelPitch(index: int, value: float, mode: int = 0, pickupMode: int = m
      * `value` (`float`): value to set
 
      * `mode` (`int`, optional):
-
           * `0` (default): set pitch as a factor of the current pitch bend range (between [-1.0, 1.0]).
 
           * `1`: set pitch in cents
@@ -765,7 +761,10 @@ def showCSForm(index: int, state: int = 1) -&gt; None:
      * `state` (`int`, optional): whether to hide (`0`), show
         (`1`) or toggle (`-1`) the plugin window. Defaults to `1`.
 
-    Included since API version 1, with optional parameter added in version 9
+    Included since API version 1
+
+    ## API Changes:
+    * v9: Add `state` parameter
     &#34;&#34;&#34;
 
 
@@ -1228,13 +1227,17 @@ pitch is automated with events, for example.</p>
 </li>
 <li>
 <p><code>1</code>: return the current pitch offset in cents.</p>
-<p>BUG: Official API docs incorrectly state "semitones".</p>
+<ul>
+<li>BUG: Official API docs incorrectly state "semitones".</li>
+</ul>
 </li>
 <li>
 <p><code>2</code>: return the current pitch range in semitones.</p>
-<p>BUG: This is not guaranteed to be correct.
+<ul>
+<li>BUG: This is not guaranteed to be correct.
 For more information, see <code><a title="src.channels.setChannelPitch" href="#src.channels.setChannelPitch">setChannelPitch()</a></code> on
-modifying the pitch range of a channel.</p>
+modifying the pitch range of a channel.</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -1261,20 +1264,17 @@ modifying the pitch range of a channel.</p>
     * `index` (`int`): index of channel
 
     * `mode` (`int`, optional):
+          * `0` (default): return the current pitch bend as a factor of the current
+              range (usually `-1.0` to `1.0`). Larger values might be reached if the
+              pitch is automated with events, for example.
 
-        * `0` (default): return the current pitch bend as a factor of the current
-            range (usually `-1.0` to `1.0`). Larger values might be reached if the
-            pitch is automated with events, for example.
+          * `1`: return the current pitch offset in cents.
+              * BUG: Official API docs incorrectly state &#34;semitones&#34;.
 
-        * `1`: return the current pitch offset in cents.
-
-            BUG: Official API docs incorrectly state &#34;semitones&#34;.
-
-        * `2`: return the current pitch range in semitones.
-
-            BUG: This is not guaranteed to be correct.
-            For more information, see `setChannelPitch` on
-            modifying the pitch range of a channel.
+          * `2`: return the current pitch range in semitones.
+              * BUG: This is not guaranteed to be correct.
+                For more information, see `setChannelPitch` on
+                modifying the pitch range of a channel.
 
     ## Returns:
      * `float`: channel pitch (when `mode` is `0`)
@@ -2375,7 +2375,6 @@ the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manu
      * `value` (`float`): value to set
 
      * `mode` (`int`, optional):
-
           * `0` (default): set pitch as a factor of the current pitch bend range (between [-1.0, 1.0]).
 
           * `1`: set pitch in cents
@@ -2494,7 +2493,11 @@ channel at <code>index</code>.</p>
 (<code>1</code>) or toggle (<code>-1</code>) the plugin window. Defaults to <code>1</code>.</p>
 </li>
 </ul>
-<p>Included since API version 1, with optional parameter added in version 9</p></div>
+<p>Included since API version 1</p>
+<h2 id="api-changes">API Changes:</h2>
+<ul>
+<li>v9: Add <code>state</code> parameter</li>
+</ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -2511,7 +2514,10 @@ channel at <code>index</code>.</p>
      * `state` (`int`, optional): whether to hide (`0`), show
         (`1`) or toggle (`-1`) the plugin window. Defaults to `1`.
 
-    Included since API version 1, with optional parameter added in version 9
+    Included since API version 1
+
+    ## API Changes:
+    * v9: Add `state` parameter
     &#34;&#34;&#34;</code></pre>
 </details>
 </dd>

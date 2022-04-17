@@ -83,8 +83,9 @@ def getTrackInfo(mode: int) -&gt; int:
 def setTrackNumber(trackNumber: int, flags: int = 0) -&gt; None:
     &#34;&#34;&#34;Selects the mixer track at `trackNumber`.
 
-    NOTE: All functionality except for scrolling flag can be replicated more
-    easily using `mixer.selectTrack()`.
+    ## NOTE:
+    * All functionality except for scrolling flag can be replicated more
+      easily using `mixer.selectTrack()`.
 
     ## Args:
      * `trackNumber` (`int`): the track index to select
@@ -225,7 +226,8 @@ def soloTrack(index: int) -&gt; None:
 def isTrackEnabled(index: int) -&gt; bool:
     &#34;&#34;&#34;Returns whether the track at `index` is enabled
 
-    NOTE: This seems to be functionally identical to `not isTrackMuted()`.
+    ## NOTE:
+    * This seems to be functionally identical to `not isTrackMuted()`.
 
     ## Args:
      * `index` (`int`): track index
@@ -258,7 +260,8 @@ def isTrackAutomationEnabled(index: int, plugIndex: int) -&gt; bool:
 def enableTrack(index: int) -&gt; None:
     &#34;&#34;&#34;Toggles whether the track at `index` is enabled.
 
-    NOTE: This seems to be functionally identical to `muteTrack()`.
+    ## NOTE:
+    * This seems to be functionally identical to `muteTrack()`.
 
     ## Args:
      * index (`int`): track index
@@ -295,7 +298,7 @@ def isTrackMuteLock(index: int) -&gt; bool:
     &#34;&#34;&#34;Returns whether the mute state of the track at `index` is locked.
 
     If this is true, the mute status of this track won&#39;t change when other
-    tracks are solo&#39;d or unsolo&#39;d.
+    tracks are solo or unsolo.
 
     ## Args:
      * `index` (`int`): track index
@@ -311,7 +314,14 @@ def isTrackMuteLock(index: int) -&gt; bool:
 def getTrackPluginId(index: int, plugIndex: int) -&gt; int:
     &#34;&#34;&#34;Returns the plugin ID of the plugin on track `index` in slot `plugIndex`
 
-    HELP WANTED: what is a plugin ID?
+    A plugin ID is used internally by FL Studio to represent effects present
+    on the mixer. A plugin ID can be used with REC events in order to automate
+    plugins, and is also the return value of `ui.getFocusedFormID()` if the
+    focused window is an effect plugin.
+
+    Plugin IDs are represented as `((track &lt;&lt; 6) + index) &lt;&lt; 16`, although
+    the official documentation lists them as `(track &lt;&lt; 6 + index) &lt;&lt; 16`,
+    which uses the order of operations incorrectly.
 
     ## Args:
      * index (`int`): track index
@@ -545,7 +555,8 @@ def getEventValue(
 ) -&gt; int:
     &#34;&#34;&#34;Returns event value from MIDI
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): ???
@@ -565,7 +576,8 @@ def getEventValue(
 def remoteFindEventValue(index: int, flags: int = 0) -&gt; float:
     &#34;&#34;&#34;Returns event value
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): ???
@@ -583,10 +595,12 @@ def remoteFindEventValue(index: int, flags: int = 0) -&gt; float:
 def getEventIDName(index: int, shortname: int = 0) -&gt; str:
     &#34;&#34;&#34;Returns event name for event at `index`
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
-    NOTE: The official documentation states that this function returns `None`,
-    but it actually returns a `str`. These stubs document the actual behaviour.
+    ## NOTE:
+    * The official documentation states that this function returns `None`,
+      but it actually returns a `str`. These stubs document the actual behaviour.
 
     ## Args:
      * `index` (`int`): ???
@@ -604,7 +618,8 @@ def getEventIDName(index: int, shortname: int = 0) -&gt; str:
 def getEventIDValueString(index: int, value: int) -&gt; str:
     &#34;&#34;&#34;Returns event value as a string
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): ???
@@ -622,7 +637,8 @@ def getEventIDValueString(index: int, value: int) -&gt; str:
 def getAutoSmoothEventValue(index: int, locked: int = 1) -&gt; int:
     &#34;&#34;&#34;Returns auto smooth event value
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): ???
@@ -647,7 +663,8 @@ def automateEvent(
 ) -&gt; int:
     &#34;&#34;&#34;Automate event
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): ???
@@ -692,8 +709,9 @@ def getTrackPeaks(index: int, mode: int) -&gt; float:
 def getTrackRecordingFileName(index: int) -&gt; str:
     &#34;&#34;&#34;Returns the file name for audio being recorded on the track at `index`.
 
-    NOTE: Files can&#39;t be opened in FL Studio&#39;s Python interpreter due to disk
-    access being disabled for security reasons.
+    ## NOTE:
+    * Files can&#39;t be opened in FL Studio&#39;s Python interpreter due to disk
+      access being disabled for security reasons.
 
     ## Args:
      * `index` (`int`): track index
@@ -709,7 +727,8 @@ def getTrackRecordingFileName(index: int) -&gt; str:
 def linkTrackToChannel(mode: int) -&gt; None:
     &#34;&#34;&#34;Link a mixer track to a channel.
 
-    HELP WANTED: How does this function call work?
+    ## HELP WANTED:
+    * How does this function call work?
 
     ## Args:
      * `mode` (`int`): link mode
@@ -750,7 +769,9 @@ def getCurrentTempo(asInt: int = 0) -&gt; &#39;int | float&#39;:
 def getRecPPS() -&gt; int:
     &#34;&#34;&#34;Returns the recording PPS
 
-    HELP WANTED: What is PPS?
+    ## HELP WANTED:
+    * What is PPS? I can only get this to return 24. Perhaps this is the bit
+      depth of the incoming audio?
 
     ## Returns:
      * `int`: recording PPS
@@ -809,40 +830,91 @@ def getTrackDockSide(index: int) -&gt; int:
     return 0
 
 
-def isTrackSlotsAvailable(*args, **kwargs) -&gt; Any:
-    &#34;&#34;&#34;
-    Returns whether slots are available for a particular track????
+# NOTE: This function seems to be missing: was it ever here?
+# def isTrackSlotsAvailable(*args, **kwargs) -&gt; Any:
+#     &#34;&#34;&#34;
+#     Returns whether slots are available for a particular track
+#
+#     ## Returns:
+#     * `bool`: ???
+#
+#     Included since API Version 19
+#     &#34;&#34;&#34;
+#     return False
 
-    WARNING: This function isn&#39;t documented
 
-    ## Returns:
-    * `bool`: ???
-
-    Included since API Version 19
-    &#34;&#34;&#34;
-    return False
-
-
-def isTrackSlotsEnabled(*args, **kwargs) -&gt; Any:
+def isTrackSlotsEnabled(index: int) -&gt; bool:
     &#34;&#34;&#34;
     Returns whether effects are enabled for a particular track, using the
     &#34;enable effects slots&#34; button.
 
-    WARNING: This function isn&#39;t documented
+    ## Args:
+    * `index` (`int`): track index
 
     ## Returns:
-    * `bool`: ???
+    * `bool`: whether effects are enabled on the track
+
+    Included since API Version 19
+    &#34;&#34;&#34;
+    return False
+
+def enableTrackSlots(index: int, value: bool = False) -&gt; None:
+    &#34;&#34;&#34;
+    Toggle whether all effects are enabled on a track.
+
+    ## KNOWN ISSUES:
+    * If a `value` isn&#39;t supplied, the value will be set to `False` rather than
+      toggled.
+
+    ## NOTE:
+    * Although there is no visual indication, this can be used to toggle
+      effects for empty tracks, leading to effects they may add in the future
+      not doing anything.
+
+    ## Args:
+    * `index` (`int`): Track index
+    * `value` (`bool`): Whether effects should be enabled or not
+
+    Included since API Version 19
+    &#34;&#34;&#34;
+
+def isTrackRevPolarity(index: int) -&gt; bool:
+    &#34;&#34;&#34;
+    Returns whether the polarity is reversed for the track at `index`
+
+    ## Args:
+    * `index` (`int`): track index
+
+    ## Returns:
+    * `bool`: whether polarity is inverted
 
     Included since API Version 19
     &#34;&#34;&#34;
     return False
 
 
-def isTrackSwapChannels(*args, **kwargs) -&gt; bool:
+def revTrackPolarity(index: int, value: bool = False) -&gt; None:
+    &#34;&#34;&#34;
+    Inverts the polarity for a particular track.
+
+    ## KNOWN ISSUES:
+    * If a `value` isn&#39;t supplied, the value will be set to `False` rather than
+      toggled.
+
+    ## Args:
+    * `index` (`int`): Index of track to reverse polarity for
+    * `value` (`bool`): Whether polarity should be swapped or not
+
+    Included since API Version 19
+    &#34;&#34;&#34;
+
+
+def isTrackSwapChannels(index: int) -&gt; bool:
     &#34;&#34;&#34;
     Returns whether left and right channels are inverted for a particular track
 
-    WARNING: This function isn&#39;t documented
+    ## Args:
+    * `index` (`int`): track index
 
     ## Returns:
     * `bool`: whether left and right are inverted
@@ -852,27 +924,18 @@ def isTrackSwapChannels(*args, **kwargs) -&gt; bool:
     return False
 
 
-def revTrackPolarity(*args, **kwargs) -&gt; None:
+def swapTrackChannels(index: int, value: bool = False) -&gt; None:
     &#34;&#34;&#34;
-    Inverts the polarity for a particular track
+    Toggle whether left and right channels are swapped for the mixer track at
+    `index`.
 
-    WARNING: This function isn&#39;t documented, and seems to do nothing
+    ## KNOWN ISSUES:
+    * If a `value` isn&#39;t supplied, the value will be set to `False` rather than
+      toggled.
 
-    ## Returns:
-    * `bool`: ???
-
-    Included since API Version 19
-    &#34;&#34;&#34;
-
-
-def swapTrackChannels(*args, **kwargs) -&gt; None:
-    &#34;&#34;&#34;
-    ????
-
-    WARNING: This function isn&#39;t documented, and seems to do nothing
-
-    ## Returns:
-    * `bool`: ???
+    ## Args:
+    * `index` (`int`): Index of track to swap channels for
+    * `value` (`bool`): Whether channels should be swapped or not
 
     Included since API Version 19
     &#34;&#34;&#34;</code></pre>
@@ -931,7 +994,10 @@ def swapTrackChannels(*args, **kwargs) -&gt; None:
 </code></dt>
 <dd>
 <div class="desc"><p>Automate event</p>
-<p>HELP WANTED: What does this do?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -972,7 +1038,8 @@ def swapTrackChannels(*args, **kwargs) -&gt; None:
 ) -&gt; int:
     &#34;&#34;&#34;Automate event
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): ???
@@ -1017,7 +1084,10 @@ def swapTrackChannels(*args, **kwargs) -&gt; None:
 </code></dt>
 <dd>
 <div class="desc"><p>Toggles whether the track at <code>index</code> is enabled.</p>
-<p>NOTE: This seems to be functionally identical to <code><a title="src.mixer.muteTrack" href="#src.mixer.muteTrack">muteTrack()</a></code>.</p>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>This seems to be functionally identical to <code><a title="src.mixer.muteTrack" href="#src.mixer.muteTrack">muteTrack()</a></code>.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>index (<code>int</code>): track index</li>
@@ -1030,7 +1100,8 @@ def swapTrackChannels(*args, **kwargs) -&gt; None:
 <pre><code class="python">def enableTrack(index: int) -&gt; None:
     &#34;&#34;&#34;Toggles whether the track at `index` is enabled.
 
-    NOTE: This seems to be functionally identical to `muteTrack()`.
+    ## NOTE:
+    * This seems to be functionally identical to `muteTrack()`.
 
     ## Args:
      * index (`int`): track index
@@ -1039,12 +1110,62 @@ def swapTrackChannels(*args, **kwargs) -&gt; None:
     &#34;&#34;&#34;</code></pre>
 </details>
 </dd>
+<dt id="src.mixer.enableTrackSlots"><code class="name flex">
+<span>def <span class="ident">enableTrackSlots</span></span>(<span>index: int, value: bool = False) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Toggle whether all effects are enabled on a track.</p>
+<h2 id="known-issues">KNOWN ISSUES:</h2>
+<ul>
+<li>If a <code>value</code> isn't supplied, the value will be set to <code>False</code> rather than
+toggled.</li>
+</ul>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>Although there is no visual indication, this can be used to toggle
+effects for empty tracks, leading to effects they may add in the future
+not doing anything.</li>
+</ul>
+<h2 id="args">Args:</h2>
+<ul>
+<li><code>index</code> (<code>int</code>): Track index</li>
+<li><code>value</code> (<code>bool</code>): Whether effects should be enabled or not</li>
+</ul>
+<p>Included since API Version 19</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def enableTrackSlots(index: int, value: bool = False) -&gt; None:
+    &#34;&#34;&#34;
+    Toggle whether all effects are enabled on a track.
+
+    ## KNOWN ISSUES:
+    * If a `value` isn&#39;t supplied, the value will be set to `False` rather than
+      toggled.
+
+    ## NOTE:
+    * Although there is no visual indication, this can be used to toggle
+      effects for empty tracks, leading to effects they may add in the future
+      not doing anything.
+
+    ## Args:
+    * `index` (`int`): Track index
+    * `value` (`bool`): Whether effects should be enabled or not
+
+    Included since API Version 19
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
 <dt id="src.mixer.getAutoSmoothEventValue"><code class="name flex">
 <span>def <span class="ident">getAutoSmoothEventValue</span></span>(<span>index: int, locked: int = 1) ‑> int</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns auto smooth event value</p>
-<p>HELP WANTED: What does this do?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1066,7 +1187,8 @@ def swapTrackChannels(*args, **kwargs) -&gt; None:
 <pre><code class="python">def getAutoSmoothEventValue(index: int, locked: int = 1) -&gt; int:
     &#34;&#34;&#34;Returns auto smooth event value
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): ???
@@ -1120,9 +1242,15 @@ or not (<code>0</code>). Defaults to <code>0</code>.</li>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns event name for event at <code>index</code></p>
-<p>HELP WANTED: What does this do?</p>
-<p>NOTE: The official documentation states that this function returns <code>None</code>,
-but it actually returns a <code>str</code>. These stubs document the actual behaviour.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>The official documentation states that this function returns <code>None</code>,
+but it actually returns a <code>str</code>. These stubs document the actual behaviour.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1144,10 +1272,12 @@ but it actually returns a <code>str</code>. These stubs document the actual beha
 <pre><code class="python">def getEventIDName(index: int, shortname: int = 0) -&gt; str:
     &#34;&#34;&#34;Returns event name for event at `index`
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
-    NOTE: The official documentation states that this function returns `None`,
-    but it actually returns a `str`. These stubs document the actual behaviour.
+    ## NOTE:
+    * The official documentation states that this function returns `None`,
+      but it actually returns a `str`. These stubs document the actual behaviour.
 
     ## Args:
      * `index` (`int`): ???
@@ -1167,7 +1297,10 @@ but it actually returns a <code>str</code>. These stubs document the actual beha
 </code></dt>
 <dd>
 <div class="desc"><p>Returns event value as a string</p>
-<p>HELP WANTED: What does this do?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1189,7 +1322,8 @@ but it actually returns a <code>str</code>. These stubs document the actual beha
 <pre><code class="python">def getEventIDValueString(index: int, value: int) -&gt; str:
     &#34;&#34;&#34;Returns event value as a string
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): ???
@@ -1209,7 +1343,10 @@ but it actually returns a <code>str</code>. These stubs document the actual beha
 </code></dt>
 <dd>
 <div class="desc"><p>Returns event value from MIDI</p>
-<p>HELP WANTED: What does this do?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1238,7 +1375,8 @@ but it actually returns a <code>str</code>. These stubs document the actual beha
 ) -&gt; int:
     &#34;&#34;&#34;Returns event value from MIDI
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): ???
@@ -1307,7 +1445,11 @@ clipping)</li>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the recording PPS</p>
-<p>HELP WANTED: What is PPS?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What is PPS? I can only get this to return 24. Perhaps this is the bit
+depth of the incoming audio?</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: recording PPS</li>
@@ -1320,7 +1462,9 @@ clipping)</li>
 <pre><code class="python">def getRecPPS() -&gt; int:
     &#34;&#34;&#34;Returns the recording PPS
 
-    HELP WANTED: What is PPS?
+    ## HELP WANTED:
+    * What is PPS? I can only get this to return 24. Perhaps this is the bit
+      depth of the incoming audio?
 
     ## Returns:
      * `int`: recording PPS
@@ -1682,7 +1826,13 @@ large peak meter docked to the left).</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the plugin ID of the plugin on track <code>index</code> in slot <code>plugIndex</code></p>
-<p>HELP WANTED: what is a plugin ID?</p>
+<p>A plugin ID is used internally by FL Studio to represent effects present
+on the mixer. A plugin ID can be used with REC events in order to automate
+plugins, and is also the return value of <code>ui.getFocusedFormID()</code> if the
+focused window is an effect plugin.</p>
+<p>Plugin IDs are represented as <code>((track &lt;&lt; 6) + index) &lt;&lt; 16</code>, although
+the official documentation lists them as <code>(track &lt;&lt; 6 + index) &lt;&lt; 16</code>,
+which uses the order of operations incorrectly.</p>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1704,7 +1854,14 @@ large peak meter docked to the left).</p>
 <pre><code class="python">def getTrackPluginId(index: int, plugIndex: int) -&gt; int:
     &#34;&#34;&#34;Returns the plugin ID of the plugin on track `index` in slot `plugIndex`
 
-    HELP WANTED: what is a plugin ID?
+    A plugin ID is used internally by FL Studio to represent effects present
+    on the mixer. A plugin ID can be used with REC events in order to automate
+    plugins, and is also the return value of `ui.getFocusedFormID()` if the
+    focused window is an effect plugin.
+
+    Plugin IDs are represented as `((track &lt;&lt; 6) + index) &lt;&lt; 16`, although
+    the official documentation lists them as `(track &lt;&lt; 6 + index) &lt;&lt; 16`,
+    which uses the order of operations incorrectly.
 
     ## Args:
      * index (`int`): track index
@@ -1724,8 +1881,11 @@ large peak meter docked to the left).</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the file name for audio being recorded on the track at <code>index</code>.</p>
-<p>NOTE: Files can't be opened in FL Studio's Python interpreter due to disk
-access being disabled for security reasons.</p>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>Files can't be opened in FL Studio's Python interpreter due to disk
+access being disabled for security reasons.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>index</code> (<code>int</code>): track index</li>
@@ -1742,8 +1902,9 @@ access being disabled for security reasons.</p>
 <pre><code class="python">def getTrackRecordingFileName(index: int) -&gt; str:
     &#34;&#34;&#34;Returns the file name for audio being recorded on the track at `index`.
 
-    NOTE: Files can&#39;t be opened in FL Studio&#39;s Python interpreter due to disk
-    access being disabled for security reasons.
+    ## NOTE:
+    * Files can&#39;t be opened in FL Studio&#39;s Python interpreter due to disk
+      access being disabled for security reasons.
 
     ## Args:
      * `index` (`int`): track index
@@ -1915,7 +2076,10 @@ automation enabled.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns whether the track at <code>index</code> is enabled</p>
-<p>NOTE: This seems to be functionally identical to <code>not <a title="src.mixer.isTrackMuted" href="#src.mixer.isTrackMuted">isTrackMuted()</a></code>.</p>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>This seems to be functionally identical to <code>not <a title="src.mixer.isTrackMuted" href="#src.mixer.isTrackMuted">isTrackMuted()</a></code>.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>index</code> (<code>int</code>): track index</li>
@@ -1932,7 +2096,8 @@ automation enabled.</p>
 <pre><code class="python">def isTrackEnabled(index: int) -&gt; bool:
     &#34;&#34;&#34;Returns whether the track at `index` is enabled
 
-    NOTE: This seems to be functionally identical to `not isTrackMuted()`.
+    ## NOTE:
+    * This seems to be functionally identical to `not isTrackMuted()`.
 
     ## Args:
      * `index` (`int`): track index
@@ -1951,7 +2116,7 @@ automation enabled.</p>
 <dd>
 <div class="desc"><p>Returns whether the mute state of the track at <code>index</code> is locked.</p>
 <p>If this is true, the mute status of this track won't change when other
-tracks are solo'd or unsolo'd.</p>
+tracks are solo or unsolo.</p>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>index</code> (<code>int</code>): track index</li>
@@ -1969,7 +2134,7 @@ tracks are solo'd or unsolo'd.</p>
     &#34;&#34;&#34;Returns whether the mute state of the track at `index` is locked.
 
     If this is true, the mute status of this track won&#39;t change when other
-    tracks are solo&#39;d or unsolo&#39;d.
+    tracks are solo or unsolo.
 
     ## Args:
      * `index` (`int`): track index
@@ -2055,6 +2220,39 @@ tracks are solo'd or unsolo'd.</p>
     return False</code></pre>
 </details>
 </dd>
+<dt id="src.mixer.isTrackRevPolarity"><code class="name flex">
+<span>def <span class="ident">isTrackRevPolarity</span></span>(<span>index: int) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns whether the polarity is reversed for the track at <code>index</code></p>
+<h2 id="args">Args:</h2>
+<ul>
+<li><code>index</code> (<code>int</code>): track index</li>
+</ul>
+<h2 id="returns">Returns:</h2>
+<ul>
+<li><code>bool</code>: whether polarity is inverted</li>
+</ul>
+<p>Included since API Version 19</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def isTrackRevPolarity(index: int) -&gt; bool:
+    &#34;&#34;&#34;
+    Returns whether the polarity is reversed for the track at `index`
+
+    ## Args:
+    * `index` (`int`): track index
+
+    ## Returns:
+    * `bool`: whether polarity is inverted
+
+    Included since API Version 19
+    &#34;&#34;&#34;
+    return False</code></pre>
+</details>
+</dd>
 <dt id="src.mixer.isTrackSelected"><code class="name flex">
 <span>def <span class="ident">isTrackSelected</span></span>(<span>index: int) ‑> bool</span>
 </code></dt>
@@ -2087,60 +2285,35 @@ tracks are solo'd or unsolo'd.</p>
     return False</code></pre>
 </details>
 </dd>
-<dt id="src.mixer.isTrackSlotsAvailable"><code class="name flex">
-<span>def <span class="ident">isTrackSlotsAvailable</span></span>(<span>*args, **kwargs) ‑> Any</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Returns whether slots are available for a particular track????</p>
-<p>WARNING: This function isn't documented</p>
-<h2 id="returns">Returns:</h2>
-<ul>
-<li><code>bool</code>: ???</li>
-</ul>
-<p>Included since API Version 19</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def isTrackSlotsAvailable(*args, **kwargs) -&gt; Any:
-    &#34;&#34;&#34;
-    Returns whether slots are available for a particular track????
-
-    WARNING: This function isn&#39;t documented
-
-    ## Returns:
-    * `bool`: ???
-
-    Included since API Version 19
-    &#34;&#34;&#34;
-    return False</code></pre>
-</details>
-</dd>
 <dt id="src.mixer.isTrackSlotsEnabled"><code class="name flex">
-<span>def <span class="ident">isTrackSlotsEnabled</span></span>(<span>*args, **kwargs) ‑> Any</span>
+<span>def <span class="ident">isTrackSlotsEnabled</span></span>(<span>index: int) ‑> bool</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns whether effects are enabled for a particular track, using the
 "enable effects slots" button.</p>
-<p>WARNING: This function isn't documented</p>
+<h2 id="args">Args:</h2>
+<ul>
+<li><code>index</code> (<code>int</code>): track index</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
-<li><code>bool</code>: ???</li>
+<li><code>bool</code>: whether effects are enabled on the track</li>
 </ul>
 <p>Included since API Version 19</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def isTrackSlotsEnabled(*args, **kwargs) -&gt; Any:
+<pre><code class="python">def isTrackSlotsEnabled(index: int) -&gt; bool:
     &#34;&#34;&#34;
     Returns whether effects are enabled for a particular track, using the
     &#34;enable effects slots&#34; button.
 
-    WARNING: This function isn&#39;t documented
+    ## Args:
+    * `index` (`int`): track index
 
     ## Returns:
-    * `bool`: ???
+    * `bool`: whether effects are enabled on the track
 
     Included since API Version 19
     &#34;&#34;&#34;
@@ -2180,11 +2353,14 @@ tracks are solo'd or unsolo'd.</p>
 </details>
 </dd>
 <dt id="src.mixer.isTrackSwapChannels"><code class="name flex">
-<span>def <span class="ident">isTrackSwapChannels</span></span>(<span>*args, **kwargs) ‑> bool</span>
+<span>def <span class="ident">isTrackSwapChannels</span></span>(<span>index: int) ‑> bool</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns whether left and right channels are inverted for a particular track</p>
-<p>WARNING: This function isn't documented</p>
+<h2 id="args">Args:</h2>
+<ul>
+<li><code>index</code> (<code>int</code>): track index</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>bool</code>: whether left and right are inverted</li>
@@ -2194,11 +2370,12 @@ tracks are solo'd or unsolo'd.</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def isTrackSwapChannels(*args, **kwargs) -&gt; bool:
+<pre><code class="python">def isTrackSwapChannels(index: int) -&gt; bool:
     &#34;&#34;&#34;
     Returns whether left and right channels are inverted for a particular track
 
-    WARNING: This function isn&#39;t documented
+    ## Args:
+    * `index` (`int`): track index
 
     ## Returns:
     * `bool`: whether left and right are inverted
@@ -2213,7 +2390,10 @@ tracks are solo'd or unsolo'd.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Link a mixer track to a channel.</p>
-<p>HELP WANTED: How does this function call work?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>How does this function call work?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -2236,7 +2416,8 @@ tracks are solo'd or unsolo'd.</p>
 <pre><code class="python">def linkTrackToChannel(mode: int) -&gt; None:
     &#34;&#34;&#34;Link a mixer track to a channel.
 
-    HELP WANTED: How does this function call work?
+    ## HELP WANTED:
+    * How does this function call work?
 
     ## Args:
      * `mode` (`int`): link mode
@@ -2277,7 +2458,10 @@ tracks are solo'd or unsolo'd.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns event value</p>
-<p>HELP WANTED: What does this do?</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -2299,7 +2483,8 @@ tracks are solo'd or unsolo'd.</p>
 <pre><code class="python">def remoteFindEventValue(index: int, flags: int = 0) -&gt; float:
     &#34;&#34;&#34;Returns event value
 
-    HELP WANTED: What does this do?
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): ???
@@ -2315,28 +2500,36 @@ tracks are solo'd or unsolo'd.</p>
 </details>
 </dd>
 <dt id="src.mixer.revTrackPolarity"><code class="name flex">
-<span>def <span class="ident">revTrackPolarity</span></span>(<span>*args, **kwargs) ‑> None</span>
+<span>def <span class="ident">revTrackPolarity</span></span>(<span>index: int, value: bool = False) ‑> None</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Inverts the polarity for a particular track</p>
-<p>WARNING: This function isn't documented, and seems to do nothing</p>
-<h2 id="returns">Returns:</h2>
+<div class="desc"><p>Inverts the polarity for a particular track.</p>
+<h2 id="known-issues">KNOWN ISSUES:</h2>
 <ul>
-<li><code>bool</code>: ???</li>
+<li>If a <code>value</code> isn't supplied, the value will be set to <code>False</code> rather than
+toggled.</li>
+</ul>
+<h2 id="args">Args:</h2>
+<ul>
+<li><code>index</code> (<code>int</code>): Index of track to reverse polarity for</li>
+<li><code>value</code> (<code>bool</code>): Whether polarity should be swapped or not</li>
 </ul>
 <p>Included since API Version 19</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def revTrackPolarity(*args, **kwargs) -&gt; None:
+<pre><code class="python">def revTrackPolarity(index: int, value: bool = False) -&gt; None:
     &#34;&#34;&#34;
-    Inverts the polarity for a particular track
+    Inverts the polarity for a particular track.
 
-    WARNING: This function isn&#39;t documented, and seems to do nothing
+    ## KNOWN ISSUES:
+    * If a `value` isn&#39;t supplied, the value will be set to `False` rather than
+      toggled.
 
-    ## Returns:
-    * `bool`: ???
+    ## Args:
+    * `index` (`int`): Index of track to reverse polarity for
+    * `value` (`bool`): Whether polarity should be swapped or not
 
     Included since API Version 19
     &#34;&#34;&#34;</code></pre>
@@ -2496,8 +2689,11 @@ its default.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Selects the mixer track at <code><a title="src.mixer.trackNumber" href="#src.mixer.trackNumber">trackNumber()</a></code>.</p>
-<p>NOTE: All functionality except for scrolling flag can be replicated more
-easily using <code>mixer.selectTrack()</code>.</p>
+<h2 id="note">NOTE:</h2>
+<ul>
+<li>All functionality except for scrolling flag can be replicated more
+easily using <code>mixer.selectTrack()</code>.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -2532,8 +2728,9 @@ selected tracks??? Doesn't seem to work.</p>
 <pre><code class="python">def setTrackNumber(trackNumber: int, flags: int = 0) -&gt; None:
     &#34;&#34;&#34;Selects the mixer track at `trackNumber`.
 
-    NOTE: All functionality except for scrolling flag can be replicated more
-    easily using `mixer.selectTrack()`.
+    ## NOTE:
+    * All functionality except for scrolling flag can be replicated more
+      easily using `mixer.selectTrack()`.
 
     ## Args:
      * `trackNumber` (`int`): the track index to select
@@ -2722,28 +2919,38 @@ the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manu
 </details>
 </dd>
 <dt id="src.mixer.swapTrackChannels"><code class="name flex">
-<span>def <span class="ident">swapTrackChannels</span></span>(<span>*args, **kwargs) ‑> None</span>
+<span>def <span class="ident">swapTrackChannels</span></span>(<span>index: int, value: bool = False) ‑> None</span>
 </code></dt>
 <dd>
-<div class="desc"><p>????</p>
-<p>WARNING: This function isn't documented, and seems to do nothing</p>
-<h2 id="returns">Returns:</h2>
+<div class="desc"><p>Toggle whether left and right channels are swapped for the mixer track at
+<code>index</code>.</p>
+<h2 id="known-issues">KNOWN ISSUES:</h2>
 <ul>
-<li><code>bool</code>: ???</li>
+<li>If a <code>value</code> isn't supplied, the value will be set to <code>False</code> rather than
+toggled.</li>
+</ul>
+<h2 id="args">Args:</h2>
+<ul>
+<li><code>index</code> (<code>int</code>): Index of track to swap channels for</li>
+<li><code>value</code> (<code>bool</code>): Whether channels should be swapped or not</li>
 </ul>
 <p>Included since API Version 19</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def swapTrackChannels(*args, **kwargs) -&gt; None:
+<pre><code class="python">def swapTrackChannels(index: int, value: bool = False) -&gt; None:
     &#34;&#34;&#34;
-    ????
+    Toggle whether left and right channels are swapped for the mixer track at
+    `index`.
 
-    WARNING: This function isn&#39;t documented, and seems to do nothing
+    ## KNOWN ISSUES:
+    * If a `value` isn&#39;t supplied, the value will be set to `False` rather than
+      toggled.
 
-    ## Returns:
-    * `bool`: ???
+    ## Args:
+    * `index` (`int`): Index of track to swap channels for
+    * `value` (`bool`): Whether channels should be swapped or not
 
     Included since API Version 19
     &#34;&#34;&#34;</code></pre>
@@ -2826,6 +3033,7 @@ tracks.</p>
 <li><code><a title="src.mixer.automateEvent" href="#src.mixer.automateEvent">automateEvent</a></code></li>
 <li><code><a title="src.mixer.deselectAll" href="#src.mixer.deselectAll">deselectAll</a></code></li>
 <li><code><a title="src.mixer.enableTrack" href="#src.mixer.enableTrack">enableTrack</a></code></li>
+<li><code><a title="src.mixer.enableTrackSlots" href="#src.mixer.enableTrackSlots">enableTrackSlots</a></code></li>
 <li><code><a title="src.mixer.getAutoSmoothEventValue" href="#src.mixer.getAutoSmoothEventValue">getAutoSmoothEventValue</a></code></li>
 <li><code><a title="src.mixer.getCurrentTempo" href="#src.mixer.getCurrentTempo">getCurrentTempo</a></code></li>
 <li><code><a title="src.mixer.getEventIDName" href="#src.mixer.getEventIDName">getEventIDName</a></code></li>
@@ -2852,8 +3060,8 @@ tracks.</p>
 <li><code><a title="src.mixer.isTrackMuteLock" href="#src.mixer.isTrackMuteLock">isTrackMuteLock</a></code></li>
 <li><code><a title="src.mixer.isTrackMuted" href="#src.mixer.isTrackMuted">isTrackMuted</a></code></li>
 <li><code><a title="src.mixer.isTrackPluginValid" href="#src.mixer.isTrackPluginValid">isTrackPluginValid</a></code></li>
+<li><code><a title="src.mixer.isTrackRevPolarity" href="#src.mixer.isTrackRevPolarity">isTrackRevPolarity</a></code></li>
 <li><code><a title="src.mixer.isTrackSelected" href="#src.mixer.isTrackSelected">isTrackSelected</a></code></li>
-<li><code><a title="src.mixer.isTrackSlotsAvailable" href="#src.mixer.isTrackSlotsAvailable">isTrackSlotsAvailable</a></code></li>
 <li><code><a title="src.mixer.isTrackSlotsEnabled" href="#src.mixer.isTrackSlotsEnabled">isTrackSlotsEnabled</a></code></li>
 <li><code><a title="src.mixer.isTrackSolo" href="#src.mixer.isTrackSolo">isTrackSolo</a></code></li>
 <li><code><a title="src.mixer.isTrackSwapChannels" href="#src.mixer.isTrackSwapChannels">isTrackSwapChannels</a></code></li>

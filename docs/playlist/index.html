@@ -359,7 +359,8 @@ def getTrackActivityLevelVis(index: int) -&gt; float:
 def getDisplayZone() -&gt; int:
     &#34;&#34;&#34;Returns the current display zone in the playlist or zero if none.
 
-    HELP WANTED: Explanation for what a display zone is.
+    ## HELP WANTED:
+    * Explanation for what a display zone is.
 
     ## Returns:
      * `int`: current display zone
@@ -372,8 +373,9 @@ def getDisplayZone() -&gt; int:
 def lockDisplayZone(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Lock display zone at `index`.
 
-    HELP WANTED: Explanation for what a display zone is.
-    HELP WANTED: Explanation for parameters.
+    ## HELP WANTED:
+    * Explanation for what a display zone is.
+    * Explanation for parameters.
 
     ## Args:
      * `index` (`int`): ???
@@ -389,8 +391,9 @@ def liveDisplayZone(left: int, top: int, right: int, bottom: int,
     &#34;&#34;&#34;Set the display zone in the playlist to the specified co-ordinates. Use
     optional `duration` parameter to make display zone temporary
 
-    HELP WANTED: Explanation for what a display zone is.
-    HELP WANTED: Explanation for parameters.
+    ## HELP WANTED:
+    * Explanation for what a display zone is.
+    * Explanation for parameters.
 
     ## Args:
      * `left` (`int`): ???
@@ -410,7 +413,8 @@ def liveDisplayZone(left: int, top: int, right: int, bottom: int,
 def getLiveLoopMode(index: int) -&gt; int:
     &#34;&#34;&#34;Get live loop mode
 
-    HELP WANTED: Explanation for parameters.
+    ## HELP WANTED:
+    * Explanation for parameters.
 
     ## Args:
      * `index` (`int`): track index???
@@ -439,7 +443,8 @@ def getLiveLoopMode(index: int) -&gt; int:
 def getLiveTriggerMode(index: int) -&gt; int:
     &#34;&#34;&#34;Get live trigger mode
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index???
@@ -462,7 +467,8 @@ def getLiveTriggerMode(index: int) -&gt; int:
 def getLivePosSnap(index: int) -&gt; int:
     &#34;&#34;&#34;Get live position snap
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index???
@@ -491,7 +497,8 @@ def getLivePosSnap(index: int) -&gt; int:
 def getLiveTrigSnap(index: int) -&gt; int:
     &#34;&#34;&#34;Get live trigger snap
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index???
@@ -520,7 +527,8 @@ def getLiveTrigSnap(index: int) -&gt; int:
 def getLiveStatus(index: int, mode: int = midi.LB_Status_Default) -&gt; int:
     &#34;&#34;&#34;Returns the live status for track at `index`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -540,7 +548,8 @@ def getLiveBlockStatus(index: int, blockNum: int, mode: int = midi.LB_Status_Def
     &#34;&#34;&#34;Returns the live block status for track at `index` and for block
     `blockNum`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -561,7 +570,8 @@ def getLiveBlockStatus(index: int, blockNum: int, mode: int = midi.LB_Status_Def
 def getLiveBlockColor(index: int, blockNum: int) -&gt; int:
     &#34;&#34;&#34;Returns the colour of block on track `index` at position `blockNum`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     Note that colours can be split into or built from components using the
     functions provided in the module `utils`
@@ -586,7 +596,8 @@ def getLiveBlockColor(index: int, blockNum: int) -&gt; int:
 def triggerLiveClip(index: int, subNum: int, flags: int, velocity: int = -1) -&gt; None:
     &#34;&#34;&#34;Triggers live clip for track at `index` and for block `subNum`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -605,7 +616,8 @@ def triggerLiveClip(index: int, subNum: int, flags: int, velocity: int = -1) -&g
 def refreshLiveClip(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Triggers live clip for track at `index` and for block `subNum`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -619,7 +631,8 @@ def refreshLiveClip(index: int, value: int) -&gt; None:
 def incLivePosSnap(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Increase live position snap for track at `index`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -633,7 +646,8 @@ def incLivePosSnap(index: int, value: int) -&gt; None:
 def incLiveTrigSnap(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Increase live trigger snap for track at `index`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -647,7 +661,8 @@ def incLiveTrigSnap(index: int, value: int) -&gt; None:
 def incLiveLoopMode(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Increase live loop mode for track at `index`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -661,7 +676,8 @@ def incLiveLoopMode(index: int, value: int) -&gt; None:
 def incLiveTrigMode(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Increase live trigger mode for track at `index`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -675,7 +691,8 @@ def incLiveTrigMode(index: int, value: int) -&gt; None:
 def getVisTimeBar() -&gt; int:
     &#34;&#34;&#34;Returns the time bar
 
-    HELP WANTED: Explanation. I could only get this function to return `0`.
+    ## HELP WANTED:
+    * Explanation. I could only get this function to return `0`.
 
     ## Returns:
      * `int`: time bar
@@ -688,7 +705,8 @@ def getVisTimeBar() -&gt; int:
 def getVisTimeTick() -&gt; int:
     &#34;&#34;&#34;Returns the time tick
 
-    HELP WANTED: Explanation. I could only get this function to return `0`.
+    ## HELP WANTED:
+    * Explanation. I could only get this function to return `0`.
 
     ## Returns:
      * `int`: time tick
@@ -701,7 +719,8 @@ def getVisTimeTick() -&gt; int:
 def getVisTimeStep() -&gt; int:
     &#34;&#34;&#34;Returns the time bar
 
-    HELP WANTED: Explanation. I could only get this function to return `0`.
+    ## HELP WANTED:
+    * Explanation. I could only get this function to return `0`.
 
     ## Returns:
      * `int`: time step
@@ -740,7 +759,10 @@ def getVisTimeStep() -&gt; int:
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the current display zone in the playlist or zero if none.</p>
-<p>HELP WANTED: Explanation for what a display zone is.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>Explanation for what a display zone is.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: current display zone</li>
@@ -753,7 +775,8 @@ def getVisTimeStep() -&gt; int:
 <pre><code class="python">def getDisplayZone() -&gt; int:
     &#34;&#34;&#34;Returns the current display zone in the playlist or zero if none.
 
-    HELP WANTED: Explanation for what a display zone is.
+    ## HELP WANTED:
+    * Explanation for what a display zone is.
 
     ## Returns:
      * `int`: current display zone
@@ -768,7 +791,10 @@ def getVisTimeStep() -&gt; int:
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the colour of block on track <code>index</code> at position <code>blockNum</code></p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <p>Note that colours can be split into or built from components using the
 functions provided in the module <code>utils</code></p>
 <ul>
@@ -800,7 +826,8 @@ functions provided in the module <code>utils</code></p>
 <pre><code class="python">def getLiveBlockColor(index: int, blockNum: int) -&gt; int:
     &#34;&#34;&#34;Returns the colour of block on track `index` at position `blockNum`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     Note that colours can be split into or built from components using the
     functions provided in the module `utils`
@@ -828,7 +855,10 @@ functions provided in the module <code>utils</code></p>
 <dd>
 <div class="desc"><p>Returns the live block status for track at <code>index</code> and for block
 <code>blockNum</code></p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -855,7 +885,8 @@ Refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online
     &#34;&#34;&#34;Returns the live block status for track at `index` and for block
     `blockNum`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -878,7 +909,10 @@ Refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online
 </code></dt>
 <dd>
 <div class="desc"><p>Get live loop mode</p>
-<p>HELP WANTED: Explanation for parameters.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>Explanation for parameters.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>index</code> (<code>int</code>): track index???</li>
@@ -920,7 +954,8 @@ Refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online
 <pre><code class="python">def getLiveLoopMode(index: int) -&gt; int:
     &#34;&#34;&#34;Get live loop mode
 
-    HELP WANTED: Explanation for parameters.
+    ## HELP WANTED:
+    * Explanation for parameters.
 
     ## Args:
      * `index` (`int`): track index???
@@ -951,7 +986,10 @@ Refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online
 </code></dt>
 <dd>
 <div class="desc"><p>Get live position snap</p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>index</code> (<code>int</code>): track index???</li>
@@ -993,7 +1031,8 @@ Refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online
 <pre><code class="python">def getLivePosSnap(index: int) -&gt; int:
     &#34;&#34;&#34;Get live position snap
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index???
@@ -1024,7 +1063,10 @@ Refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the live status for track at <code>index</code></p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1047,7 +1089,8 @@ Refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online
 <pre><code class="python">def getLiveStatus(index: int, mode: int = midi.LB_Status_Default) -&gt; int:
     &#34;&#34;&#34;Returns the live status for track at `index`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -1068,7 +1111,10 @@ Refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online
 </code></dt>
 <dd>
 <div class="desc"><p>Get live trigger snap</p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>index</code> (<code>int</code>): track index???</li>
@@ -1110,7 +1156,8 @@ Refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online
 <pre><code class="python">def getLiveTrigSnap(index: int) -&gt; int:
     &#34;&#34;&#34;Get live trigger snap
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index???
@@ -1141,7 +1188,10 @@ Refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online
 </code></dt>
 <dd>
 <div class="desc"><p>Get live trigger mode</p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li><code>index</code> (<code>int</code>): track index???</li>
@@ -1174,7 +1224,8 @@ Refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online
 <pre><code class="python">def getLiveTriggerMode(index: int) -&gt; int:
     &#34;&#34;&#34;Get live trigger mode
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index???
@@ -1427,7 +1478,10 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the time bar</p>
-<p>HELP WANTED: Explanation. I could only get this function to return <code>0</code>.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>Explanation. I could only get this function to return <code>0</code>.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: time bar</li>
@@ -1440,7 +1494,8 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 <pre><code class="python">def getVisTimeBar() -&gt; int:
     &#34;&#34;&#34;Returns the time bar
 
-    HELP WANTED: Explanation. I could only get this function to return `0`.
+    ## HELP WANTED:
+    * Explanation. I could only get this function to return `0`.
 
     ## Returns:
      * `int`: time bar
@@ -1455,7 +1510,10 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the time bar</p>
-<p>HELP WANTED: Explanation. I could only get this function to return <code>0</code>.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>Explanation. I could only get this function to return <code>0</code>.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: time step</li>
@@ -1468,7 +1526,8 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 <pre><code class="python">def getVisTimeStep() -&gt; int:
     &#34;&#34;&#34;Returns the time bar
 
-    HELP WANTED: Explanation. I could only get this function to return `0`.
+    ## HELP WANTED:
+    * Explanation. I could only get this function to return `0`.
 
     ## Returns:
      * `int`: time step
@@ -1483,7 +1542,10 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 </code></dt>
 <dd>
 <div class="desc"><p>Returns the time tick</p>
-<p>HELP WANTED: Explanation. I could only get this function to return <code>0</code>.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>Explanation. I could only get this function to return <code>0</code>.</li>
+</ul>
 <h2 id="returns">Returns:</h2>
 <ul>
 <li><code>int</code>: time tick</li>
@@ -1496,7 +1558,8 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 <pre><code class="python">def getVisTimeTick() -&gt; int:
     &#34;&#34;&#34;Returns the time tick
 
-    HELP WANTED: Explanation. I could only get this function to return `0`.
+    ## HELP WANTED:
+    * Explanation. I could only get this function to return `0`.
 
     ## Returns:
      * `int`: time tick
@@ -1511,7 +1574,10 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 </code></dt>
 <dd>
 <div class="desc"><p>Increase live loop mode for track at <code>index</code></p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1529,7 +1595,8 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 <pre><code class="python">def incLiveLoopMode(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Increase live loop mode for track at `index`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -1545,7 +1612,10 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 </code></dt>
 <dd>
 <div class="desc"><p>Increase live position snap for track at <code>index</code></p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1563,7 +1633,8 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 <pre><code class="python">def incLivePosSnap(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Increase live position snap for track at `index`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -1579,7 +1650,10 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 </code></dt>
 <dd>
 <div class="desc"><p>Increase live trigger mode for track at <code>index</code></p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1597,7 +1671,8 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 <pre><code class="python">def incLiveTrigMode(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Increase live trigger mode for track at `index`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -1613,7 +1688,10 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 </code></dt>
 <dd>
 <div class="desc"><p>Increase live trigger snap for track at <code>index</code></p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1631,7 +1709,8 @@ For unnamed tracks, returns "Track <code>n</code>" where <code>n</code> is <code
 <pre><code class="python">def incLiveTrigSnap(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Increase live trigger snap for track at `index`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -1806,8 +1885,11 @@ that solo/unsolo commands won't affect its mute status).</p>
 <dd>
 <div class="desc"><p>Set the display zone in the playlist to the specified co-ordinates. Use
 optional <code>duration</code> parameter to make display zone temporary</p>
-<p>HELP WANTED: Explanation for what a display zone is.
-HELP WANTED: Explanation for parameters.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>Explanation for what a display zone is.</li>
+<li>Explanation for parameters.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1836,8 +1918,9 @@ HELP WANTED: Explanation for parameters.</p>
     &#34;&#34;&#34;Set the display zone in the playlist to the specified co-ordinates. Use
     optional `duration` parameter to make display zone temporary
 
-    HELP WANTED: Explanation for what a display zone is.
-    HELP WANTED: Explanation for parameters.
+    ## HELP WANTED:
+    * Explanation for what a display zone is.
+    * Explanation for parameters.
 
     ## Args:
      * `left` (`int`): ???
@@ -1859,8 +1942,11 @@ HELP WANTED: Explanation for parameters.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Lock display zone at <code>index</code>.</p>
-<p>HELP WANTED: Explanation for what a display zone is.
-HELP WANTED: Explanation for parameters.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>Explanation for what a display zone is.</li>
+<li>Explanation for parameters.</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1878,8 +1964,9 @@ HELP WANTED: Explanation for parameters.</p>
 <pre><code class="python">def lockDisplayZone(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Lock display zone at `index`.
 
-    HELP WANTED: Explanation for what a display zone is.
-    HELP WANTED: Explanation for parameters.
+    ## HELP WANTED:
+    * Explanation for what a display zone is.
+    * Explanation for parameters.
 
     ## Args:
      * `index` (`int`): ???
@@ -1961,7 +2048,10 @@ solo/unsolo commands won't affect its mute status).</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Triggers live clip for track at <code>index</code> and for block <code>subNum</code></p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -1979,7 +2069,8 @@ solo/unsolo commands won't affect its mute status).</p>
 <pre><code class="python">def refreshLiveClip(index: int, value: int) -&gt; None:
     &#34;&#34;&#34;Triggers live clip for track at `index` and for block `subNum`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
@@ -2208,7 +2299,10 @@ Includes empty tracks.</p>
 </code></dt>
 <dd>
 <div class="desc"><p>Triggers live clip for track at <code>index</code> and for block <code>subNum</code></p>
-<p>HELP WANTED: Explanation.</p>
+<h2 id="help-wanted">HELP WANTED:</h2>
+<ul>
+<li>What does this do?</li>
+</ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
@@ -2233,7 +2327,8 @@ Includes empty tracks.</p>
 <pre><code class="python">def triggerLiveClip(index: int, subNum: int, flags: int, velocity: int = -1) -&gt; None:
     &#34;&#34;&#34;Triggers live clip for track at `index` and for block `subNum`
 
-    HELP WANTED: Explanation.
+    ## HELP WANTED:
+    * What does this do?
 
     ## Args:
      * `index` (`int`): track index
