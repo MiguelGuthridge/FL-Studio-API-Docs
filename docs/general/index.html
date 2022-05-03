@@ -362,10 +362,12 @@ def processRECEvent(eventId: int, value: int, flags: int) -&gt; int:
 
 
 def dumpScoreLog(time: int, silent: int = 0) -&gt; None:
-    &#34;&#34;&#34;Dump score log
+    &#34;&#34;&#34;
+    Write recently played MIDI to the selected pattern.
 
     ## Args:
-     * `time` (`int`): ?
+     * `time` (`int`): The duration of time to write, from `time` seconds
+       before the last note played, to the last note.
 
      * `silent` (`int`): Whether the empty score message is suppressed (`1`) or
        not (`0`)
@@ -409,11 +411,12 @@ def clearLog() -&gt; None:
 <span>def <span class="ident">dumpScoreLog</span></span>(<span>time: int, silent: int = 0) ‑> None</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Dump score log</p>
+<div class="desc"><p>Write recently played MIDI to the selected pattern.</p>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
-<p><code>time</code> (<code>int</code>): ?</p>
+<p><code>time</code> (<code>int</code>): The duration of time to write, from <code>time</code> seconds
+before the last note played, to the last note.</p>
 </li>
 <li>
 <p><code>silent</code> (<code>int</code>): Whether the empty score message is suppressed (<code>1</code>) or
@@ -426,10 +429,12 @@ not (<code>0</code>)</p>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def dumpScoreLog(time: int, silent: int = 0) -&gt; None:
-    &#34;&#34;&#34;Dump score log
+    &#34;&#34;&#34;
+    Write recently played MIDI to the selected pattern.
 
     ## Args:
-     * `time` (`int`): ?
+     * `time` (`int`): The duration of time to write, from `time` seconds
+       before the last note played, to the last note.
 
      * `silent` (`int`): Whether the empty score message is suppressed (`1`) or
        not (`0`)
