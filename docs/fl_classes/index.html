@@ -1,0 +1,2139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>src.fl_classes API documentation</title>
+<meta name="description" content="fl_classes …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>src.fl_classes</code></h1>
+</header>
+<section id="section-intro">
+<p>fl_classes</p>
+<p>This module contains definitions for FL Studio's built-in types, which can be
+used to assist with type hinting in your project.</p>
+<p>NOTE: This module is not included in FL Studio's runtime, and should be
+included by initializing <code>fl_typing</code> as a submodule for your project.
+<a href="https://github.com/MiguelGuthridge/fl_typing">https://github.com/MiguelGuthridge/fl_typing</a></p>
+<pre><code class="language-py"># With fl_typing enabled so that the typing module works correctly
+from fl_types import EventData
+
+def OnMidiIn(event: EventData) -&gt; None:
+    ...
+</code></pre>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+fl_classes
+
+This module contains definitions for FL Studio&#39;s built-in types, which can be
+used to assist with type hinting in your project.
+
+NOTE: This module is not included in FL Studio&#39;s runtime, and should be
+included by initializing `fl_typing` as a submodule for your project.
+https://github.com/MiguelGuthridge/fl_typing
+
+```py
+# With fl_typing enabled so that the typing module works correctly
+from fl_types import EventData
+
+def OnMidiIn(event: EventData) -&gt; None:
+    ...
+```
+&#34;&#34;&#34;
+from typing import Optional
+from typing_extensions import TypeGuard
+
+
+class EventData:
+    &#34;&#34;&#34;
+    A shadow of FL Studio&#39;s `EventData` object. Note that although creating
+    these is possible, it should be avoided during runtime as FL Studio&#39;s API
+    won&#39;t accept it as an argument for any of its functions. It can be used
+    within a testing environment, however.
+
+    Note that two sub-types are also included, which allow for type narrowing
+    by separating standard MIDI events and Sysex MIDI events.
+
+    * `isEventStandard()`
+
+    * `isEventSysex()`
+
+    Basic type checking is performed when accessing properties of `EventData`
+    objects, to ensure that incorrect properties aren&#39;t accessed (for example
+    accessing `data1` for a sysex event). These checks won&#39;t be performed
+    during runtime for your script, but can help to add more certainty to your
+    tests.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        status_sysex: &#39;int | list[int] | bytes&#39;,
+        data1: Optional[int] = None,
+        data2: Optional[int] = None,
+        pmeFlags: int = 0b101110,
+    ) -&gt; None:
+        &#34;&#34;&#34;
+        Create an EventData object.
+
+        Note that this object will be incompatible with FL Studio&#39;s API, and so
+        cannot be used as a parameter for any API functions during runtime.
+
+        ### Args:
+        * `status_sysex` (`int | list[int] | bytes`): status byte or sysex data
+
+        * `data1` (`Optional[int]`, optional): data1 byte if applicable.
+          Defaults to `None`.
+
+        * `data2` (`Optional[int]`, optional): data2 byte if applicable.
+          Defaults to `None`.
+
+        * `pmeFlags` (`int`, optional): PME flags of event. Defaults to
+          `PME_System | PME_System_Safe | PME_PreviewNote | PME_FromMIDI`.
+        &#34;&#34;&#34;
+        if isinstance(status_sysex, int):
+            if data1 is None:
+                raise TypeError(
+                    &#34;data1 value cannot be None for standard events&#34;)
+            if data2 is None:
+                raise TypeError(
+                    &#34;data2 value cannot be None for standard events&#34;)
+            self.__status = status_sysex
+            self.__sysex: Optional[bytes] = None
+        else:
+            if data1 is not None:
+                raise TypeError(
+                    &#34;data1 value must be None for sysex events&#34;)
+            if data2 is not None:
+                raise TypeError(
+                    &#34;data2 value must be None for sysex events&#34;)
+            self.__sysex = bytes(status_sysex)
+            self.__status = 0xF0
+        self.__data1 = data1
+        self.__data2 = data2
+
+        self.__timestamp = 0
+        self.__handled = False
+        self.__port = 0
+        self.__pitch_bend = 1
+        self.__is_increment = False
+        self.__res = 0.0
+        self.__in_ev = 0
+        self.__out_ev = 0
+        self.__midi_id = 0
+        self.__midi_chan = 0
+        self.__midi_chan_ex = 0
+        self.__pme_flags = pmeFlags
+
+    @staticmethod
+    def __standard_check(value: Optional[int], prop: str) -&gt; int:
+        &#34;&#34;&#34;Check that it&#39;s a standard event, then return the value&#34;&#34;&#34;
+        if value is None:
+            raise ValueError(
+                f&#34;Attempt to access {prop} on sysex event. &#34;
+                f&#34;Are you type narrowing your events correctly?&#34;
+            )
+        return value
+
+    @staticmethod
+    def __range_check(value: int, prop: str) -&gt; int:
+        &#34;&#34;&#34;Check that the value is within the allowed range, then return it&#34;&#34;&#34;
+        if value &lt; 0:
+            raise ValueError(f&#34;Attempt to set {prop} to {value} (&lt; 0)&#34;)
+        if value &gt; 0x7F:
+            raise ValueError(f&#34;Attempt to set {prop} to {value} (&gt; 0x7F)&#34;)
+        return value
+
+    @property
+    def handled(self) -&gt; bool:
+        &#34;&#34;&#34;Whether the event is considered to be handled by FL Studio.
+
+        If this is set to `True`, the event will stop propagating after this
+        particular callback returns.
+
+        You script should set it when an event is processed successfully.
+        &#34;&#34;&#34;
+        return self.__handled
+
+    @handled.setter
+    def handled(self, handled: bool) -&gt; None:
+        self.__handled = handled
+
+    @property
+    def timestamp(self) -&gt; int:
+        &#34;&#34;&#34;The timestamp of the event
+
+        ### HELP WANTED:
+        * This seems to only ever be zero. I can&#39;t determine what it is for. If
+          you know how it is used, create a pull request with details.
+
+        This value is read-only.
+        &#34;&#34;&#34;
+        return self.__timestamp
+
+    @property
+    def status(self) -&gt; int:
+        &#34;&#34;&#34;The status byte of the event
+
+        This can be used to determine the type of MIDI event using the upper
+        nibble, and the channel of the event using the lower nibble.
+
+        ```py
+        e_type = event.status &amp; 0xF0
+        channel = event.status &amp; 0xF
+        ```
+
+        Note that for sysex messages, this property is `0xF0`. Other standard
+        event properties are inaccessible.
+
+        ## Event types
+        * `0x8` Note off (`data1` is note number, `data2` is release value)
+
+        * `0x9` Note on (`data1` is note number, `data2` is velocity)
+
+        * `0xA` Note after-touch (`data1` is note number, `data2` is pressure
+          value)
+
+        * `0xB` Control change (CC, `data1` is control number as per your
+          controller&#39;s documentation, `data2` is value)
+
+        * `0xC` Program change (used to assign instrument selection, `data1` is
+          instrument number)
+
+        * `0xD` Channel after-touch (`data1` is value, `data2` is unused)
+
+        * `0xE` Pitch bend (`data1` and `data2` are value, as per the formula
+          `data1 + (data2 &lt;&lt; 7)`, yielding a range of `0` - `16384`)
+        &#34;&#34;&#34;
+        return self.__status
+
+    @status.setter
+    def status(self, status: int) -&gt; None:
+        self.__status = self.__range_check(status, &#34;status&#34;)
+
+    @property
+    def data1(self) -&gt; int:
+        &#34;&#34;&#34;The first data byte of a MIDI message.
+
+        This is used to determine the control number for CC events, the note
+        number for note events, and various other values.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data1, &#34;data1&#34;)
+
+    @data1.setter
+    def data1(self, data1: int) -&gt; None:
+        self.__data1 = self.__range_check(data1, &#34;data1&#34;)
+
+    @property
+    def data2(self) -&gt; int:
+        &#34;&#34;&#34;The second data byte of a MIDI message.
+
+        This is used to determine the value for CC events, the velocity for
+        note events, and various other values.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data2, &#34;data2&#34;)
+
+    @data2.setter
+    def data2(self, data2: int) -&gt; None:
+        self.__data2 = self.__range_check(data2, &#34;data2&#34;)
+
+    @property
+    def port(self) -&gt; int:
+        &#34;&#34;&#34;The port of the message
+
+        ### HELP WANTED:
+        * This value always appears to be zero. How should it be used?
+
+        Note that this property is read-only.
+        &#34;&#34;&#34;
+        return self.__port
+
+    @property
+    def note(self) -&gt; int:
+        &#34;&#34;&#34;The note number of a MIDI note on/off message.
+
+        This is a shadow of the `data1` property. Modifications to this will
+        affect all `data1` derived properties.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data1, &#34;note&#34;)
+
+    @note.setter
+    def note(self, note: int) -&gt; None:
+        self.__data1 = self.__range_check(note, &#34;note&#34;)
+
+    @property
+    def velocity(self) -&gt; int:
+        &#34;&#34;&#34;The velocity of a MIDI note on/off message.
+
+        This is a shadow of the `data2` property. Modifications to this will
+        affect all `data2` derived properties
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data2, &#34;velocity&#34;)
+
+    @velocity.setter
+    def velocity(self, velocity: int) -&gt; None:
+        self.__data2 = self.__range_check(velocity, &#34;velocity&#34;)
+
+    @property
+    def pressure(self) -&gt; int:
+        &#34;&#34;&#34;The pressure value for a channel after-touch event.
+
+        This is a shadow of the `data1` property. Modifications to this will
+        affect all `data1` derived properties.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data1, &#34;pressure&#34;)
+
+    @pressure.setter
+    def pressure(self, pressure: int) -&gt; None:
+        self.__data1 = self.__range_check(pressure, &#34;pressure&#34;)
+
+    @property
+    def progNum(self) -&gt; int:
+        &#34;&#34;&#34;The instrument number for a program change event.
+
+        This is a shadow of the `data1` property. Modifications to this will
+        affect all `data1` derived properties.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data1, &#34;progNum&#34;)
+
+    @progNum.setter
+    def progNum(self, progNum: int) -&gt; None:
+        self.__data1 = self.__range_check(progNum, &#34;progNum&#34;)
+
+    @property
+    def controlNum(self) -&gt; int:
+        &#34;&#34;&#34;The control number for a control change event.
+
+        This is a shadow of the `data1` property. Modifications to this will
+        affect all `data1` derived properties.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data1, &#34;controlNum&#34;)
+
+    @controlNum.setter
+    def controlNum(self, controlNum: int) -&gt; None:
+        self.__data1 = self.__range_check(controlNum, &#34;controlNum&#34;)
+
+    @property
+    def controlVal(self) -&gt; int:
+        &#34;&#34;&#34;The value of a control change event.
+
+        This is a shadow of the `data2` property. Modifications to this will
+        affect all `data2` derived properties
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data2, &#34;controlVal&#34;)
+
+    @controlVal.setter
+    def controlVal(self, controlVal: int) -&gt; None:
+        self.__data2 = self.__range_check(controlVal, &#34;controlVal&#34;)
+
+    @property
+    def pitchBend(self) -&gt; int:
+        &#34;&#34;&#34;MIDI pitch bend value
+
+        ### HELP WANTED:
+        * This only ever seems to equal `1`. How should it be used?
+
+        Note that this property is read-only.
+        &#34;&#34;&#34;
+        return self.__pitch_bend
+
+    @property
+    def sysex(self) -&gt; bytes:
+        &#34;&#34;&#34;Data for a sysex event
+
+        Contains the full event data from sysex events.
+
+        This property is inaccessible for standard events.
+        &#34;&#34;&#34;
+        if self.__sysex is None:
+            raise ValueError(
+                &#34;Attempt to access sysex data on standard event. &#34;
+                &#34;Are you type narrowing your events correctly?&#34;
+            )
+        return self.__sysex
+
+    @sysex.setter
+    def sysex(self, sysex: bytes) -&gt; None:
+        if len(sysex) == 0:
+            raise ValueError(&#34;New sysex data has length of zero&#34;)
+        if sysex[0] != 0xF0:
+            raise ValueError(&#34;New sysex data doesn&#39;t first value of 0xF0&#34;)
+        self.__sysex = sysex
+
+    @property
+    def isIncrement(self) -&gt; bool:
+        &#34;&#34;&#34;Whether the event should be an increment event
+
+        If the script sets this to `True`, FL Studio will consider it to be a
+        relative event, meaning that it will change values relative to that
+        value, rather than setting them absolutely.
+
+        ### HELP WANTED:
+        * Notes on the particular cases where this happens.
+        &#34;&#34;&#34;
+        return self.__is_increment
+
+    @isIncrement.setter
+    def isIncrement(self, isIncrement: bool) -&gt; None:
+        self.__is_increment = isIncrement
+
+    @property
+    def res(self) -&gt; float:
+        &#34;&#34;&#34;MIDI res
+
+        ### HELP WANTED:
+        * How is this used?
+        &#34;&#34;&#34;
+        return self.__res
+
+    @res.setter
+    def res(self, res: float) -&gt; None:
+        self.__res = res
+
+    @property
+    def inEv(self) -&gt; int:
+        &#34;&#34;&#34;MIDI inEv
+
+        ### HELP WANTED:
+        * What is this?
+        &#34;&#34;&#34;
+        return self.__in_ev
+
+    @inEv.setter
+    def inEv(self, inEv: int) -&gt; None:
+        self.__in_ev = inEv
+
+    @property
+    def outEv(self) -&gt; int:
+        &#34;&#34;&#34;MIDI outEv
+
+        ### HELP WANTED:
+        * What is this?
+        &#34;&#34;&#34;
+        return self.__out_ev
+
+    @outEv.setter
+    def outEv(self, outEv: int) -&gt; None:
+        self.__out_ev = outEv
+
+    @property
+    def midiId(self) -&gt; int:
+        &#34;&#34;&#34;MIDI ID
+
+        ### HELP WANTED:
+        * What is this?
+        &#34;&#34;&#34;
+        return self.__midi_id
+
+    @midiId.setter
+    def midiId(self, midiId: int) -&gt; None:
+        self.__midi_id = midiId
+
+    @property
+    def midiChan(self) -&gt; int:
+        &#34;&#34;&#34;MIDI chan
+
+        ### HELP WANTED:
+        * What is this?
+
+        * No, it&#39;s not a channel. It always seems to be zero, regardless of the
+          channel of the event.
+        &#34;&#34;&#34;
+        return self.__midi_chan
+
+    @midiChan.setter
+    def midiChan(self, midiChan: int) -&gt; None:
+        self.__midi_chan = midiChan
+
+    @property
+    def midiChanEx(self) -&gt; int:
+        &#34;&#34;&#34;MIDI chanEx
+
+        ### HELP WANTED:
+        * What is this?
+        &#34;&#34;&#34;
+        return self.__midi_chan_ex
+
+    @midiChanEx.setter
+    def midiChanEx(self, midiChanEx: int) -&gt; None:
+        self.__midi_chan_ex = midiChanEx
+
+    @property
+    def pmeFlags(self) -&gt; int:
+        &#34;&#34;&#34;Flags used by FL Studio to indicate the permissions of the script in
+        the current environment.
+
+        These can be used to ensure safety while running the script. If a
+        script ever attempts to execute unsafe behavior, a `TypeError` will be
+        raised.
+
+        ```py
+        TypeError(&#34;Operation unsafe at current time&#34;)
+        ```
+
+        ## Flag analysis
+
+        The flags can be analyzed by performing bitwise operations to determine
+        the current permissions of the script.
+
+        * `0b000010` (`PME_System`) System operations allowed (play/pause,
+          etc).
+
+        * `0b000100` (`PME_System_Safe`) Critical operations allowed (add
+          markers, etc). Things that can&#39;t be done when a modal dialog is
+          showing.
+
+        * `0b001000` (`PME_PreviewNote`) Note events will trigger a preview.
+
+        * `0x010000` (`PME_FromHost`) FL Studio is being hosted as a VSTi
+          (meaning it&#39;s probably a bad idea to do anything meaningful as it
+          could interfere with the behavior of other DAWs). In my testing,
+          using MIDI scripts in the FL Studio VST causes a crash anyway, so I
+          suppose it isn&#39;t that important either way.
+
+        * `0x100000` This event was triggered by a MIDI event.
+
+        ## Alternate to flag analysis
+
+        It could be considered to be more Pythonic, as well as much simpler to
+        catch this exception rather than checking the flags. The following is
+        a simple decorator that will catch the exception. This does come with
+        the risk that any unsafe behavior that FL Studio misses will cause
+        a system lock-up in FL Studio.
+
+        ```py
+        def catchUnsafeOperation(func):
+            &#39;&#39;&#39;
+            Decorator to prevent exceptions due to unsafe operations
+
+            ### Args:
+            * `func` (`Callable`): function to decorate
+            &#39;&#39;&#39;
+            def wrapper(*args, **kwargs):
+                try:
+                    func(*args, **kwargs)
+                except TypeError as e:
+                    if e.args != (&#34;Operation unsafe at current time&#34;,):
+                        raise e
+            return wrapper
+        ```
+        &#34;&#34;&#34;
+        return self.__pme_flags
+
+
+class StandardEventData(EventData):
+    &#34;&#34;&#34;
+    An EventData object which has been type narrowed to a StandardEventData.
+
+    Note that as FL Studio events are actually of a different type to these
+    shadow types, you should never use the `isinstance` function in order to
+    perform type-narrowing operations, as it will lead to very obscure bugs
+    when your type checks never work inside FL Studio, even if they work in
+    your tests.
+
+    Instead, you can type narrow to a `StandardEventData` object using the
+    `isEventStandard()` function.
+    &#34;&#34;&#34;
+    def __init__(self, status: int, data1: int, data2: int) -&gt; None:
+        super().__init__(status, data1, data2)
+
+
+class SysexEventData(EventData):
+    &#34;&#34;&#34;
+    An EventData object which has been type narrowed to a SysexEventData.
+
+    Note that as FL Studio events are actually of a different type to these
+    shadow types, you should never use the `isinstance` function in order to
+    perform type-narrowing operations, as it will lead to very obscure bugs
+    when your type checks never work inside FL Studio, even if they work in
+    your tests.
+
+    Instead, you can type narrow to a `SysexEventData` object using the
+    `isEventSysex()` function.
+    &#34;&#34;&#34;
+    def __init__(self, sysex: list[int]) -&gt; None:
+        super().__init__(sysex)
+
+
+def isEventStandard(event: EventData) -&gt; &#39;TypeGuard[StandardEventData]&#39;:
+    &#34;&#34;&#34;
+    Returns whether an event is a standard event
+
+    ### Args:
+    * `event` (`eventData`): event to check
+
+    ### Returns:
+    * `TypeGuard[SysexEventData]`: type guarded event
+    &#34;&#34;&#34;
+    return not isEventSysex(event)
+
+
+def isEventSysex(event: EventData) -&gt; &#39;TypeGuard[SysexEventData]&#39;:
+    &#34;&#34;&#34;
+    Returns whether an event is a sysex event
+
+    ### Args:
+    * `event` (`eventData`): event to check
+
+    ### Returns:
+    * `TypeGuard[SysexEventData]`: type guarded event
+    &#34;&#34;&#34;
+    return event.status == 0xF0</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="src.fl_classes.isEventStandard"><code class="name flex">
+<span>def <span class="ident">isEventStandard</span></span>(<span>event: <a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a>) ‑> TypeGuard[<a title="src.fl_classes.StandardEventData" href="#src.fl_classes.StandardEventData">StandardEventData</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns whether an event is a standard event</p>
+<h3 id="args">Args:</h3>
+<ul>
+<li><code>event</code> (<code>eventData</code>): event to check</li>
+</ul>
+<h3 id="returns">Returns:</h3>
+<ul>
+<li><code>TypeGuard[<a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a>]</code>: type guarded event</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def isEventStandard(event: EventData) -&gt; &#39;TypeGuard[StandardEventData]&#39;:
+    &#34;&#34;&#34;
+    Returns whether an event is a standard event
+
+    ### Args:
+    * `event` (`eventData`): event to check
+
+    ### Returns:
+    * `TypeGuard[SysexEventData]`: type guarded event
+    &#34;&#34;&#34;
+    return not isEventSysex(event)</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.isEventSysex"><code class="name flex">
+<span>def <span class="ident">isEventSysex</span></span>(<span>event: <a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a>) ‑> TypeGuard[<a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a>]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns whether an event is a sysex event</p>
+<h3 id="args">Args:</h3>
+<ul>
+<li><code>event</code> (<code>eventData</code>): event to check</li>
+</ul>
+<h3 id="returns">Returns:</h3>
+<ul>
+<li><code>TypeGuard[<a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a>]</code>: type guarded event</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def isEventSysex(event: EventData) -&gt; &#39;TypeGuard[SysexEventData]&#39;:
+    &#34;&#34;&#34;
+    Returns whether an event is a sysex event
+
+    ### Args:
+    * `event` (`eventData`): event to check
+
+    ### Returns:
+    * `TypeGuard[SysexEventData]`: type guarded event
+    &#34;&#34;&#34;
+    return event.status == 0xF0</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="src.fl_classes.EventData"><code class="flex name class">
+<span>class <span class="ident">EventData</span></span>
+<span>(</span><span>status_sysex: int | list[int] | bytes, data1: Optional[int] = None, data2: Optional[int] = None, pmeFlags: int = 46)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A shadow of FL Studio's <code><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></code> object. Note that although creating
+these is possible, it should be avoided during runtime as FL Studio's API
+won't accept it as an argument for any of its functions. It can be used
+within a testing environment, however.</p>
+<p>Note that two sub-types are also included, which allow for type narrowing
+by separating standard MIDI events and Sysex MIDI events.</p>
+<ul>
+<li>
+<p><code><a title="src.fl_classes.isEventStandard" href="#src.fl_classes.isEventStandard">isEventStandard()</a></code></p>
+</li>
+<li>
+<p><code><a title="src.fl_classes.isEventSysex" href="#src.fl_classes.isEventSysex">isEventSysex()</a></code></p>
+</li>
+</ul>
+<p>Basic type checking is performed when accessing properties of <code><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></code>
+objects, to ensure that incorrect properties aren't accessed (for example
+accessing <code>data1</code> for a sysex event). These checks won't be performed
+during runtime for your script, but can help to add more certainty to your
+tests.</p>
+<p>Create an EventData object.</p>
+<p>Note that this object will be incompatible with FL Studio's API, and so
+cannot be used as a parameter for any API functions during runtime.</p>
+<h3 id="args">Args:</h3>
+<ul>
+<li>
+<p><code>status_sysex</code> (<code>int | list[int] | bytes</code>): status byte or sysex data</p>
+</li>
+<li>
+<p><code>data1</code> (<code>Optional[int]</code>, optional): data1 byte if applicable.
+Defaults to <code>None</code>.</p>
+</li>
+<li>
+<p><code>data2</code> (<code>Optional[int]</code>, optional): data2 byte if applicable.
+Defaults to <code>None</code>.</p>
+</li>
+<li>
+<p><code>pmeFlags</code> (<code>int</code>, optional): PME flags of event. Defaults to
+<code>PME_System | PME_System_Safe | PME_PreviewNote | PME_FromMIDI</code>.</p>
+</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class EventData:
+    &#34;&#34;&#34;
+    A shadow of FL Studio&#39;s `EventData` object. Note that although creating
+    these is possible, it should be avoided during runtime as FL Studio&#39;s API
+    won&#39;t accept it as an argument for any of its functions. It can be used
+    within a testing environment, however.
+
+    Note that two sub-types are also included, which allow for type narrowing
+    by separating standard MIDI events and Sysex MIDI events.
+
+    * `isEventStandard()`
+
+    * `isEventSysex()`
+
+    Basic type checking is performed when accessing properties of `EventData`
+    objects, to ensure that incorrect properties aren&#39;t accessed (for example
+    accessing `data1` for a sysex event). These checks won&#39;t be performed
+    during runtime for your script, but can help to add more certainty to your
+    tests.
+    &#34;&#34;&#34;
+
+    def __init__(
+        self,
+        status_sysex: &#39;int | list[int] | bytes&#39;,
+        data1: Optional[int] = None,
+        data2: Optional[int] = None,
+        pmeFlags: int = 0b101110,
+    ) -&gt; None:
+        &#34;&#34;&#34;
+        Create an EventData object.
+
+        Note that this object will be incompatible with FL Studio&#39;s API, and so
+        cannot be used as a parameter for any API functions during runtime.
+
+        ### Args:
+        * `status_sysex` (`int | list[int] | bytes`): status byte or sysex data
+
+        * `data1` (`Optional[int]`, optional): data1 byte if applicable.
+          Defaults to `None`.
+
+        * `data2` (`Optional[int]`, optional): data2 byte if applicable.
+          Defaults to `None`.
+
+        * `pmeFlags` (`int`, optional): PME flags of event. Defaults to
+          `PME_System | PME_System_Safe | PME_PreviewNote | PME_FromMIDI`.
+        &#34;&#34;&#34;
+        if isinstance(status_sysex, int):
+            if data1 is None:
+                raise TypeError(
+                    &#34;data1 value cannot be None for standard events&#34;)
+            if data2 is None:
+                raise TypeError(
+                    &#34;data2 value cannot be None for standard events&#34;)
+            self.__status = status_sysex
+            self.__sysex: Optional[bytes] = None
+        else:
+            if data1 is not None:
+                raise TypeError(
+                    &#34;data1 value must be None for sysex events&#34;)
+            if data2 is not None:
+                raise TypeError(
+                    &#34;data2 value must be None for sysex events&#34;)
+            self.__sysex = bytes(status_sysex)
+            self.__status = 0xF0
+        self.__data1 = data1
+        self.__data2 = data2
+
+        self.__timestamp = 0
+        self.__handled = False
+        self.__port = 0
+        self.__pitch_bend = 1
+        self.__is_increment = False
+        self.__res = 0.0
+        self.__in_ev = 0
+        self.__out_ev = 0
+        self.__midi_id = 0
+        self.__midi_chan = 0
+        self.__midi_chan_ex = 0
+        self.__pme_flags = pmeFlags
+
+    @staticmethod
+    def __standard_check(value: Optional[int], prop: str) -&gt; int:
+        &#34;&#34;&#34;Check that it&#39;s a standard event, then return the value&#34;&#34;&#34;
+        if value is None:
+            raise ValueError(
+                f&#34;Attempt to access {prop} on sysex event. &#34;
+                f&#34;Are you type narrowing your events correctly?&#34;
+            )
+        return value
+
+    @staticmethod
+    def __range_check(value: int, prop: str) -&gt; int:
+        &#34;&#34;&#34;Check that the value is within the allowed range, then return it&#34;&#34;&#34;
+        if value &lt; 0:
+            raise ValueError(f&#34;Attempt to set {prop} to {value} (&lt; 0)&#34;)
+        if value &gt; 0x7F:
+            raise ValueError(f&#34;Attempt to set {prop} to {value} (&gt; 0x7F)&#34;)
+        return value
+
+    @property
+    def handled(self) -&gt; bool:
+        &#34;&#34;&#34;Whether the event is considered to be handled by FL Studio.
+
+        If this is set to `True`, the event will stop propagating after this
+        particular callback returns.
+
+        You script should set it when an event is processed successfully.
+        &#34;&#34;&#34;
+        return self.__handled
+
+    @handled.setter
+    def handled(self, handled: bool) -&gt; None:
+        self.__handled = handled
+
+    @property
+    def timestamp(self) -&gt; int:
+        &#34;&#34;&#34;The timestamp of the event
+
+        ### HELP WANTED:
+        * This seems to only ever be zero. I can&#39;t determine what it is for. If
+          you know how it is used, create a pull request with details.
+
+        This value is read-only.
+        &#34;&#34;&#34;
+        return self.__timestamp
+
+    @property
+    def status(self) -&gt; int:
+        &#34;&#34;&#34;The status byte of the event
+
+        This can be used to determine the type of MIDI event using the upper
+        nibble, and the channel of the event using the lower nibble.
+
+        ```py
+        e_type = event.status &amp; 0xF0
+        channel = event.status &amp; 0xF
+        ```
+
+        Note that for sysex messages, this property is `0xF0`. Other standard
+        event properties are inaccessible.
+
+        ## Event types
+        * `0x8` Note off (`data1` is note number, `data2` is release value)
+
+        * `0x9` Note on (`data1` is note number, `data2` is velocity)
+
+        * `0xA` Note after-touch (`data1` is note number, `data2` is pressure
+          value)
+
+        * `0xB` Control change (CC, `data1` is control number as per your
+          controller&#39;s documentation, `data2` is value)
+
+        * `0xC` Program change (used to assign instrument selection, `data1` is
+          instrument number)
+
+        * `0xD` Channel after-touch (`data1` is value, `data2` is unused)
+
+        * `0xE` Pitch bend (`data1` and `data2` are value, as per the formula
+          `data1 + (data2 &lt;&lt; 7)`, yielding a range of `0` - `16384`)
+        &#34;&#34;&#34;
+        return self.__status
+
+    @status.setter
+    def status(self, status: int) -&gt; None:
+        self.__status = self.__range_check(status, &#34;status&#34;)
+
+    @property
+    def data1(self) -&gt; int:
+        &#34;&#34;&#34;The first data byte of a MIDI message.
+
+        This is used to determine the control number for CC events, the note
+        number for note events, and various other values.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data1, &#34;data1&#34;)
+
+    @data1.setter
+    def data1(self, data1: int) -&gt; None:
+        self.__data1 = self.__range_check(data1, &#34;data1&#34;)
+
+    @property
+    def data2(self) -&gt; int:
+        &#34;&#34;&#34;The second data byte of a MIDI message.
+
+        This is used to determine the value for CC events, the velocity for
+        note events, and various other values.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data2, &#34;data2&#34;)
+
+    @data2.setter
+    def data2(self, data2: int) -&gt; None:
+        self.__data2 = self.__range_check(data2, &#34;data2&#34;)
+
+    @property
+    def port(self) -&gt; int:
+        &#34;&#34;&#34;The port of the message
+
+        ### HELP WANTED:
+        * This value always appears to be zero. How should it be used?
+
+        Note that this property is read-only.
+        &#34;&#34;&#34;
+        return self.__port
+
+    @property
+    def note(self) -&gt; int:
+        &#34;&#34;&#34;The note number of a MIDI note on/off message.
+
+        This is a shadow of the `data1` property. Modifications to this will
+        affect all `data1` derived properties.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data1, &#34;note&#34;)
+
+    @note.setter
+    def note(self, note: int) -&gt; None:
+        self.__data1 = self.__range_check(note, &#34;note&#34;)
+
+    @property
+    def velocity(self) -&gt; int:
+        &#34;&#34;&#34;The velocity of a MIDI note on/off message.
+
+        This is a shadow of the `data2` property. Modifications to this will
+        affect all `data2` derived properties
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data2, &#34;velocity&#34;)
+
+    @velocity.setter
+    def velocity(self, velocity: int) -&gt; None:
+        self.__data2 = self.__range_check(velocity, &#34;velocity&#34;)
+
+    @property
+    def pressure(self) -&gt; int:
+        &#34;&#34;&#34;The pressure value for a channel after-touch event.
+
+        This is a shadow of the `data1` property. Modifications to this will
+        affect all `data1` derived properties.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data1, &#34;pressure&#34;)
+
+    @pressure.setter
+    def pressure(self, pressure: int) -&gt; None:
+        self.__data1 = self.__range_check(pressure, &#34;pressure&#34;)
+
+    @property
+    def progNum(self) -&gt; int:
+        &#34;&#34;&#34;The instrument number for a program change event.
+
+        This is a shadow of the `data1` property. Modifications to this will
+        affect all `data1` derived properties.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data1, &#34;progNum&#34;)
+
+    @progNum.setter
+    def progNum(self, progNum: int) -&gt; None:
+        self.__data1 = self.__range_check(progNum, &#34;progNum&#34;)
+
+    @property
+    def controlNum(self) -&gt; int:
+        &#34;&#34;&#34;The control number for a control change event.
+
+        This is a shadow of the `data1` property. Modifications to this will
+        affect all `data1` derived properties.
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data1, &#34;controlNum&#34;)
+
+    @controlNum.setter
+    def controlNum(self, controlNum: int) -&gt; None:
+        self.__data1 = self.__range_check(controlNum, &#34;controlNum&#34;)
+
+    @property
+    def controlVal(self) -&gt; int:
+        &#34;&#34;&#34;The value of a control change event.
+
+        This is a shadow of the `data2` property. Modifications to this will
+        affect all `data2` derived properties
+
+        Note that this property is inaccessible for sysex events.
+        &#34;&#34;&#34;
+        return self.__standard_check(self.__data2, &#34;controlVal&#34;)
+
+    @controlVal.setter
+    def controlVal(self, controlVal: int) -&gt; None:
+        self.__data2 = self.__range_check(controlVal, &#34;controlVal&#34;)
+
+    @property
+    def pitchBend(self) -&gt; int:
+        &#34;&#34;&#34;MIDI pitch bend value
+
+        ### HELP WANTED:
+        * This only ever seems to equal `1`. How should it be used?
+
+        Note that this property is read-only.
+        &#34;&#34;&#34;
+        return self.__pitch_bend
+
+    @property
+    def sysex(self) -&gt; bytes:
+        &#34;&#34;&#34;Data for a sysex event
+
+        Contains the full event data from sysex events.
+
+        This property is inaccessible for standard events.
+        &#34;&#34;&#34;
+        if self.__sysex is None:
+            raise ValueError(
+                &#34;Attempt to access sysex data on standard event. &#34;
+                &#34;Are you type narrowing your events correctly?&#34;
+            )
+        return self.__sysex
+
+    @sysex.setter
+    def sysex(self, sysex: bytes) -&gt; None:
+        if len(sysex) == 0:
+            raise ValueError(&#34;New sysex data has length of zero&#34;)
+        if sysex[0] != 0xF0:
+            raise ValueError(&#34;New sysex data doesn&#39;t first value of 0xF0&#34;)
+        self.__sysex = sysex
+
+    @property
+    def isIncrement(self) -&gt; bool:
+        &#34;&#34;&#34;Whether the event should be an increment event
+
+        If the script sets this to `True`, FL Studio will consider it to be a
+        relative event, meaning that it will change values relative to that
+        value, rather than setting them absolutely.
+
+        ### HELP WANTED:
+        * Notes on the particular cases where this happens.
+        &#34;&#34;&#34;
+        return self.__is_increment
+
+    @isIncrement.setter
+    def isIncrement(self, isIncrement: bool) -&gt; None:
+        self.__is_increment = isIncrement
+
+    @property
+    def res(self) -&gt; float:
+        &#34;&#34;&#34;MIDI res
+
+        ### HELP WANTED:
+        * How is this used?
+        &#34;&#34;&#34;
+        return self.__res
+
+    @res.setter
+    def res(self, res: float) -&gt; None:
+        self.__res = res
+
+    @property
+    def inEv(self) -&gt; int:
+        &#34;&#34;&#34;MIDI inEv
+
+        ### HELP WANTED:
+        * What is this?
+        &#34;&#34;&#34;
+        return self.__in_ev
+
+    @inEv.setter
+    def inEv(self, inEv: int) -&gt; None:
+        self.__in_ev = inEv
+
+    @property
+    def outEv(self) -&gt; int:
+        &#34;&#34;&#34;MIDI outEv
+
+        ### HELP WANTED:
+        * What is this?
+        &#34;&#34;&#34;
+        return self.__out_ev
+
+    @outEv.setter
+    def outEv(self, outEv: int) -&gt; None:
+        self.__out_ev = outEv
+
+    @property
+    def midiId(self) -&gt; int:
+        &#34;&#34;&#34;MIDI ID
+
+        ### HELP WANTED:
+        * What is this?
+        &#34;&#34;&#34;
+        return self.__midi_id
+
+    @midiId.setter
+    def midiId(self, midiId: int) -&gt; None:
+        self.__midi_id = midiId
+
+    @property
+    def midiChan(self) -&gt; int:
+        &#34;&#34;&#34;MIDI chan
+
+        ### HELP WANTED:
+        * What is this?
+
+        * No, it&#39;s not a channel. It always seems to be zero, regardless of the
+          channel of the event.
+        &#34;&#34;&#34;
+        return self.__midi_chan
+
+    @midiChan.setter
+    def midiChan(self, midiChan: int) -&gt; None:
+        self.__midi_chan = midiChan
+
+    @property
+    def midiChanEx(self) -&gt; int:
+        &#34;&#34;&#34;MIDI chanEx
+
+        ### HELP WANTED:
+        * What is this?
+        &#34;&#34;&#34;
+        return self.__midi_chan_ex
+
+    @midiChanEx.setter
+    def midiChanEx(self, midiChanEx: int) -&gt; None:
+        self.__midi_chan_ex = midiChanEx
+
+    @property
+    def pmeFlags(self) -&gt; int:
+        &#34;&#34;&#34;Flags used by FL Studio to indicate the permissions of the script in
+        the current environment.
+
+        These can be used to ensure safety while running the script. If a
+        script ever attempts to execute unsafe behavior, a `TypeError` will be
+        raised.
+
+        ```py
+        TypeError(&#34;Operation unsafe at current time&#34;)
+        ```
+
+        ## Flag analysis
+
+        The flags can be analyzed by performing bitwise operations to determine
+        the current permissions of the script.
+
+        * `0b000010` (`PME_System`) System operations allowed (play/pause,
+          etc).
+
+        * `0b000100` (`PME_System_Safe`) Critical operations allowed (add
+          markers, etc). Things that can&#39;t be done when a modal dialog is
+          showing.
+
+        * `0b001000` (`PME_PreviewNote`) Note events will trigger a preview.
+
+        * `0x010000` (`PME_FromHost`) FL Studio is being hosted as a VSTi
+          (meaning it&#39;s probably a bad idea to do anything meaningful as it
+          could interfere with the behavior of other DAWs). In my testing,
+          using MIDI scripts in the FL Studio VST causes a crash anyway, so I
+          suppose it isn&#39;t that important either way.
+
+        * `0x100000` This event was triggered by a MIDI event.
+
+        ## Alternate to flag analysis
+
+        It could be considered to be more Pythonic, as well as much simpler to
+        catch this exception rather than checking the flags. The following is
+        a simple decorator that will catch the exception. This does come with
+        the risk that any unsafe behavior that FL Studio misses will cause
+        a system lock-up in FL Studio.
+
+        ```py
+        def catchUnsafeOperation(func):
+            &#39;&#39;&#39;
+            Decorator to prevent exceptions due to unsafe operations
+
+            ### Args:
+            * `func` (`Callable`): function to decorate
+            &#39;&#39;&#39;
+            def wrapper(*args, **kwargs):
+                try:
+                    func(*args, **kwargs)
+                except TypeError as e:
+                    if e.args != (&#34;Operation unsafe at current time&#34;,):
+                        raise e
+            return wrapper
+        ```
+        &#34;&#34;&#34;
+        return self.__pme_flags</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="src.fl_classes.StandardEventData" href="#src.fl_classes.StandardEventData">StandardEventData</a></li>
+<li><a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="src.fl_classes.EventData.controlNum"><code class="name">var <span class="ident">controlNum</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The control number for a control change event.</p>
+<p>This is a shadow of the <code>data1</code> property. Modifications to this will
+affect all <code>data1</code> derived properties.</p>
+<p>Note that this property is inaccessible for sysex events.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def controlNum(self) -&gt; int:
+    &#34;&#34;&#34;The control number for a control change event.
+
+    This is a shadow of the `data1` property. Modifications to this will
+    affect all `data1` derived properties.
+
+    Note that this property is inaccessible for sysex events.
+    &#34;&#34;&#34;
+    return self.__standard_check(self.__data1, &#34;controlNum&#34;)</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.controlVal"><code class="name">var <span class="ident">controlVal</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The value of a control change event.</p>
+<p>This is a shadow of the <code>data2</code> property. Modifications to this will
+affect all <code>data2</code> derived properties</p>
+<p>Note that this property is inaccessible for sysex events.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def controlVal(self) -&gt; int:
+    &#34;&#34;&#34;The value of a control change event.
+
+    This is a shadow of the `data2` property. Modifications to this will
+    affect all `data2` derived properties
+
+    Note that this property is inaccessible for sysex events.
+    &#34;&#34;&#34;
+    return self.__standard_check(self.__data2, &#34;controlVal&#34;)</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.data1"><code class="name">var <span class="ident">data1</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The first data byte of a MIDI message.</p>
+<p>This is used to determine the control number for CC events, the note
+number for note events, and various other values.</p>
+<p>Note that this property is inaccessible for sysex events.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def data1(self) -&gt; int:
+    &#34;&#34;&#34;The first data byte of a MIDI message.
+
+    This is used to determine the control number for CC events, the note
+    number for note events, and various other values.
+
+    Note that this property is inaccessible for sysex events.
+    &#34;&#34;&#34;
+    return self.__standard_check(self.__data1, &#34;data1&#34;)</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.data2"><code class="name">var <span class="ident">data2</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The second data byte of a MIDI message.</p>
+<p>This is used to determine the value for CC events, the velocity for
+note events, and various other values.</p>
+<p>Note that this property is inaccessible for sysex events.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def data2(self) -&gt; int:
+    &#34;&#34;&#34;The second data byte of a MIDI message.
+
+    This is used to determine the value for CC events, the velocity for
+    note events, and various other values.
+
+    Note that this property is inaccessible for sysex events.
+    &#34;&#34;&#34;
+    return self.__standard_check(self.__data2, &#34;data2&#34;)</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.handled"><code class="name">var <span class="ident">handled</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>Whether the event is considered to be handled by FL Studio.</p>
+<p>If this is set to <code>True</code>, the event will stop propagating after this
+particular callback returns.</p>
+<p>You script should set it when an event is processed successfully.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def handled(self) -&gt; bool:
+    &#34;&#34;&#34;Whether the event is considered to be handled by FL Studio.
+
+    If this is set to `True`, the event will stop propagating after this
+    particular callback returns.
+
+    You script should set it when an event is processed successfully.
+    &#34;&#34;&#34;
+    return self.__handled</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.inEv"><code class="name">var <span class="ident">inEv</span> : int</code></dt>
+<dd>
+<div class="desc"><p>MIDI inEv</p>
+<h3 id="help-wanted">HELP WANTED:</h3>
+<ul>
+<li>What is this?</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def inEv(self) -&gt; int:
+    &#34;&#34;&#34;MIDI inEv
+
+    ### HELP WANTED:
+    * What is this?
+    &#34;&#34;&#34;
+    return self.__in_ev</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.isIncrement"><code class="name">var <span class="ident">isIncrement</span> : bool</code></dt>
+<dd>
+<div class="desc"><p>Whether the event should be an increment event</p>
+<p>If the script sets this to <code>True</code>, FL Studio will consider it to be a
+relative event, meaning that it will change values relative to that
+value, rather than setting them absolutely.</p>
+<h3 id="help-wanted">HELP WANTED:</h3>
+<ul>
+<li>Notes on the particular cases where this happens.</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def isIncrement(self) -&gt; bool:
+    &#34;&#34;&#34;Whether the event should be an increment event
+
+    If the script sets this to `True`, FL Studio will consider it to be a
+    relative event, meaning that it will change values relative to that
+    value, rather than setting them absolutely.
+
+    ### HELP WANTED:
+    * Notes on the particular cases where this happens.
+    &#34;&#34;&#34;
+    return self.__is_increment</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.midiChan"><code class="name">var <span class="ident">midiChan</span> : int</code></dt>
+<dd>
+<div class="desc"><p>MIDI chan</p>
+<h3 id="help-wanted">HELP WANTED:</h3>
+<ul>
+<li>
+<p>What is this?</p>
+</li>
+<li>
+<p>No, it's not a channel. It always seems to be zero, regardless of the
+channel of the event.</p>
+</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def midiChan(self) -&gt; int:
+    &#34;&#34;&#34;MIDI chan
+
+    ### HELP WANTED:
+    * What is this?
+
+    * No, it&#39;s not a channel. It always seems to be zero, regardless of the
+      channel of the event.
+    &#34;&#34;&#34;
+    return self.__midi_chan</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.midiChanEx"><code class="name">var <span class="ident">midiChanEx</span> : int</code></dt>
+<dd>
+<div class="desc"><p>MIDI chanEx</p>
+<h3 id="help-wanted">HELP WANTED:</h3>
+<ul>
+<li>What is this?</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def midiChanEx(self) -&gt; int:
+    &#34;&#34;&#34;MIDI chanEx
+
+    ### HELP WANTED:
+    * What is this?
+    &#34;&#34;&#34;
+    return self.__midi_chan_ex</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.midiId"><code class="name">var <span class="ident">midiId</span> : int</code></dt>
+<dd>
+<div class="desc"><p>MIDI ID</p>
+<h3 id="help-wanted">HELP WANTED:</h3>
+<ul>
+<li>What is this?</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def midiId(self) -&gt; int:
+    &#34;&#34;&#34;MIDI ID
+
+    ### HELP WANTED:
+    * What is this?
+    &#34;&#34;&#34;
+    return self.__midi_id</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.note"><code class="name">var <span class="ident">note</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The note number of a MIDI note on/off message.</p>
+<p>This is a shadow of the <code>data1</code> property. Modifications to this will
+affect all <code>data1</code> derived properties.</p>
+<p>Note that this property is inaccessible for sysex events.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def note(self) -&gt; int:
+    &#34;&#34;&#34;The note number of a MIDI note on/off message.
+
+    This is a shadow of the `data1` property. Modifications to this will
+    affect all `data1` derived properties.
+
+    Note that this property is inaccessible for sysex events.
+    &#34;&#34;&#34;
+    return self.__standard_check(self.__data1, &#34;note&#34;)</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.outEv"><code class="name">var <span class="ident">outEv</span> : int</code></dt>
+<dd>
+<div class="desc"><p>MIDI outEv</p>
+<h3 id="help-wanted">HELP WANTED:</h3>
+<ul>
+<li>What is this?</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def outEv(self) -&gt; int:
+    &#34;&#34;&#34;MIDI outEv
+
+    ### HELP WANTED:
+    * What is this?
+    &#34;&#34;&#34;
+    return self.__out_ev</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.pitchBend"><code class="name">var <span class="ident">pitchBend</span> : int</code></dt>
+<dd>
+<div class="desc"><p>MIDI pitch bend value</p>
+<h3 id="help-wanted">HELP WANTED:</h3>
+<ul>
+<li>This only ever seems to equal <code>1</code>. How should it be used?</li>
+</ul>
+<p>Note that this property is read-only.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def pitchBend(self) -&gt; int:
+    &#34;&#34;&#34;MIDI pitch bend value
+
+    ### HELP WANTED:
+    * This only ever seems to equal `1`. How should it be used?
+
+    Note that this property is read-only.
+    &#34;&#34;&#34;
+    return self.__pitch_bend</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.pmeFlags"><code class="name">var <span class="ident">pmeFlags</span> : int</code></dt>
+<dd>
+<div class="desc"><p>Flags used by FL Studio to indicate the permissions of the script in
+the current environment.</p>
+<p>These can be used to ensure safety while running the script. If a
+script ever attempts to execute unsafe behavior, a <code>TypeError</code> will be
+raised.</p>
+<pre><code class="language-py">TypeError(&quot;Operation unsafe at current time&quot;)
+</code></pre>
+<h2 id="flag-analysis">Flag analysis</h2>
+<p>The flags can be analyzed by performing bitwise operations to determine
+the current permissions of the script.</p>
+<ul>
+<li>
+<p><code>0b000010</code> (<code>PME_System</code>) System operations allowed (play/pause,
+etc).</p>
+</li>
+<li>
+<p><code>0b000100</code> (<code>PME_System_Safe</code>) Critical operations allowed (add
+markers, etc). Things that can't be done when a modal dialog is
+showing.</p>
+</li>
+<li>
+<p><code>0b001000</code> (<code>PME_PreviewNote</code>) Note events will trigger a preview.</p>
+</li>
+<li>
+<p><code>0x010000</code> (<code>PME_FromHost</code>) FL Studio is being hosted as a VSTi
+(meaning it's probably a bad idea to do anything meaningful as it
+could interfere with the behavior of other DAWs). In my testing,
+using MIDI scripts in the FL Studio VST causes a crash anyway, so I
+suppose it isn't that important either way.</p>
+</li>
+<li>
+<p><code>0x100000</code> This event was triggered by a MIDI event.</p>
+</li>
+</ul>
+<h2 id="alternate-to-flag-analysis">Alternate to flag analysis</h2>
+<p>It could be considered to be more Pythonic, as well as much simpler to
+catch this exception rather than checking the flags. The following is
+a simple decorator that will catch the exception. This does come with
+the risk that any unsafe behavior that FL Studio misses will cause
+a system lock-up in FL Studio.</p>
+<pre><code class="language-py">def catchUnsafeOperation(func):
+    '''
+    Decorator to prevent exceptions due to unsafe operations
+
+    ### Args:
+    * `func` (`Callable`): function to decorate
+    '''
+    def wrapper(*args, **kwargs):
+        try:
+            func(*args, **kwargs)
+        except TypeError as e:
+            if e.args != (&quot;Operation unsafe at current time&quot;,):
+                raise e
+    return wrapper
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def pmeFlags(self) -&gt; int:
+    &#34;&#34;&#34;Flags used by FL Studio to indicate the permissions of the script in
+    the current environment.
+
+    These can be used to ensure safety while running the script. If a
+    script ever attempts to execute unsafe behavior, a `TypeError` will be
+    raised.
+
+    ```py
+    TypeError(&#34;Operation unsafe at current time&#34;)
+    ```
+
+    ## Flag analysis
+
+    The flags can be analyzed by performing bitwise operations to determine
+    the current permissions of the script.
+
+    * `0b000010` (`PME_System`) System operations allowed (play/pause,
+      etc).
+
+    * `0b000100` (`PME_System_Safe`) Critical operations allowed (add
+      markers, etc). Things that can&#39;t be done when a modal dialog is
+      showing.
+
+    * `0b001000` (`PME_PreviewNote`) Note events will trigger a preview.
+
+    * `0x010000` (`PME_FromHost`) FL Studio is being hosted as a VSTi
+      (meaning it&#39;s probably a bad idea to do anything meaningful as it
+      could interfere with the behavior of other DAWs). In my testing,
+      using MIDI scripts in the FL Studio VST causes a crash anyway, so I
+      suppose it isn&#39;t that important either way.
+
+    * `0x100000` This event was triggered by a MIDI event.
+
+    ## Alternate to flag analysis
+
+    It could be considered to be more Pythonic, as well as much simpler to
+    catch this exception rather than checking the flags. The following is
+    a simple decorator that will catch the exception. This does come with
+    the risk that any unsafe behavior that FL Studio misses will cause
+    a system lock-up in FL Studio.
+
+    ```py
+    def catchUnsafeOperation(func):
+        &#39;&#39;&#39;
+        Decorator to prevent exceptions due to unsafe operations
+
+        ### Args:
+        * `func` (`Callable`): function to decorate
+        &#39;&#39;&#39;
+        def wrapper(*args, **kwargs):
+            try:
+                func(*args, **kwargs)
+            except TypeError as e:
+                if e.args != (&#34;Operation unsafe at current time&#34;,):
+                    raise e
+        return wrapper
+    ```
+    &#34;&#34;&#34;
+    return self.__pme_flags</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.port"><code class="name">var <span class="ident">port</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The port of the message</p>
+<h3 id="help-wanted">HELP WANTED:</h3>
+<ul>
+<li>This value always appears to be zero. How should it be used?</li>
+</ul>
+<p>Note that this property is read-only.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def port(self) -&gt; int:
+    &#34;&#34;&#34;The port of the message
+
+    ### HELP WANTED:
+    * This value always appears to be zero. How should it be used?
+
+    Note that this property is read-only.
+    &#34;&#34;&#34;
+    return self.__port</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.pressure"><code class="name">var <span class="ident">pressure</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The pressure value for a channel after-touch event.</p>
+<p>This is a shadow of the <code>data1</code> property. Modifications to this will
+affect all <code>data1</code> derived properties.</p>
+<p>Note that this property is inaccessible for sysex events.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def pressure(self) -&gt; int:
+    &#34;&#34;&#34;The pressure value for a channel after-touch event.
+
+    This is a shadow of the `data1` property. Modifications to this will
+    affect all `data1` derived properties.
+
+    Note that this property is inaccessible for sysex events.
+    &#34;&#34;&#34;
+    return self.__standard_check(self.__data1, &#34;pressure&#34;)</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.progNum"><code class="name">var <span class="ident">progNum</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The instrument number for a program change event.</p>
+<p>This is a shadow of the <code>data1</code> property. Modifications to this will
+affect all <code>data1</code> derived properties.</p>
+<p>Note that this property is inaccessible for sysex events.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def progNum(self) -&gt; int:
+    &#34;&#34;&#34;The instrument number for a program change event.
+
+    This is a shadow of the `data1` property. Modifications to this will
+    affect all `data1` derived properties.
+
+    Note that this property is inaccessible for sysex events.
+    &#34;&#34;&#34;
+    return self.__standard_check(self.__data1, &#34;progNum&#34;)</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.res"><code class="name">var <span class="ident">res</span> : float</code></dt>
+<dd>
+<div class="desc"><p>MIDI res</p>
+<h3 id="help-wanted">HELP WANTED:</h3>
+<ul>
+<li>How is this used?</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def res(self) -&gt; float:
+    &#34;&#34;&#34;MIDI res
+
+    ### HELP WANTED:
+    * How is this used?
+    &#34;&#34;&#34;
+    return self.__res</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.status"><code class="name">var <span class="ident">status</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The status byte of the event</p>
+<p>This can be used to determine the type of MIDI event using the upper
+nibble, and the channel of the event using the lower nibble.</p>
+<pre><code class="language-py">e_type = event.status &amp; 0xF0
+channel = event.status &amp; 0xF
+</code></pre>
+<p>Note that for sysex messages, this property is <code>0xF0</code>. Other standard
+event properties are inaccessible.</p>
+<h2 id="event-types">Event types</h2>
+<ul>
+<li>
+<p><code>0x8</code> Note off (<code>data1</code> is note number, <code>data2</code> is release value)</p>
+</li>
+<li>
+<p><code>0x9</code> Note on (<code>data1</code> is note number, <code>data2</code> is velocity)</p>
+</li>
+<li>
+<p><code>0xA</code> Note after-touch (<code>data1</code> is note number, <code>data2</code> is pressure
+value)</p>
+</li>
+<li>
+<p><code>0xB</code> Control change (CC, <code>data1</code> is control number as per your
+controller's documentation, <code>data2</code> is value)</p>
+</li>
+<li>
+<p><code>0xC</code> Program change (used to assign instrument selection, <code>data1</code> is
+instrument number)</p>
+</li>
+<li>
+<p><code>0xD</code> Channel after-touch (<code>data1</code> is value, <code>data2</code> is unused)</p>
+</li>
+<li>
+<p><code>0xE</code> Pitch bend (<code>data1</code> and <code>data2</code> are value, as per the formula
+<code>data1 + (data2 &lt;&lt; 7)</code>, yielding a range of <code>0</code> - <code>16384</code>)</p>
+</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def status(self) -&gt; int:
+    &#34;&#34;&#34;The status byte of the event
+
+    This can be used to determine the type of MIDI event using the upper
+    nibble, and the channel of the event using the lower nibble.
+
+    ```py
+    e_type = event.status &amp; 0xF0
+    channel = event.status &amp; 0xF
+    ```
+
+    Note that for sysex messages, this property is `0xF0`. Other standard
+    event properties are inaccessible.
+
+    ## Event types
+    * `0x8` Note off (`data1` is note number, `data2` is release value)
+
+    * `0x9` Note on (`data1` is note number, `data2` is velocity)
+
+    * `0xA` Note after-touch (`data1` is note number, `data2` is pressure
+      value)
+
+    * `0xB` Control change (CC, `data1` is control number as per your
+      controller&#39;s documentation, `data2` is value)
+
+    * `0xC` Program change (used to assign instrument selection, `data1` is
+      instrument number)
+
+    * `0xD` Channel after-touch (`data1` is value, `data2` is unused)
+
+    * `0xE` Pitch bend (`data1` and `data2` are value, as per the formula
+      `data1 + (data2 &lt;&lt; 7)`, yielding a range of `0` - `16384`)
+    &#34;&#34;&#34;
+    return self.__status</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.sysex"><code class="name">var <span class="ident">sysex</span> : bytes</code></dt>
+<dd>
+<div class="desc"><p>Data for a sysex event</p>
+<p>Contains the full event data from sysex events.</p>
+<p>This property is inaccessible for standard events.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def sysex(self) -&gt; bytes:
+    &#34;&#34;&#34;Data for a sysex event
+
+    Contains the full event data from sysex events.
+
+    This property is inaccessible for standard events.
+    &#34;&#34;&#34;
+    if self.__sysex is None:
+        raise ValueError(
+            &#34;Attempt to access sysex data on standard event. &#34;
+            &#34;Are you type narrowing your events correctly?&#34;
+        )
+    return self.__sysex</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.timestamp"><code class="name">var <span class="ident">timestamp</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The timestamp of the event</p>
+<h3 id="help-wanted">HELP WANTED:</h3>
+<ul>
+<li>This seems to only ever be zero. I can't determine what it is for. If
+you know how it is used, create a pull request with details.</li>
+</ul>
+<p>This value is read-only.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def timestamp(self) -&gt; int:
+    &#34;&#34;&#34;The timestamp of the event
+
+    ### HELP WANTED:
+    * This seems to only ever be zero. I can&#39;t determine what it is for. If
+      you know how it is used, create a pull request with details.
+
+    This value is read-only.
+    &#34;&#34;&#34;
+    return self.__timestamp</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.EventData.velocity"><code class="name">var <span class="ident">velocity</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The velocity of a MIDI note on/off message.</p>
+<p>This is a shadow of the <code>data2</code> property. Modifications to this will
+affect all <code>data2</code> derived properties</p>
+<p>Note that this property is inaccessible for sysex events.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def velocity(self) -&gt; int:
+    &#34;&#34;&#34;The velocity of a MIDI note on/off message.
+
+    This is a shadow of the `data2` property. Modifications to this will
+    affect all `data2` derived properties
+
+    Note that this property is inaccessible for sysex events.
+    &#34;&#34;&#34;
+    return self.__standard_check(self.__data2, &#34;velocity&#34;)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.fl_classes.StandardEventData"><code class="flex name class">
+<span>class <span class="ident">StandardEventData</span></span>
+<span>(</span><span>status: int, data1: int, data2: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An EventData object which has been type narrowed to a StandardEventData.</p>
+<p>Note that as FL Studio events are actually of a different type to these
+shadow types, you should never use the <code>isinstance</code> function in order to
+perform type-narrowing operations, as it will lead to very obscure bugs
+when your type checks never work inside FL Studio, even if they work in
+your tests.</p>
+<p>Instead, you can type narrow to a <code><a title="src.fl_classes.StandardEventData" href="#src.fl_classes.StandardEventData">StandardEventData</a></code> object using the
+<code><a title="src.fl_classes.isEventStandard" href="#src.fl_classes.isEventStandard">isEventStandard()</a></code> function.</p>
+<p>Create an EventData object.</p>
+<p>Note that this object will be incompatible with FL Studio's API, and so
+cannot be used as a parameter for any API functions during runtime.</p>
+<h3 id="args">Args:</h3>
+<ul>
+<li>
+<p><code>status_sysex</code> (<code>int | list[int] | bytes</code>): status byte or sysex data</p>
+</li>
+<li>
+<p><code>data1</code> (<code>Optional[int]</code>, optional): data1 byte if applicable.
+Defaults to <code>None</code>.</p>
+</li>
+<li>
+<p><code>data2</code> (<code>Optional[int]</code>, optional): data2 byte if applicable.
+Defaults to <code>None</code>.</p>
+</li>
+<li>
+<p><code>pmeFlags</code> (<code>int</code>, optional): PME flags of event. Defaults to
+<code>PME_System | PME_System_Safe | PME_PreviewNote | PME_FromMIDI</code>.</p>
+</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class StandardEventData(EventData):
+    &#34;&#34;&#34;
+    An EventData object which has been type narrowed to a StandardEventData.
+
+    Note that as FL Studio events are actually of a different type to these
+    shadow types, you should never use the `isinstance` function in order to
+    perform type-narrowing operations, as it will lead to very obscure bugs
+    when your type checks never work inside FL Studio, even if they work in
+    your tests.
+
+    Instead, you can type narrow to a `StandardEventData` object using the
+    `isEventStandard()` function.
+    &#34;&#34;&#34;
+    def __init__(self, status: int, data1: int, data2: int) -&gt; None:
+        super().__init__(status, data1, data2)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></b></code>:
+<ul class="hlist">
+<li><code><a title="src.fl_classes.EventData.controlNum" href="#src.fl_classes.EventData.controlNum">controlNum</a></code></li>
+<li><code><a title="src.fl_classes.EventData.controlVal" href="#src.fl_classes.EventData.controlVal">controlVal</a></code></li>
+<li><code><a title="src.fl_classes.EventData.data1" href="#src.fl_classes.EventData.data1">data1</a></code></li>
+<li><code><a title="src.fl_classes.EventData.data2" href="#src.fl_classes.EventData.data2">data2</a></code></li>
+<li><code><a title="src.fl_classes.EventData.handled" href="#src.fl_classes.EventData.handled">handled</a></code></li>
+<li><code><a title="src.fl_classes.EventData.inEv" href="#src.fl_classes.EventData.inEv">inEv</a></code></li>
+<li><code><a title="src.fl_classes.EventData.isIncrement" href="#src.fl_classes.EventData.isIncrement">isIncrement</a></code></li>
+<li><code><a title="src.fl_classes.EventData.midiChan" href="#src.fl_classes.EventData.midiChan">midiChan</a></code></li>
+<li><code><a title="src.fl_classes.EventData.midiChanEx" href="#src.fl_classes.EventData.midiChanEx">midiChanEx</a></code></li>
+<li><code><a title="src.fl_classes.EventData.midiId" href="#src.fl_classes.EventData.midiId">midiId</a></code></li>
+<li><code><a title="src.fl_classes.EventData.note" href="#src.fl_classes.EventData.note">note</a></code></li>
+<li><code><a title="src.fl_classes.EventData.outEv" href="#src.fl_classes.EventData.outEv">outEv</a></code></li>
+<li><code><a title="src.fl_classes.EventData.pitchBend" href="#src.fl_classes.EventData.pitchBend">pitchBend</a></code></li>
+<li><code><a title="src.fl_classes.EventData.pmeFlags" href="#src.fl_classes.EventData.pmeFlags">pmeFlags</a></code></li>
+<li><code><a title="src.fl_classes.EventData.port" href="#src.fl_classes.EventData.port">port</a></code></li>
+<li><code><a title="src.fl_classes.EventData.pressure" href="#src.fl_classes.EventData.pressure">pressure</a></code></li>
+<li><code><a title="src.fl_classes.EventData.progNum" href="#src.fl_classes.EventData.progNum">progNum</a></code></li>
+<li><code><a title="src.fl_classes.EventData.res" href="#src.fl_classes.EventData.res">res</a></code></li>
+<li><code><a title="src.fl_classes.EventData.status" href="#src.fl_classes.EventData.status">status</a></code></li>
+<li><code><a title="src.fl_classes.EventData.sysex" href="#src.fl_classes.EventData.sysex">sysex</a></code></li>
+<li><code><a title="src.fl_classes.EventData.timestamp" href="#src.fl_classes.EventData.timestamp">timestamp</a></code></li>
+<li><code><a title="src.fl_classes.EventData.velocity" href="#src.fl_classes.EventData.velocity">velocity</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="src.fl_classes.SysexEventData"><code class="flex name class">
+<span>class <span class="ident">SysexEventData</span></span>
+<span>(</span><span>sysex: list[int])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>An EventData object which has been type narrowed to a SysexEventData.</p>
+<p>Note that as FL Studio events are actually of a different type to these
+shadow types, you should never use the <code>isinstance</code> function in order to
+perform type-narrowing operations, as it will lead to very obscure bugs
+when your type checks never work inside FL Studio, even if they work in
+your tests.</p>
+<p>Instead, you can type narrow to a <code><a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a></code> object using the
+<code><a title="src.fl_classes.isEventSysex" href="#src.fl_classes.isEventSysex">isEventSysex()</a></code> function.</p>
+<p>Create an EventData object.</p>
+<p>Note that this object will be incompatible with FL Studio's API, and so
+cannot be used as a parameter for any API functions during runtime.</p>
+<h3 id="args">Args:</h3>
+<ul>
+<li>
+<p><code>status_sysex</code> (<code>int | list[int] | bytes</code>): status byte or sysex data</p>
+</li>
+<li>
+<p><code>data1</code> (<code>Optional[int]</code>, optional): data1 byte if applicable.
+Defaults to <code>None</code>.</p>
+</li>
+<li>
+<p><code>data2</code> (<code>Optional[int]</code>, optional): data2 byte if applicable.
+Defaults to <code>None</code>.</p>
+</li>
+<li>
+<p><code>pmeFlags</code> (<code>int</code>, optional): PME flags of event. Defaults to
+<code>PME_System | PME_System_Safe | PME_PreviewNote | PME_FromMIDI</code>.</p>
+</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SysexEventData(EventData):
+    &#34;&#34;&#34;
+    An EventData object which has been type narrowed to a SysexEventData.
+
+    Note that as FL Studio events are actually of a different type to these
+    shadow types, you should never use the `isinstance` function in order to
+    perform type-narrowing operations, as it will lead to very obscure bugs
+    when your type checks never work inside FL Studio, even if they work in
+    your tests.
+
+    Instead, you can type narrow to a `SysexEventData` object using the
+    `isEventSysex()` function.
+    &#34;&#34;&#34;
+    def __init__(self, sysex: list[int]) -&gt; None:
+        super().__init__(sysex)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></b></code>:
+<ul class="hlist">
+<li><code><a title="src.fl_classes.EventData.controlNum" href="#src.fl_classes.EventData.controlNum">controlNum</a></code></li>
+<li><code><a title="src.fl_classes.EventData.controlVal" href="#src.fl_classes.EventData.controlVal">controlVal</a></code></li>
+<li><code><a title="src.fl_classes.EventData.data1" href="#src.fl_classes.EventData.data1">data1</a></code></li>
+<li><code><a title="src.fl_classes.EventData.data2" href="#src.fl_classes.EventData.data2">data2</a></code></li>
+<li><code><a title="src.fl_classes.EventData.handled" href="#src.fl_classes.EventData.handled">handled</a></code></li>
+<li><code><a title="src.fl_classes.EventData.inEv" href="#src.fl_classes.EventData.inEv">inEv</a></code></li>
+<li><code><a title="src.fl_classes.EventData.isIncrement" href="#src.fl_classes.EventData.isIncrement">isIncrement</a></code></li>
+<li><code><a title="src.fl_classes.EventData.midiChan" href="#src.fl_classes.EventData.midiChan">midiChan</a></code></li>
+<li><code><a title="src.fl_classes.EventData.midiChanEx" href="#src.fl_classes.EventData.midiChanEx">midiChanEx</a></code></li>
+<li><code><a title="src.fl_classes.EventData.midiId" href="#src.fl_classes.EventData.midiId">midiId</a></code></li>
+<li><code><a title="src.fl_classes.EventData.note" href="#src.fl_classes.EventData.note">note</a></code></li>
+<li><code><a title="src.fl_classes.EventData.outEv" href="#src.fl_classes.EventData.outEv">outEv</a></code></li>
+<li><code><a title="src.fl_classes.EventData.pitchBend" href="#src.fl_classes.EventData.pitchBend">pitchBend</a></code></li>
+<li><code><a title="src.fl_classes.EventData.pmeFlags" href="#src.fl_classes.EventData.pmeFlags">pmeFlags</a></code></li>
+<li><code><a title="src.fl_classes.EventData.port" href="#src.fl_classes.EventData.port">port</a></code></li>
+<li><code><a title="src.fl_classes.EventData.pressure" href="#src.fl_classes.EventData.pressure">pressure</a></code></li>
+<li><code><a title="src.fl_classes.EventData.progNum" href="#src.fl_classes.EventData.progNum">progNum</a></code></li>
+<li><code><a title="src.fl_classes.EventData.res" href="#src.fl_classes.EventData.res">res</a></code></li>
+<li><code><a title="src.fl_classes.EventData.status" href="#src.fl_classes.EventData.status">status</a></code></li>
+<li><code><a title="src.fl_classes.EventData.sysex" href="#src.fl_classes.EventData.sysex">sysex</a></code></li>
+<li><code><a title="src.fl_classes.EventData.timestamp" href="#src.fl_classes.EventData.timestamp">timestamp</a></code></li>
+<li><code><a title="src.fl_classes.EventData.velocity" href="#src.fl_classes.EventData.velocity">velocity</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="src" href="../index.html">src</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="src.fl_classes.isEventStandard" href="#src.fl_classes.isEventStandard">isEventStandard</a></code></li>
+<li><code><a title="src.fl_classes.isEventSysex" href="#src.fl_classes.isEventSysex">isEventSysex</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.fl_classes.EventData.controlNum" href="#src.fl_classes.EventData.controlNum">controlNum</a></code></li>
+<li><code><a title="src.fl_classes.EventData.controlVal" href="#src.fl_classes.EventData.controlVal">controlVal</a></code></li>
+<li><code><a title="src.fl_classes.EventData.data1" href="#src.fl_classes.EventData.data1">data1</a></code></li>
+<li><code><a title="src.fl_classes.EventData.data2" href="#src.fl_classes.EventData.data2">data2</a></code></li>
+<li><code><a title="src.fl_classes.EventData.handled" href="#src.fl_classes.EventData.handled">handled</a></code></li>
+<li><code><a title="src.fl_classes.EventData.inEv" href="#src.fl_classes.EventData.inEv">inEv</a></code></li>
+<li><code><a title="src.fl_classes.EventData.isIncrement" href="#src.fl_classes.EventData.isIncrement">isIncrement</a></code></li>
+<li><code><a title="src.fl_classes.EventData.midiChan" href="#src.fl_classes.EventData.midiChan">midiChan</a></code></li>
+<li><code><a title="src.fl_classes.EventData.midiChanEx" href="#src.fl_classes.EventData.midiChanEx">midiChanEx</a></code></li>
+<li><code><a title="src.fl_classes.EventData.midiId" href="#src.fl_classes.EventData.midiId">midiId</a></code></li>
+<li><code><a title="src.fl_classes.EventData.note" href="#src.fl_classes.EventData.note">note</a></code></li>
+<li><code><a title="src.fl_classes.EventData.outEv" href="#src.fl_classes.EventData.outEv">outEv</a></code></li>
+<li><code><a title="src.fl_classes.EventData.pitchBend" href="#src.fl_classes.EventData.pitchBend">pitchBend</a></code></li>
+<li><code><a title="src.fl_classes.EventData.pmeFlags" href="#src.fl_classes.EventData.pmeFlags">pmeFlags</a></code></li>
+<li><code><a title="src.fl_classes.EventData.port" href="#src.fl_classes.EventData.port">port</a></code></li>
+<li><code><a title="src.fl_classes.EventData.pressure" href="#src.fl_classes.EventData.pressure">pressure</a></code></li>
+<li><code><a title="src.fl_classes.EventData.progNum" href="#src.fl_classes.EventData.progNum">progNum</a></code></li>
+<li><code><a title="src.fl_classes.EventData.res" href="#src.fl_classes.EventData.res">res</a></code></li>
+<li><code><a title="src.fl_classes.EventData.status" href="#src.fl_classes.EventData.status">status</a></code></li>
+<li><code><a title="src.fl_classes.EventData.sysex" href="#src.fl_classes.EventData.sysex">sysex</a></code></li>
+<li><code><a title="src.fl_classes.EventData.timestamp" href="#src.fl_classes.EventData.timestamp">timestamp</a></code></li>
+<li><code><a title="src.fl_classes.EventData.velocity" href="#src.fl_classes.EventData.velocity">velocity</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.fl_classes.StandardEventData" href="#src.fl_classes.StandardEventData">StandardEventData</a></code></h4>
+</li>
+<li>
+<h4><code><a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
