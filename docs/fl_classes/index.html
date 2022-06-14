@@ -29,9 +29,9 @@ used to assist with type hinting in your project.</p>
 included by initializing <code>fl_typing</code> as a submodule for your project.
 <a href="https://github.com/MiguelGuthridge/fl_typing">https://github.com/MiguelGuthridge/fl_typing</a></p>
 <pre><code class="language-py"># With fl_typing enabled so that the typing module works correctly
-from fl_types import EventData
+from fl_types import FlMidiMsg
 
-def OnMidiIn(event: EventData) -&gt; None:
+def OnMidiIn(event: FlMidiMsg) -&gt; None:
     ...
 </code></pre>
 <details class="source">
@@ -50,37 +50,51 @@ https://github.com/MiguelGuthridge/fl_typing
 
 ```py
 # With fl_typing enabled so that the typing module works correctly
-from fl_types import EventData
+from fl_types import FlMidiMsg
 
-def OnMidiIn(event: EventData) -&gt; None:
+def OnMidiIn(event: FlMidiMsg) -&gt; None:
     ...
 ```
 &#34;&#34;&#34;
-from typing import Optional
+from typing import Optional, overload
 from typing_extensions import TypeGuard
 
-
-class EventData:
+class FlMidiMsg:
     &#34;&#34;&#34;
-    A shadow of FL Studio&#39;s `EventData` object. Note that although creating
+    A shadow of FL Studio&#39;s `FlMidiMsg` object. Note that although creating
     these is possible, it should be avoided during runtime as FL Studio&#39;s API
     won&#39;t accept it as an argument for any of its functions. It can be used
     within a testing environment, however.
 
     Note that two sub-types are also included, which allow for type narrowing
-    by separating standard MIDI events and Sysex MIDI events.
+    by separating standard MIDI events and Sysex MIDI events. These will work
+    for FL Studio&#39;s types as well.
 
     * `isEventStandard()`
 
     * `isEventSysex()`
 
-    Basic type checking is performed when accessing properties of `EventData`
+    Basic type checking is performed when accessing properties of `FlMidiMsg`
     objects, to ensure that incorrect properties aren&#39;t accessed (for example
     accessing `data1` for a sysex event). These checks won&#39;t be performed
     during runtime for your script, but can help to add more certainty to your
     tests.
     &#34;&#34;&#34;
 
+    @overload
+    def __init__(
+        self,
+        status_sysex: int,
+        data1: int,
+        data2: int,
+    ) -&gt; None:
+        ...
+    @overload
+    def __init__(
+        self,
+        status_sysex: &#39;list[int] | bytes&#39;,
+    ) -&gt; None:
+        ...
     def __init__(
         self,
         status_sysex: &#39;int | list[int] | bytes&#39;,
@@ -89,7 +103,7 @@ class EventData:
         pmeFlags: int = 0b101110,
     ) -&gt; None:
         &#34;&#34;&#34;
-        Create an EventData object.
+        Create an `FlMidiMsg` object.
 
         Note that this object will be incompatible with FL Studio&#39;s API, and so
         cannot be used as a parameter for any API functions during runtime.
@@ -105,6 +119,19 @@ class EventData:
 
         * `pmeFlags` (`int`, optional): PME flags of event. Defaults to
           `PME_System | PME_System_Safe | PME_PreviewNote | PME_FromMIDI`.
+
+        ### Example Usage
+
+        ```py
+        # Create a note on event on middle C
+        msg = FlMidiMsg(0x90, 0x3C, 0x7F)
+
+        # Create a CC#10 event
+        msg = FlMidiMsg(0xB0, 0x0A, 0x00)
+
+        # Create a sysex event for a universal device enquiry
+        msg = FlMidiMsg([0xF0, 0x7E, 0x7F, 0x06, 0x01, 0xF7])
+        ```
         &#34;&#34;&#34;
         if isinstance(status_sysex, int):
             if data1 is None:
@@ -139,6 +166,35 @@ class EventData:
         self.__midi_chan = 0
         self.__midi_chan_ex = 0
         self.__pme_flags = pmeFlags
+
+    def __repr__(self) -&gt; str:
+        if self.__sysex is not None:
+            return f&#34;FlMidiMsg([{&#39;, &#39;.join(f&#39;0x{b:02X}&#39; for b in self.sysex)})&#34;
+        else:
+            return (
+                f&#34;FlMidiMsg(&#34;
+                f&#34;0x{self.status:02X}, &#34;
+                f&#34;0x{self.data1:02X}, &#34;
+                f&#34;0x{self.data2:02X})&#34;
+            )
+
+    def __eq__(self, other: object) -&gt; bool:
+        if isinstance(other, FlMidiMsg):
+            if (isMidiMsgStandard(self) and isMidiMsgStandard(other)):
+                return all([
+                    self.status == other.status
+                    and self.data1 == other.data1
+                    and self.data2 == other.data2
+                ])
+            elif (isMidiMsgSysex(self) and isMidiMsgSysex(other)):
+                return self.sysex == other.sysex
+        elif isinstance(other, int):
+            if isMidiMsgStandard(self):
+                return eventToRawData(self) == other
+        elif isinstance(other, bytes):
+            if isMidiMsgSysex(self):
+                return eventToRawData(self) == other
+        return False
 
     @staticmethod
     def __standard_check(value: Optional[int], prop: str) -&gt; int:
@@ -552,9 +608,9 @@ class EventData:
         return self.__pme_flags
 
 
-class StandardEventData(EventData):
+class StandardMidiMsg(FlMidiMsg):
     &#34;&#34;&#34;
-    An EventData object which has been type narrowed to a StandardEventData.
+    An FlMidiMsg object which has been type narrowed to a StandardFlMidiMsg.
 
     Note that as FL Studio events are actually of a different type to these
     shadow types, you should never use the `isinstance` function in order to
@@ -562,16 +618,16 @@ class StandardEventData(EventData):
     when your type checks never work inside FL Studio, even if they work in
     your tests.
 
-    Instead, you can type narrow to a `StandardEventData` object using the
+    Instead, you can type narrow to a `StandardFlMidiMsg` object using the
     `isEventStandard()` function.
     &#34;&#34;&#34;
     def __init__(self, status: int, data1: int, data2: int) -&gt; None:
         super().__init__(status, data1, data2)
 
 
-class SysexEventData(EventData):
+class SysexMidiMsg(FlMidiMsg):
     &#34;&#34;&#34;
-    An EventData object which has been type narrowed to a SysexEventData.
+    An FlMidiMsg object which has been type narrowed to a SysexFlMidiMsg.
 
     Note that as FL Studio events are actually of a different type to these
     shadow types, you should never use the `isinstance` function in order to
@@ -579,37 +635,54 @@ class SysexEventData(EventData):
     when your type checks never work inside FL Studio, even if they work in
     your tests.
 
-    Instead, you can type narrow to a `SysexEventData` object using the
+    Instead, you can type narrow to a `SysexFlMidiMsg` object using the
     `isEventSysex()` function.
     &#34;&#34;&#34;
     def __init__(self, sysex: list[int]) -&gt; None:
         super().__init__(sysex)
 
 
-def isEventStandard(event: EventData) -&gt; &#39;TypeGuard[StandardEventData]&#39;:
+def isMidiMsgStandard(event: FlMidiMsg) -&gt; &#39;TypeGuard[StandardMidiMsg]&#39;:
     &#34;&#34;&#34;
     Returns whether an event is a standard event
 
     ### Args:
-    * `event` (`eventData`): event to check
+    * `event` (`FlMidiMsg`): event to check
 
     ### Returns:
-    * `TypeGuard[SysexEventData]`: type guarded event
+    * `TypeGuard[SysexFlMidiMsg]`: type guarded event
     &#34;&#34;&#34;
-    return not isEventSysex(event)
+    return not isMidiMsgSysex(event)
 
 
-def isEventSysex(event: EventData) -&gt; &#39;TypeGuard[SysexEventData]&#39;:
+def isMidiMsgSysex(event: FlMidiMsg) -&gt; &#39;TypeGuard[SysexMidiMsg]&#39;:
     &#34;&#34;&#34;
     Returns whether an event is a sysex event
 
     ### Args:
-    * `event` (`eventData`): event to check
+    * `event` (`FlMidiMsg`): event to check
 
     ### Returns:
-    * `TypeGuard[SysexEventData]`: type guarded event
+    * `TypeGuard[SysexFlMidiMsg]`: type guarded event
     &#34;&#34;&#34;
-    return event.status == 0xF0</code></pre>
+    return event.status == 0xF0
+
+
+def eventToRawData(event: FlMidiMsg) -&gt; &#39;int | bytes&#39;:
+    &#34;&#34;&#34;
+    Convert event to raw data.
+
+    For standard events data is presented as little-endian, meaning that the
+    status byte has the lowest component value in the integer.
+
+    ### Returns:
+    * `int | bytes`: data
+    &#34;&#34;&#34;
+    if isMidiMsgStandard(event):
+        return (event.status) + (event.data1 &lt;&lt; 8) + (event.data2 &lt;&lt; 16)
+    else:
+        assert isMidiMsgSysex(event)
+        return event.sysex</code></pre>
 </details>
 </section>
 <section>
@@ -619,62 +692,94 @@ def isEventSysex(event: EventData) -&gt; &#39;TypeGuard[SysexEventData]&#39;:
 <section>
 <h2 class="section-title" id="header-functions">Functions</h2>
 <dl>
-<dt id="src.fl_classes.isEventStandard"><code class="name flex">
-<span>def <span class="ident">isEventStandard</span></span>(<span>event: <a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a>) ‑> TypeGuard[<a title="src.fl_classes.StandardEventData" href="#src.fl_classes.StandardEventData">StandardEventData</a>]</span>
+<dt id="src.fl_classes.eventToRawData"><code class="name flex">
+<span>def <span class="ident">eventToRawData</span></span>(<span>event: <a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a>) ‑> int | bytes</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert event to raw data.</p>
+<p>For standard events data is presented as little-endian, meaning that the
+status byte has the lowest component value in the integer.</p>
+<h3 id="returns">Returns:</h3>
+<ul>
+<li><code>int | bytes</code>: data</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def eventToRawData(event: FlMidiMsg) -&gt; &#39;int | bytes&#39;:
+    &#34;&#34;&#34;
+    Convert event to raw data.
+
+    For standard events data is presented as little-endian, meaning that the
+    status byte has the lowest component value in the integer.
+
+    ### Returns:
+    * `int | bytes`: data
+    &#34;&#34;&#34;
+    if isMidiMsgStandard(event):
+        return (event.status) + (event.data1 &lt;&lt; 8) + (event.data2 &lt;&lt; 16)
+    else:
+        assert isMidiMsgSysex(event)
+        return event.sysex</code></pre>
+</details>
+</dd>
+<dt id="src.fl_classes.isMidiMsgStandard"><code class="name flex">
+<span>def <span class="ident">isMidiMsgStandard</span></span>(<span>event: <a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a>) ‑> TypeGuard[<a title="src.fl_classes.StandardMidiMsg" href="#src.fl_classes.StandardMidiMsg">StandardMidiMsg</a>]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns whether an event is a standard event</p>
 <h3 id="args">Args:</h3>
 <ul>
-<li><code>event</code> (<code>eventData</code>): event to check</li>
+<li><code>event</code> (<code><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></code>): event to check</li>
 </ul>
 <h3 id="returns">Returns:</h3>
 <ul>
-<li><code>TypeGuard[<a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a>]</code>: type guarded event</li>
+<li><code>TypeGuard[SysexFlMidiMsg]</code>: type guarded event</li>
 </ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def isEventStandard(event: EventData) -&gt; &#39;TypeGuard[StandardEventData]&#39;:
+<pre><code class="python">def isMidiMsgStandard(event: FlMidiMsg) -&gt; &#39;TypeGuard[StandardMidiMsg]&#39;:
     &#34;&#34;&#34;
     Returns whether an event is a standard event
 
     ### Args:
-    * `event` (`eventData`): event to check
+    * `event` (`FlMidiMsg`): event to check
 
     ### Returns:
-    * `TypeGuard[SysexEventData]`: type guarded event
+    * `TypeGuard[SysexFlMidiMsg]`: type guarded event
     &#34;&#34;&#34;
-    return not isEventSysex(event)</code></pre>
+    return not isMidiMsgSysex(event)</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.isEventSysex"><code class="name flex">
-<span>def <span class="ident">isEventSysex</span></span>(<span>event: <a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a>) ‑> TypeGuard[<a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a>]</span>
+<dt id="src.fl_classes.isMidiMsgSysex"><code class="name flex">
+<span>def <span class="ident">isMidiMsgSysex</span></span>(<span>event: <a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a>) ‑> TypeGuard[<a title="src.fl_classes.SysexMidiMsg" href="#src.fl_classes.SysexMidiMsg">SysexMidiMsg</a>]</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Returns whether an event is a sysex event</p>
 <h3 id="args">Args:</h3>
 <ul>
-<li><code>event</code> (<code>eventData</code>): event to check</li>
+<li><code>event</code> (<code><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></code>): event to check</li>
 </ul>
 <h3 id="returns">Returns:</h3>
 <ul>
-<li><code>TypeGuard[<a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a>]</code>: type guarded event</li>
+<li><code>TypeGuard[SysexFlMidiMsg]</code>: type guarded event</li>
 </ul></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def isEventSysex(event: EventData) -&gt; &#39;TypeGuard[SysexEventData]&#39;:
+<pre><code class="python">def isMidiMsgSysex(event: FlMidiMsg) -&gt; &#39;TypeGuard[SysexMidiMsg]&#39;:
     &#34;&#34;&#34;
     Returns whether an event is a sysex event
 
     ### Args:
-    * `event` (`eventData`): event to check
+    * `event` (`FlMidiMsg`): event to check
 
     ### Returns:
-    * `TypeGuard[SysexEventData]`: type guarded event
+    * `TypeGuard[SysexFlMidiMsg]`: type guarded event
     &#34;&#34;&#34;
     return event.status == 0xF0</code></pre>
 </details>
@@ -684,31 +789,32 @@ def isEventSysex(event: EventData) -&gt; &#39;TypeGuard[SysexEventData]&#39;:
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="src.fl_classes.EventData"><code class="flex name class">
-<span>class <span class="ident">EventData</span></span>
+<dt id="src.fl_classes.FlMidiMsg"><code class="flex name class">
+<span>class <span class="ident">FlMidiMsg</span></span>
 <span>(</span><span>status_sysex: int | list[int] | bytes, data1: Optional[int] = None, data2: Optional[int] = None, pmeFlags: int = 46)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>A shadow of FL Studio's <code><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></code> object. Note that although creating
+<div class="desc"><p>A shadow of FL Studio's <code><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></code> object. Note that although creating
 these is possible, it should be avoided during runtime as FL Studio's API
 won't accept it as an argument for any of its functions. It can be used
 within a testing environment, however.</p>
 <p>Note that two sub-types are also included, which allow for type narrowing
-by separating standard MIDI events and Sysex MIDI events.</p>
+by separating standard MIDI events and Sysex MIDI events. These will work
+for FL Studio's types as well.</p>
 <ul>
 <li>
-<p><code><a title="src.fl_classes.isEventStandard" href="#src.fl_classes.isEventStandard">isEventStandard()</a></code></p>
+<p><code>isEventStandard()</code></p>
 </li>
 <li>
-<p><code><a title="src.fl_classes.isEventSysex" href="#src.fl_classes.isEventSysex">isEventSysex()</a></code></p>
+<p><code>isEventSysex()</code></p>
 </li>
 </ul>
-<p>Basic type checking is performed when accessing properties of <code><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></code>
+<p>Basic type checking is performed when accessing properties of <code><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></code>
 objects, to ensure that incorrect properties aren't accessed (for example
 accessing <code>data1</code> for a sysex event). These checks won't be performed
 during runtime for your script, but can help to add more certainty to your
 tests.</p>
-<p>Create an EventData object.</p>
+<p>Create an <code><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></code> object.</p>
 <p>Note that this object will be incompatible with FL Studio's API, and so
 cannot be used as a parameter for any API functions during runtime.</p>
 <h3 id="args">Args:</h3>
@@ -728,32 +834,57 @@ Defaults to <code>None</code>.</p>
 <p><code>pmeFlags</code> (<code>int</code>, optional): PME flags of event. Defaults to
 <code>PME_System | PME_System_Safe | PME_PreviewNote | PME_FromMIDI</code>.</p>
 </li>
-</ul></div>
+</ul>
+<h3 id="example-usage">Example Usage</h3>
+<pre><code class="language-py"># Create a note on event on middle C
+msg = FlMidiMsg(0x90, 0x3C, 0x7F)
+
+# Create a CC#10 event
+msg = FlMidiMsg(0xB0, 0x0A, 0x00)
+
+# Create a sysex event for a universal device enquiry
+msg = FlMidiMsg([0xF0, 0x7E, 0x7F, 0x06, 0x01, 0xF7])
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class EventData:
+<pre><code class="python">class FlMidiMsg:
     &#34;&#34;&#34;
-    A shadow of FL Studio&#39;s `EventData` object. Note that although creating
+    A shadow of FL Studio&#39;s `FlMidiMsg` object. Note that although creating
     these is possible, it should be avoided during runtime as FL Studio&#39;s API
     won&#39;t accept it as an argument for any of its functions. It can be used
     within a testing environment, however.
 
     Note that two sub-types are also included, which allow for type narrowing
-    by separating standard MIDI events and Sysex MIDI events.
+    by separating standard MIDI events and Sysex MIDI events. These will work
+    for FL Studio&#39;s types as well.
 
     * `isEventStandard()`
 
     * `isEventSysex()`
 
-    Basic type checking is performed when accessing properties of `EventData`
+    Basic type checking is performed when accessing properties of `FlMidiMsg`
     objects, to ensure that incorrect properties aren&#39;t accessed (for example
     accessing `data1` for a sysex event). These checks won&#39;t be performed
     during runtime for your script, but can help to add more certainty to your
     tests.
     &#34;&#34;&#34;
 
+    @overload
+    def __init__(
+        self,
+        status_sysex: int,
+        data1: int,
+        data2: int,
+    ) -&gt; None:
+        ...
+    @overload
+    def __init__(
+        self,
+        status_sysex: &#39;list[int] | bytes&#39;,
+    ) -&gt; None:
+        ...
     def __init__(
         self,
         status_sysex: &#39;int | list[int] | bytes&#39;,
@@ -762,7 +893,7 @@ Defaults to <code>None</code>.</p>
         pmeFlags: int = 0b101110,
     ) -&gt; None:
         &#34;&#34;&#34;
-        Create an EventData object.
+        Create an `FlMidiMsg` object.
 
         Note that this object will be incompatible with FL Studio&#39;s API, and so
         cannot be used as a parameter for any API functions during runtime.
@@ -778,6 +909,19 @@ Defaults to <code>None</code>.</p>
 
         * `pmeFlags` (`int`, optional): PME flags of event. Defaults to
           `PME_System | PME_System_Safe | PME_PreviewNote | PME_FromMIDI`.
+
+        ### Example Usage
+
+        ```py
+        # Create a note on event on middle C
+        msg = FlMidiMsg(0x90, 0x3C, 0x7F)
+
+        # Create a CC#10 event
+        msg = FlMidiMsg(0xB0, 0x0A, 0x00)
+
+        # Create a sysex event for a universal device enquiry
+        msg = FlMidiMsg([0xF0, 0x7E, 0x7F, 0x06, 0x01, 0xF7])
+        ```
         &#34;&#34;&#34;
         if isinstance(status_sysex, int):
             if data1 is None:
@@ -812,6 +956,35 @@ Defaults to <code>None</code>.</p>
         self.__midi_chan = 0
         self.__midi_chan_ex = 0
         self.__pme_flags = pmeFlags
+
+    def __repr__(self) -&gt; str:
+        if self.__sysex is not None:
+            return f&#34;FlMidiMsg([{&#39;, &#39;.join(f&#39;0x{b:02X}&#39; for b in self.sysex)})&#34;
+        else:
+            return (
+                f&#34;FlMidiMsg(&#34;
+                f&#34;0x{self.status:02X}, &#34;
+                f&#34;0x{self.data1:02X}, &#34;
+                f&#34;0x{self.data2:02X})&#34;
+            )
+
+    def __eq__(self, other: object) -&gt; bool:
+        if isinstance(other, FlMidiMsg):
+            if (isMidiMsgStandard(self) and isMidiMsgStandard(other)):
+                return all([
+                    self.status == other.status
+                    and self.data1 == other.data1
+                    and self.data2 == other.data2
+                ])
+            elif (isMidiMsgSysex(self) and isMidiMsgSysex(other)):
+                return self.sysex == other.sysex
+        elif isinstance(other, int):
+            if isMidiMsgStandard(self):
+                return eventToRawData(self) == other
+        elif isinstance(other, bytes):
+            if isMidiMsgSysex(self):
+                return eventToRawData(self) == other
+        return False
 
     @staticmethod
     def __standard_check(value: Optional[int], prop: str) -&gt; int:
@@ -1226,12 +1399,12 @@ Defaults to <code>None</code>.</p>
 </details>
 <h3>Subclasses</h3>
 <ul class="hlist">
-<li><a title="src.fl_classes.StandardEventData" href="#src.fl_classes.StandardEventData">StandardEventData</a></li>
-<li><a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a></li>
+<li><a title="src.fl_classes.StandardMidiMsg" href="#src.fl_classes.StandardMidiMsg">StandardMidiMsg</a></li>
+<li><a title="src.fl_classes.SysexMidiMsg" href="#src.fl_classes.SysexMidiMsg">SysexMidiMsg</a></li>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="src.fl_classes.EventData.controlNum"><code class="name">var <span class="ident">controlNum</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.controlNum"><code class="name">var <span class="ident">controlNum</span> : int</code></dt>
 <dd>
 <div class="desc"><p>The control number for a control change event.</p>
 <p>This is a shadow of the <code>data1</code> property. Modifications to this will
@@ -1253,7 +1426,7 @@ def controlNum(self) -&gt; int:
     return self.__standard_check(self.__data1, &#34;controlNum&#34;)</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.controlVal"><code class="name">var <span class="ident">controlVal</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.controlVal"><code class="name">var <span class="ident">controlVal</span> : int</code></dt>
 <dd>
 <div class="desc"><p>The value of a control change event.</p>
 <p>This is a shadow of the <code>data2</code> property. Modifications to this will
@@ -1275,7 +1448,7 @@ def controlVal(self) -&gt; int:
     return self.__standard_check(self.__data2, &#34;controlVal&#34;)</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.data1"><code class="name">var <span class="ident">data1</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.data1"><code class="name">var <span class="ident">data1</span> : int</code></dt>
 <dd>
 <div class="desc"><p>The first data byte of a MIDI message.</p>
 <p>This is used to determine the control number for CC events, the note
@@ -1297,7 +1470,7 @@ def data1(self) -&gt; int:
     return self.__standard_check(self.__data1, &#34;data1&#34;)</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.data2"><code class="name">var <span class="ident">data2</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.data2"><code class="name">var <span class="ident">data2</span> : int</code></dt>
 <dd>
 <div class="desc"><p>The second data byte of a MIDI message.</p>
 <p>This is used to determine the value for CC events, the velocity for
@@ -1319,7 +1492,7 @@ def data2(self) -&gt; int:
     return self.__standard_check(self.__data2, &#34;data2&#34;)</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.handled"><code class="name">var <span class="ident">handled</span> : bool</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.handled"><code class="name">var <span class="ident">handled</span> : bool</code></dt>
 <dd>
 <div class="desc"><p>Whether the event is considered to be handled by FL Studio.</p>
 <p>If this is set to <code>True</code>, the event will stop propagating after this
@@ -1341,7 +1514,7 @@ def handled(self) -&gt; bool:
     return self.__handled</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.inEv"><code class="name">var <span class="ident">inEv</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.inEv"><code class="name">var <span class="ident">inEv</span> : int</code></dt>
 <dd>
 <div class="desc"><p>MIDI inEv</p>
 <h3 id="help-wanted">HELP WANTED:</h3>
@@ -1362,7 +1535,7 @@ def inEv(self) -&gt; int:
     return self.__in_ev</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.isIncrement"><code class="name">var <span class="ident">isIncrement</span> : bool</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.isIncrement"><code class="name">var <span class="ident">isIncrement</span> : bool</code></dt>
 <dd>
 <div class="desc"><p>Whether the event should be an increment event</p>
 <p>If the script sets this to <code>True</code>, FL Studio will consider it to be a
@@ -1390,7 +1563,7 @@ def isIncrement(self) -&gt; bool:
     return self.__is_increment</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.midiChan"><code class="name">var <span class="ident">midiChan</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.midiChan"><code class="name">var <span class="ident">midiChan</span> : int</code></dt>
 <dd>
 <div class="desc"><p>MIDI chan</p>
 <h3 id="help-wanted">HELP WANTED:</h3>
@@ -1420,7 +1593,7 @@ def midiChan(self) -&gt; int:
     return self.__midi_chan</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.midiChanEx"><code class="name">var <span class="ident">midiChanEx</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.midiChanEx"><code class="name">var <span class="ident">midiChanEx</span> : int</code></dt>
 <dd>
 <div class="desc"><p>MIDI chanEx</p>
 <h3 id="help-wanted">HELP WANTED:</h3>
@@ -1441,7 +1614,7 @@ def midiChanEx(self) -&gt; int:
     return self.__midi_chan_ex</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.midiId"><code class="name">var <span class="ident">midiId</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.midiId"><code class="name">var <span class="ident">midiId</span> : int</code></dt>
 <dd>
 <div class="desc"><p>MIDI ID</p>
 <h3 id="help-wanted">HELP WANTED:</h3>
@@ -1462,7 +1635,7 @@ def midiId(self) -&gt; int:
     return self.__midi_id</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.note"><code class="name">var <span class="ident">note</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.note"><code class="name">var <span class="ident">note</span> : int</code></dt>
 <dd>
 <div class="desc"><p>The note number of a MIDI note on/off message.</p>
 <p>This is a shadow of the <code>data1</code> property. Modifications to this will
@@ -1484,7 +1657,7 @@ def note(self) -&gt; int:
     return self.__standard_check(self.__data1, &#34;note&#34;)</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.outEv"><code class="name">var <span class="ident">outEv</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.outEv"><code class="name">var <span class="ident">outEv</span> : int</code></dt>
 <dd>
 <div class="desc"><p>MIDI outEv</p>
 <h3 id="help-wanted">HELP WANTED:</h3>
@@ -1505,7 +1678,7 @@ def outEv(self) -&gt; int:
     return self.__out_ev</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.pitchBend"><code class="name">var <span class="ident">pitchBend</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.pitchBend"><code class="name">var <span class="ident">pitchBend</span> : int</code></dt>
 <dd>
 <div class="desc"><p>MIDI pitch bend value</p>
 <h3 id="help-wanted">HELP WANTED:</h3>
@@ -1529,7 +1702,7 @@ def pitchBend(self) -&gt; int:
     return self.__pitch_bend</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.pmeFlags"><code class="name">var <span class="ident">pmeFlags</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.pmeFlags"><code class="name">var <span class="ident">pmeFlags</span> : int</code></dt>
 <dd>
 <div class="desc"><p>Flags used by FL Studio to indicate the permissions of the script in
 the current environment.</p>
@@ -1653,7 +1826,7 @@ def pmeFlags(self) -&gt; int:
     return self.__pme_flags</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.port"><code class="name">var <span class="ident">port</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.port"><code class="name">var <span class="ident">port</span> : int</code></dt>
 <dd>
 <div class="desc"><p>The port of the message</p>
 <h3 id="help-wanted">HELP WANTED:</h3>
@@ -1677,7 +1850,7 @@ def port(self) -&gt; int:
     return self.__port</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.pressure"><code class="name">var <span class="ident">pressure</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.pressure"><code class="name">var <span class="ident">pressure</span> : int</code></dt>
 <dd>
 <div class="desc"><p>The pressure value for a channel after-touch event.</p>
 <p>This is a shadow of the <code>data1</code> property. Modifications to this will
@@ -1699,7 +1872,7 @@ def pressure(self) -&gt; int:
     return self.__standard_check(self.__data1, &#34;pressure&#34;)</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.progNum"><code class="name">var <span class="ident">progNum</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.progNum"><code class="name">var <span class="ident">progNum</span> : int</code></dt>
 <dd>
 <div class="desc"><p>The instrument number for a program change event.</p>
 <p>This is a shadow of the <code>data1</code> property. Modifications to this will
@@ -1721,7 +1894,7 @@ def progNum(self) -&gt; int:
     return self.__standard_check(self.__data1, &#34;progNum&#34;)</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.res"><code class="name">var <span class="ident">res</span> : float</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.res"><code class="name">var <span class="ident">res</span> : float</code></dt>
 <dd>
 <div class="desc"><p>MIDI res</p>
 <h3 id="help-wanted">HELP WANTED:</h3>
@@ -1742,7 +1915,7 @@ def res(self) -&gt; float:
     return self.__res</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.status"><code class="name">var <span class="ident">status</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.status"><code class="name">var <span class="ident">status</span> : int</code></dt>
 <dd>
 <div class="desc"><p>The status byte of the event</p>
 <p>This can be used to determine the type of MIDI event using the upper
@@ -1821,7 +1994,7 @@ def status(self) -&gt; int:
     return self.__status</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.sysex"><code class="name">var <span class="ident">sysex</span> : bytes</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.sysex"><code class="name">var <span class="ident">sysex</span> : bytes</code></dt>
 <dd>
 <div class="desc"><p>Data for a sysex event</p>
 <p>Contains the full event data from sysex events.</p>
@@ -1846,7 +2019,7 @@ def sysex(self) -&gt; bytes:
     return self.__sysex</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.timestamp"><code class="name">var <span class="ident">timestamp</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.timestamp"><code class="name">var <span class="ident">timestamp</span> : int</code></dt>
 <dd>
 <div class="desc"><p>The timestamp of the event</p>
 <h3 id="help-wanted">HELP WANTED:</h3>
@@ -1872,7 +2045,7 @@ def timestamp(self) -&gt; int:
     return self.__timestamp</code></pre>
 </details>
 </dd>
-<dt id="src.fl_classes.EventData.velocity"><code class="name">var <span class="ident">velocity</span> : int</code></dt>
+<dt id="src.fl_classes.FlMidiMsg.velocity"><code class="name">var <span class="ident">velocity</span> : int</code></dt>
 <dd>
 <div class="desc"><p>The velocity of a MIDI note on/off message.</p>
 <p>This is a shadow of the <code>data2</code> property. Modifications to this will
@@ -1896,20 +2069,20 @@ def velocity(self) -&gt; int:
 </dd>
 </dl>
 </dd>
-<dt id="src.fl_classes.StandardEventData"><code class="flex name class">
-<span>class <span class="ident">StandardEventData</span></span>
+<dt id="src.fl_classes.StandardMidiMsg"><code class="flex name class">
+<span>class <span class="ident">StandardMidiMsg</span></span>
 <span>(</span><span>status: int, data1: int, data2: int)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>An EventData object which has been type narrowed to a StandardEventData.</p>
+<div class="desc"><p>An FlMidiMsg object which has been type narrowed to a StandardFlMidiMsg.</p>
 <p>Note that as FL Studio events are actually of a different type to these
 shadow types, you should never use the <code>isinstance</code> function in order to
 perform type-narrowing operations, as it will lead to very obscure bugs
 when your type checks never work inside FL Studio, even if they work in
 your tests.</p>
-<p>Instead, you can type narrow to a <code><a title="src.fl_classes.StandardEventData" href="#src.fl_classes.StandardEventData">StandardEventData</a></code> object using the
-<code><a title="src.fl_classes.isEventStandard" href="#src.fl_classes.isEventStandard">isEventStandard()</a></code> function.</p>
-<p>Create an EventData object.</p>
+<p>Instead, you can type narrow to a <code>StandardFlMidiMsg</code> object using the
+<code>isEventStandard()</code> function.</p>
+<p>Create an <code><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></code> object.</p>
 <p>Note that this object will be incompatible with FL Studio's API, and so
 cannot be used as a parameter for any API functions during runtime.</p>
 <h3 id="args">Args:</h3>
@@ -1929,14 +2102,24 @@ Defaults to <code>None</code>.</p>
 <p><code>pmeFlags</code> (<code>int</code>, optional): PME flags of event. Defaults to
 <code>PME_System | PME_System_Safe | PME_PreviewNote | PME_FromMIDI</code>.</p>
 </li>
-</ul></div>
+</ul>
+<h3 id="example-usage">Example Usage</h3>
+<pre><code class="language-py"># Create a note on event on middle C
+msg = FlMidiMsg(0x90, 0x3C, 0x7F)
+
+# Create a CC#10 event
+msg = FlMidiMsg(0xB0, 0x0A, 0x00)
+
+# Create a sysex event for a universal device enquiry
+msg = FlMidiMsg([0xF0, 0x7E, 0x7F, 0x06, 0x01, 0xF7])
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class StandardEventData(EventData):
+<pre><code class="python">class StandardMidiMsg(FlMidiMsg):
     &#34;&#34;&#34;
-    An EventData object which has been type narrowed to a StandardEventData.
+    An FlMidiMsg object which has been type narrowed to a StandardFlMidiMsg.
 
     Note that as FL Studio events are actually of a different type to these
     shadow types, you should never use the `isinstance` function in order to
@@ -1944,7 +2127,7 @@ Defaults to <code>None</code>.</p>
     when your type checks never work inside FL Studio, even if they work in
     your tests.
 
-    Instead, you can type narrow to a `StandardEventData` object using the
+    Instead, you can type narrow to a `StandardFlMidiMsg` object using the
     `isEventStandard()` function.
     &#34;&#34;&#34;
     def __init__(self, status: int, data1: int, data2: int) -&gt; None:
@@ -1952,52 +2135,52 @@ Defaults to <code>None</code>.</p>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></li>
+<li><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></li>
 </ul>
 <h3>Inherited members</h3>
 <ul class="hlist">
-<li><code><b><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></b></code>:
+<li><code><b><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></b></code>:
 <ul class="hlist">
-<li><code><a title="src.fl_classes.EventData.controlNum" href="#src.fl_classes.EventData.controlNum">controlNum</a></code></li>
-<li><code><a title="src.fl_classes.EventData.controlVal" href="#src.fl_classes.EventData.controlVal">controlVal</a></code></li>
-<li><code><a title="src.fl_classes.EventData.data1" href="#src.fl_classes.EventData.data1">data1</a></code></li>
-<li><code><a title="src.fl_classes.EventData.data2" href="#src.fl_classes.EventData.data2">data2</a></code></li>
-<li><code><a title="src.fl_classes.EventData.handled" href="#src.fl_classes.EventData.handled">handled</a></code></li>
-<li><code><a title="src.fl_classes.EventData.inEv" href="#src.fl_classes.EventData.inEv">inEv</a></code></li>
-<li><code><a title="src.fl_classes.EventData.isIncrement" href="#src.fl_classes.EventData.isIncrement">isIncrement</a></code></li>
-<li><code><a title="src.fl_classes.EventData.midiChan" href="#src.fl_classes.EventData.midiChan">midiChan</a></code></li>
-<li><code><a title="src.fl_classes.EventData.midiChanEx" href="#src.fl_classes.EventData.midiChanEx">midiChanEx</a></code></li>
-<li><code><a title="src.fl_classes.EventData.midiId" href="#src.fl_classes.EventData.midiId">midiId</a></code></li>
-<li><code><a title="src.fl_classes.EventData.note" href="#src.fl_classes.EventData.note">note</a></code></li>
-<li><code><a title="src.fl_classes.EventData.outEv" href="#src.fl_classes.EventData.outEv">outEv</a></code></li>
-<li><code><a title="src.fl_classes.EventData.pitchBend" href="#src.fl_classes.EventData.pitchBend">pitchBend</a></code></li>
-<li><code><a title="src.fl_classes.EventData.pmeFlags" href="#src.fl_classes.EventData.pmeFlags">pmeFlags</a></code></li>
-<li><code><a title="src.fl_classes.EventData.port" href="#src.fl_classes.EventData.port">port</a></code></li>
-<li><code><a title="src.fl_classes.EventData.pressure" href="#src.fl_classes.EventData.pressure">pressure</a></code></li>
-<li><code><a title="src.fl_classes.EventData.progNum" href="#src.fl_classes.EventData.progNum">progNum</a></code></li>
-<li><code><a title="src.fl_classes.EventData.res" href="#src.fl_classes.EventData.res">res</a></code></li>
-<li><code><a title="src.fl_classes.EventData.status" href="#src.fl_classes.EventData.status">status</a></code></li>
-<li><code><a title="src.fl_classes.EventData.sysex" href="#src.fl_classes.EventData.sysex">sysex</a></code></li>
-<li><code><a title="src.fl_classes.EventData.timestamp" href="#src.fl_classes.EventData.timestamp">timestamp</a></code></li>
-<li><code><a title="src.fl_classes.EventData.velocity" href="#src.fl_classes.EventData.velocity">velocity</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.controlNum" href="#src.fl_classes.FlMidiMsg.controlNum">controlNum</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.controlVal" href="#src.fl_classes.FlMidiMsg.controlVal">controlVal</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.data1" href="#src.fl_classes.FlMidiMsg.data1">data1</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.data2" href="#src.fl_classes.FlMidiMsg.data2">data2</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.handled" href="#src.fl_classes.FlMidiMsg.handled">handled</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.inEv" href="#src.fl_classes.FlMidiMsg.inEv">inEv</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.isIncrement" href="#src.fl_classes.FlMidiMsg.isIncrement">isIncrement</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.midiChan" href="#src.fl_classes.FlMidiMsg.midiChan">midiChan</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.midiChanEx" href="#src.fl_classes.FlMidiMsg.midiChanEx">midiChanEx</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.midiId" href="#src.fl_classes.FlMidiMsg.midiId">midiId</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.note" href="#src.fl_classes.FlMidiMsg.note">note</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.outEv" href="#src.fl_classes.FlMidiMsg.outEv">outEv</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.pitchBend" href="#src.fl_classes.FlMidiMsg.pitchBend">pitchBend</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.pmeFlags" href="#src.fl_classes.FlMidiMsg.pmeFlags">pmeFlags</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.port" href="#src.fl_classes.FlMidiMsg.port">port</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.pressure" href="#src.fl_classes.FlMidiMsg.pressure">pressure</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.progNum" href="#src.fl_classes.FlMidiMsg.progNum">progNum</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.res" href="#src.fl_classes.FlMidiMsg.res">res</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.status" href="#src.fl_classes.FlMidiMsg.status">status</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.sysex" href="#src.fl_classes.FlMidiMsg.sysex">sysex</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.timestamp" href="#src.fl_classes.FlMidiMsg.timestamp">timestamp</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.velocity" href="#src.fl_classes.FlMidiMsg.velocity">velocity</a></code></li>
 </ul>
 </li>
 </ul>
 </dd>
-<dt id="src.fl_classes.SysexEventData"><code class="flex name class">
-<span>class <span class="ident">SysexEventData</span></span>
+<dt id="src.fl_classes.SysexMidiMsg"><code class="flex name class">
+<span>class <span class="ident">SysexMidiMsg</span></span>
 <span>(</span><span>sysex: list[int])</span>
 </code></dt>
 <dd>
-<div class="desc"><p>An EventData object which has been type narrowed to a SysexEventData.</p>
+<div class="desc"><p>An FlMidiMsg object which has been type narrowed to a SysexFlMidiMsg.</p>
 <p>Note that as FL Studio events are actually of a different type to these
 shadow types, you should never use the <code>isinstance</code> function in order to
 perform type-narrowing operations, as it will lead to very obscure bugs
 when your type checks never work inside FL Studio, even if they work in
 your tests.</p>
-<p>Instead, you can type narrow to a <code><a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a></code> object using the
-<code><a title="src.fl_classes.isEventSysex" href="#src.fl_classes.isEventSysex">isEventSysex()</a></code> function.</p>
-<p>Create an EventData object.</p>
+<p>Instead, you can type narrow to a <code>SysexFlMidiMsg</code> object using the
+<code>isEventSysex()</code> function.</p>
+<p>Create an <code><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></code> object.</p>
 <p>Note that this object will be incompatible with FL Studio's API, and so
 cannot be used as a parameter for any API functions during runtime.</p>
 <h3 id="args">Args:</h3>
@@ -2017,14 +2200,24 @@ Defaults to <code>None</code>.</p>
 <p><code>pmeFlags</code> (<code>int</code>, optional): PME flags of event. Defaults to
 <code>PME_System | PME_System_Safe | PME_PreviewNote | PME_FromMIDI</code>.</p>
 </li>
-</ul></div>
+</ul>
+<h3 id="example-usage">Example Usage</h3>
+<pre><code class="language-py"># Create a note on event on middle C
+msg = FlMidiMsg(0x90, 0x3C, 0x7F)
+
+# Create a CC#10 event
+msg = FlMidiMsg(0xB0, 0x0A, 0x00)
+
+# Create a sysex event for a universal device enquiry
+msg = FlMidiMsg([0xF0, 0x7E, 0x7F, 0x06, 0x01, 0xF7])
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class SysexEventData(EventData):
+<pre><code class="python">class SysexMidiMsg(FlMidiMsg):
     &#34;&#34;&#34;
-    An EventData object which has been type narrowed to a SysexEventData.
+    An FlMidiMsg object which has been type narrowed to a SysexFlMidiMsg.
 
     Note that as FL Studio events are actually of a different type to these
     shadow types, you should never use the `isinstance` function in order to
@@ -2032,7 +2225,7 @@ Defaults to <code>None</code>.</p>
     when your type checks never work inside FL Studio, even if they work in
     your tests.
 
-    Instead, you can type narrow to a `SysexEventData` object using the
+    Instead, you can type narrow to a `SysexFlMidiMsg` object using the
     `isEventSysex()` function.
     &#34;&#34;&#34;
     def __init__(self, sysex: list[int]) -&gt; None:
@@ -2040,34 +2233,34 @@ Defaults to <code>None</code>.</p>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></li>
+<li><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></li>
 </ul>
 <h3>Inherited members</h3>
 <ul class="hlist">
-<li><code><b><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></b></code>:
+<li><code><b><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></b></code>:
 <ul class="hlist">
-<li><code><a title="src.fl_classes.EventData.controlNum" href="#src.fl_classes.EventData.controlNum">controlNum</a></code></li>
-<li><code><a title="src.fl_classes.EventData.controlVal" href="#src.fl_classes.EventData.controlVal">controlVal</a></code></li>
-<li><code><a title="src.fl_classes.EventData.data1" href="#src.fl_classes.EventData.data1">data1</a></code></li>
-<li><code><a title="src.fl_classes.EventData.data2" href="#src.fl_classes.EventData.data2">data2</a></code></li>
-<li><code><a title="src.fl_classes.EventData.handled" href="#src.fl_classes.EventData.handled">handled</a></code></li>
-<li><code><a title="src.fl_classes.EventData.inEv" href="#src.fl_classes.EventData.inEv">inEv</a></code></li>
-<li><code><a title="src.fl_classes.EventData.isIncrement" href="#src.fl_classes.EventData.isIncrement">isIncrement</a></code></li>
-<li><code><a title="src.fl_classes.EventData.midiChan" href="#src.fl_classes.EventData.midiChan">midiChan</a></code></li>
-<li><code><a title="src.fl_classes.EventData.midiChanEx" href="#src.fl_classes.EventData.midiChanEx">midiChanEx</a></code></li>
-<li><code><a title="src.fl_classes.EventData.midiId" href="#src.fl_classes.EventData.midiId">midiId</a></code></li>
-<li><code><a title="src.fl_classes.EventData.note" href="#src.fl_classes.EventData.note">note</a></code></li>
-<li><code><a title="src.fl_classes.EventData.outEv" href="#src.fl_classes.EventData.outEv">outEv</a></code></li>
-<li><code><a title="src.fl_classes.EventData.pitchBend" href="#src.fl_classes.EventData.pitchBend">pitchBend</a></code></li>
-<li><code><a title="src.fl_classes.EventData.pmeFlags" href="#src.fl_classes.EventData.pmeFlags">pmeFlags</a></code></li>
-<li><code><a title="src.fl_classes.EventData.port" href="#src.fl_classes.EventData.port">port</a></code></li>
-<li><code><a title="src.fl_classes.EventData.pressure" href="#src.fl_classes.EventData.pressure">pressure</a></code></li>
-<li><code><a title="src.fl_classes.EventData.progNum" href="#src.fl_classes.EventData.progNum">progNum</a></code></li>
-<li><code><a title="src.fl_classes.EventData.res" href="#src.fl_classes.EventData.res">res</a></code></li>
-<li><code><a title="src.fl_classes.EventData.status" href="#src.fl_classes.EventData.status">status</a></code></li>
-<li><code><a title="src.fl_classes.EventData.sysex" href="#src.fl_classes.EventData.sysex">sysex</a></code></li>
-<li><code><a title="src.fl_classes.EventData.timestamp" href="#src.fl_classes.EventData.timestamp">timestamp</a></code></li>
-<li><code><a title="src.fl_classes.EventData.velocity" href="#src.fl_classes.EventData.velocity">velocity</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.controlNum" href="#src.fl_classes.FlMidiMsg.controlNum">controlNum</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.controlVal" href="#src.fl_classes.FlMidiMsg.controlVal">controlVal</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.data1" href="#src.fl_classes.FlMidiMsg.data1">data1</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.data2" href="#src.fl_classes.FlMidiMsg.data2">data2</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.handled" href="#src.fl_classes.FlMidiMsg.handled">handled</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.inEv" href="#src.fl_classes.FlMidiMsg.inEv">inEv</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.isIncrement" href="#src.fl_classes.FlMidiMsg.isIncrement">isIncrement</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.midiChan" href="#src.fl_classes.FlMidiMsg.midiChan">midiChan</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.midiChanEx" href="#src.fl_classes.FlMidiMsg.midiChanEx">midiChanEx</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.midiId" href="#src.fl_classes.FlMidiMsg.midiId">midiId</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.note" href="#src.fl_classes.FlMidiMsg.note">note</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.outEv" href="#src.fl_classes.FlMidiMsg.outEv">outEv</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.pitchBend" href="#src.fl_classes.FlMidiMsg.pitchBend">pitchBend</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.pmeFlags" href="#src.fl_classes.FlMidiMsg.pmeFlags">pmeFlags</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.port" href="#src.fl_classes.FlMidiMsg.port">port</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.pressure" href="#src.fl_classes.FlMidiMsg.pressure">pressure</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.progNum" href="#src.fl_classes.FlMidiMsg.progNum">progNum</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.res" href="#src.fl_classes.FlMidiMsg.res">res</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.status" href="#src.fl_classes.FlMidiMsg.status">status</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.sysex" href="#src.fl_classes.FlMidiMsg.sysex">sysex</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.timestamp" href="#src.fl_classes.FlMidiMsg.timestamp">timestamp</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.velocity" href="#src.fl_classes.FlMidiMsg.velocity">velocity</a></code></li>
 </ul>
 </li>
 </ul>
@@ -2088,44 +2281,45 @@ Defaults to <code>None</code>.</p>
 </li>
 <li><h3><a href="#header-functions">Functions</a></h3>
 <ul class="">
-<li><code><a title="src.fl_classes.isEventStandard" href="#src.fl_classes.isEventStandard">isEventStandard</a></code></li>
-<li><code><a title="src.fl_classes.isEventSysex" href="#src.fl_classes.isEventSysex">isEventSysex</a></code></li>
+<li><code><a title="src.fl_classes.eventToRawData" href="#src.fl_classes.eventToRawData">eventToRawData</a></code></li>
+<li><code><a title="src.fl_classes.isMidiMsgStandard" href="#src.fl_classes.isMidiMsgStandard">isMidiMsgStandard</a></code></li>
+<li><code><a title="src.fl_classes.isMidiMsgSysex" href="#src.fl_classes.isMidiMsgSysex">isMidiMsgSysex</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="src.fl_classes.EventData" href="#src.fl_classes.EventData">EventData</a></code></h4>
+<h4><code><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></code></h4>
 <ul class="two-column">
-<li><code><a title="src.fl_classes.EventData.controlNum" href="#src.fl_classes.EventData.controlNum">controlNum</a></code></li>
-<li><code><a title="src.fl_classes.EventData.controlVal" href="#src.fl_classes.EventData.controlVal">controlVal</a></code></li>
-<li><code><a title="src.fl_classes.EventData.data1" href="#src.fl_classes.EventData.data1">data1</a></code></li>
-<li><code><a title="src.fl_classes.EventData.data2" href="#src.fl_classes.EventData.data2">data2</a></code></li>
-<li><code><a title="src.fl_classes.EventData.handled" href="#src.fl_classes.EventData.handled">handled</a></code></li>
-<li><code><a title="src.fl_classes.EventData.inEv" href="#src.fl_classes.EventData.inEv">inEv</a></code></li>
-<li><code><a title="src.fl_classes.EventData.isIncrement" href="#src.fl_classes.EventData.isIncrement">isIncrement</a></code></li>
-<li><code><a title="src.fl_classes.EventData.midiChan" href="#src.fl_classes.EventData.midiChan">midiChan</a></code></li>
-<li><code><a title="src.fl_classes.EventData.midiChanEx" href="#src.fl_classes.EventData.midiChanEx">midiChanEx</a></code></li>
-<li><code><a title="src.fl_classes.EventData.midiId" href="#src.fl_classes.EventData.midiId">midiId</a></code></li>
-<li><code><a title="src.fl_classes.EventData.note" href="#src.fl_classes.EventData.note">note</a></code></li>
-<li><code><a title="src.fl_classes.EventData.outEv" href="#src.fl_classes.EventData.outEv">outEv</a></code></li>
-<li><code><a title="src.fl_classes.EventData.pitchBend" href="#src.fl_classes.EventData.pitchBend">pitchBend</a></code></li>
-<li><code><a title="src.fl_classes.EventData.pmeFlags" href="#src.fl_classes.EventData.pmeFlags">pmeFlags</a></code></li>
-<li><code><a title="src.fl_classes.EventData.port" href="#src.fl_classes.EventData.port">port</a></code></li>
-<li><code><a title="src.fl_classes.EventData.pressure" href="#src.fl_classes.EventData.pressure">pressure</a></code></li>
-<li><code><a title="src.fl_classes.EventData.progNum" href="#src.fl_classes.EventData.progNum">progNum</a></code></li>
-<li><code><a title="src.fl_classes.EventData.res" href="#src.fl_classes.EventData.res">res</a></code></li>
-<li><code><a title="src.fl_classes.EventData.status" href="#src.fl_classes.EventData.status">status</a></code></li>
-<li><code><a title="src.fl_classes.EventData.sysex" href="#src.fl_classes.EventData.sysex">sysex</a></code></li>
-<li><code><a title="src.fl_classes.EventData.timestamp" href="#src.fl_classes.EventData.timestamp">timestamp</a></code></li>
-<li><code><a title="src.fl_classes.EventData.velocity" href="#src.fl_classes.EventData.velocity">velocity</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.controlNum" href="#src.fl_classes.FlMidiMsg.controlNum">controlNum</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.controlVal" href="#src.fl_classes.FlMidiMsg.controlVal">controlVal</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.data1" href="#src.fl_classes.FlMidiMsg.data1">data1</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.data2" href="#src.fl_classes.FlMidiMsg.data2">data2</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.handled" href="#src.fl_classes.FlMidiMsg.handled">handled</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.inEv" href="#src.fl_classes.FlMidiMsg.inEv">inEv</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.isIncrement" href="#src.fl_classes.FlMidiMsg.isIncrement">isIncrement</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.midiChan" href="#src.fl_classes.FlMidiMsg.midiChan">midiChan</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.midiChanEx" href="#src.fl_classes.FlMidiMsg.midiChanEx">midiChanEx</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.midiId" href="#src.fl_classes.FlMidiMsg.midiId">midiId</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.note" href="#src.fl_classes.FlMidiMsg.note">note</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.outEv" href="#src.fl_classes.FlMidiMsg.outEv">outEv</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.pitchBend" href="#src.fl_classes.FlMidiMsg.pitchBend">pitchBend</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.pmeFlags" href="#src.fl_classes.FlMidiMsg.pmeFlags">pmeFlags</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.port" href="#src.fl_classes.FlMidiMsg.port">port</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.pressure" href="#src.fl_classes.FlMidiMsg.pressure">pressure</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.progNum" href="#src.fl_classes.FlMidiMsg.progNum">progNum</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.res" href="#src.fl_classes.FlMidiMsg.res">res</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.status" href="#src.fl_classes.FlMidiMsg.status">status</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.sysex" href="#src.fl_classes.FlMidiMsg.sysex">sysex</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.timestamp" href="#src.fl_classes.FlMidiMsg.timestamp">timestamp</a></code></li>
+<li><code><a title="src.fl_classes.FlMidiMsg.velocity" href="#src.fl_classes.FlMidiMsg.velocity">velocity</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="src.fl_classes.StandardEventData" href="#src.fl_classes.StandardEventData">StandardEventData</a></code></h4>
+<h4><code><a title="src.fl_classes.StandardMidiMsg" href="#src.fl_classes.StandardMidiMsg">StandardMidiMsg</a></code></h4>
 </li>
 <li>
-<h4><code><a title="src.fl_classes.SysexEventData" href="#src.fl_classes.SysexEventData">SysexEventData</a></code></h4>
+<h4><code><a title="src.fl_classes.SysexMidiMsg" href="#src.fl_classes.SysexMidiMsg">SysexMidiMsg</a></code></h4>
 </li>
 </ul>
 </li>
