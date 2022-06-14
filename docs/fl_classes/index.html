@@ -59,6 +59,7 @@ def OnMidiIn(event: FlMidiMsg) -&gt; None:
 from typing import Optional, overload
 from typing_extensions import TypeGuard
 
+
 class FlMidiMsg:
     &#34;&#34;&#34;
     A shadow of FL Studio&#39;s `FlMidiMsg` object. Note that although creating
@@ -70,9 +71,9 @@ class FlMidiMsg:
     by separating standard MIDI events and Sysex MIDI events. These will work
     for FL Studio&#39;s types as well.
 
-    * `isEventStandard()`
+    * `isMidiMsgStandard()`
 
-    * `isEventSysex()`
+    * `isMidiMsgSysex()`
 
     Basic type checking is performed when accessing properties of `FlMidiMsg`
     objects, to ensure that incorrect properties aren&#39;t accessed (for example
@@ -89,12 +90,14 @@ class FlMidiMsg:
         data2: int,
     ) -&gt; None:
         ...
+
     @overload
     def __init__(
         self,
         status_sysex: &#39;list[int] | bytes&#39;,
     ) -&gt; None:
         ...
+
     def __init__(
         self,
         status_sysex: &#39;int | list[int] | bytes&#39;,
@@ -619,7 +622,7 @@ class StandardMidiMsg(FlMidiMsg):
     your tests.
 
     Instead, you can type narrow to a `StandardFlMidiMsg` object using the
-    `isEventStandard()` function.
+    `isMidiMsgStandard()` function.
     &#34;&#34;&#34;
     def __init__(self, status: int, data1: int, data2: int) -&gt; None:
         super().__init__(status, data1, data2)
@@ -636,7 +639,7 @@ class SysexMidiMsg(FlMidiMsg):
     your tests.
 
     Instead, you can type narrow to a `SysexFlMidiMsg` object using the
-    `isEventSysex()` function.
+    `isMidiMsgSysex()` function.
     &#34;&#34;&#34;
     def __init__(self, sysex: list[int]) -&gt; None:
         super().__init__(sysex)
@@ -803,10 +806,10 @@ by separating standard MIDI events and Sysex MIDI events. These will work
 for FL Studio's types as well.</p>
 <ul>
 <li>
-<p><code>isEventStandard()</code></p>
+<p><code><a title="src.fl_classes.isMidiMsgStandard" href="#src.fl_classes.isMidiMsgStandard">isMidiMsgStandard()</a></code></p>
 </li>
 <li>
-<p><code>isEventSysex()</code></p>
+<p><code><a title="src.fl_classes.isMidiMsgSysex" href="#src.fl_classes.isMidiMsgSysex">isMidiMsgSysex()</a></code></p>
 </li>
 </ul>
 <p>Basic type checking is performed when accessing properties of <code><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></code>
@@ -860,9 +863,9 @@ msg = FlMidiMsg([0xF0, 0x7E, 0x7F, 0x06, 0x01, 0xF7])
     by separating standard MIDI events and Sysex MIDI events. These will work
     for FL Studio&#39;s types as well.
 
-    * `isEventStandard()`
+    * `isMidiMsgStandard()`
 
-    * `isEventSysex()`
+    * `isMidiMsgSysex()`
 
     Basic type checking is performed when accessing properties of `FlMidiMsg`
     objects, to ensure that incorrect properties aren&#39;t accessed (for example
@@ -879,12 +882,14 @@ msg = FlMidiMsg([0xF0, 0x7E, 0x7F, 0x06, 0x01, 0xF7])
         data2: int,
     ) -&gt; None:
         ...
+
     @overload
     def __init__(
         self,
         status_sysex: &#39;list[int] | bytes&#39;,
     ) -&gt; None:
         ...
+
     def __init__(
         self,
         status_sysex: &#39;int | list[int] | bytes&#39;,
@@ -2081,7 +2086,7 @@ perform type-narrowing operations, as it will lead to very obscure bugs
 when your type checks never work inside FL Studio, even if they work in
 your tests.</p>
 <p>Instead, you can type narrow to a <code>StandardFlMidiMsg</code> object using the
-<code>isEventStandard()</code> function.</p>
+<code><a title="src.fl_classes.isMidiMsgStandard" href="#src.fl_classes.isMidiMsgStandard">isMidiMsgStandard()</a></code> function.</p>
 <p>Create an <code><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></code> object.</p>
 <p>Note that this object will be incompatible with FL Studio's API, and so
 cannot be used as a parameter for any API functions during runtime.</p>
@@ -2128,7 +2133,7 @@ msg = FlMidiMsg([0xF0, 0x7E, 0x7F, 0x06, 0x01, 0xF7])
     your tests.
 
     Instead, you can type narrow to a `StandardFlMidiMsg` object using the
-    `isEventStandard()` function.
+    `isMidiMsgStandard()` function.
     &#34;&#34;&#34;
     def __init__(self, status: int, data1: int, data2: int) -&gt; None:
         super().__init__(status, data1, data2)</code></pre>
@@ -2179,7 +2184,7 @@ perform type-narrowing operations, as it will lead to very obscure bugs
 when your type checks never work inside FL Studio, even if they work in
 your tests.</p>
 <p>Instead, you can type narrow to a <code>SysexFlMidiMsg</code> object using the
-<code>isEventSysex()</code> function.</p>
+<code><a title="src.fl_classes.isMidiMsgSysex" href="#src.fl_classes.isMidiMsgSysex">isMidiMsgSysex()</a></code> function.</p>
 <p>Create an <code><a title="src.fl_classes.FlMidiMsg" href="#src.fl_classes.FlMidiMsg">FlMidiMsg</a></code> object.</p>
 <p>Note that this object will be incompatible with FL Studio's API, and so
 cannot be used as a parameter for any API functions during runtime.</p>
@@ -2226,7 +2231,7 @@ msg = FlMidiMsg([0xF0, 0x7E, 0x7F, 0x06, 0x01, 0xF7])
     your tests.
 
     Instead, you can type narrow to a `SysexFlMidiMsg` object using the
-    `isEventSysex()` function.
+    `isMidiMsgSysex()` function.
     &#34;&#34;&#34;
     def __init__(self, sysex: list[int]) -&gt; None:
         super().__init__(sysex)</code></pre>
