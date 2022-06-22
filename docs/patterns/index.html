@@ -273,17 +273,21 @@ def deselectAll() -&gt; None:
 
 
 def burnLoop(index: int, storeUndo: int = 1, updateUi: int = 1) -&gt; None:
-    &#34;&#34;&#34;???
+    &#34;&#34;&#34;For a pattern where looping of step sequenced channels is enabled,
+    disable looping for the channel at index `i`.
 
-    ## HELP WANTED:
-    * The documentation for this doesn&#39;t make sense.
+    # KNOWN ISSUES:
+    * Once this is disabled, it cannot be reenabled, except by disabling step
+      sequenced looping and reenabling it.
 
     ## Args:
-     * `index` (`int`): ???
+    * `index` (`int`): Index of channel to disable step sequencer looping for
 
-     * `storeUndo` (`int`, optional): ???. Defaults to 1.
+    * `storeUndo` (`bool`, optional): whether to store a point in the undo
+      history. Defaults to `True`.
 
-     * `updateUi` (`int`, optional): ???. Defaults to 1.
+    * `updateUi` (`bool`, optional): whether the function should do anything.
+      Setting this to `False` will make nothing happen. Defaults to `True`.
 
     Included since API version 9
     &#34;&#34;&#34;</code></pre>
@@ -300,21 +304,25 @@ def burnLoop(index: int, storeUndo: int = 1, updateUi: int = 1) -&gt; None:
 <span>def <span class="ident">burnLoop</span></span>(<span>index: int, storeUndo: int = 1, updateUi: int = 1) ‑> None</span>
 </code></dt>
 <dd>
-<div class="desc"><p>???</p>
-<h2 id="help-wanted">HELP WANTED:</h2>
+<div class="desc"><p>For a pattern where looping of step sequenced channels is enabled,
+disable looping for the channel at index <code>i</code>.</p>
+<h1 id="known-issues">KNOWN ISSUES:</h1>
 <ul>
-<li>The documentation for this doesn't make sense.</li>
+<li>Once this is disabled, it cannot be reenabled, except by disabling step
+sequenced looping and reenabling it.</li>
 </ul>
 <h2 id="args">Args:</h2>
 <ul>
 <li>
-<p><code>index</code> (<code>int</code>): ???</p>
+<p><code>index</code> (<code>int</code>): Index of channel to disable step sequencer looping for</p>
 </li>
 <li>
-<p><code>storeUndo</code> (<code>int</code>, optional): ???. Defaults to 1.</p>
+<p><code>storeUndo</code> (<code>bool</code>, optional): whether to store a point in the undo
+history. Defaults to <code>True</code>.</p>
 </li>
 <li>
-<p><code>updateUi</code> (<code>int</code>, optional): ???. Defaults to 1.</p>
+<p><code>updateUi</code> (<code>bool</code>, optional): whether the function should do anything.
+Setting this to <code>False</code> will make nothing happen. Defaults to <code>True</code>.</p>
 </li>
 </ul>
 <p>Included since API version 9</p></div>
@@ -323,17 +331,21 @@ def burnLoop(index: int, storeUndo: int = 1, updateUi: int = 1) -&gt; None:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def burnLoop(index: int, storeUndo: int = 1, updateUi: int = 1) -&gt; None:
-    &#34;&#34;&#34;???
+    &#34;&#34;&#34;For a pattern where looping of step sequenced channels is enabled,
+    disable looping for the channel at index `i`.
 
-    ## HELP WANTED:
-    * The documentation for this doesn&#39;t make sense.
+    # KNOWN ISSUES:
+    * Once this is disabled, it cannot be reenabled, except by disabling step
+      sequenced looping and reenabling it.
 
     ## Args:
-     * `index` (`int`): ???
+    * `index` (`int`): Index of channel to disable step sequencer looping for
 
-     * `storeUndo` (`int`, optional): ???. Defaults to 1.
+    * `storeUndo` (`bool`, optional): whether to store a point in the undo
+      history. Defaults to `True`.
 
-     * `updateUi` (`int`, optional): ???. Defaults to 1.
+    * `updateUi` (`bool`, optional): whether the function should do anything.
+      Setting this to `False` will make nothing happen. Defaults to `True`.
 
     Included since API version 9
     &#34;&#34;&#34;</code></pre>
