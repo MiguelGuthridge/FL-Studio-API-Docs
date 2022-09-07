@@ -861,7 +861,14 @@ they have a standardized communication method.</p>
 
 <p>MIDI messages sent through this method are received in the same way as all
 other messages, so it should be ensured that they can be differentiated
-by the receiving controller.</p>
+by the receiving controller. This can be done by encoding events, for
+example by implementing the Universal Event Forwarder specification
+<a href="https://github.com/MiguelGuthridge/Universal-Controller-Script/blob/main/docs/contributing/devices/event_forward.md#forwarded-event-specification">found here</a>.
+If you choose not to encode messages, you run the risk of having it be
+impossible to differentiate between events from different ports, as sadly
+FL Studio has no built-in mechanism for this.</p>
+
+<h2 id="making-your-device-support-event-forwarding">Making your device support event forwarding</h2>
 
 <p>In order to allow a device to receive MIDI messages via a dispatch command,
 it must have a <code>receiveFrom</code> pre-processor comment for FL Studio to detect
@@ -874,6 +881,21 @@ when the script is loaded. This comment should be at the top of the
 
 <p>After this declaration, the script named "My Other Controller" will be able
 to dispatch MIDI messages to the script named "My Controller".</p>
+
+<p>Note that communication can be bi-directional by listing "My Other
+Controller" as receiving from "My Controller" as well. If multiple devices
+can receive from one device, or if there are multiple instances of the one
+device, each device can be forwarded to from a different ctrlIndex,
+specified in the function arguments.</p>
+
+<h2 id="warning">Warning:</h2>
+
+<p>Running this function in the REPL is a very buggy experience. Often, calls
+to this function will result in an FL Studio crash unless it is run from
+within one of the callbacks, such as <code>OnMidiIn()</code>. As such, it can be best
+to test it by performing the calls from <code>OnMidiIn()</code>, then handling the
+original event, meaning you can trigger the event forwarding process by
+repeatedly pressing keys or buttons on your controller.</p>
 
 <h2 id="args">Args:</h2>
 
