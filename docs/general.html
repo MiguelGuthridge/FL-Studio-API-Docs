@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="pdoc 12.0.2"/>
+    <meta name="generator" content="pdoc 12.1.0"/>
     <title>general API documentation</title>
 
     <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
@@ -131,7 +131,7 @@ general    </h1>
                     <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">saveUndo</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">undoName</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">flags</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">update</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+        <span class="name">saveUndo</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">undoName</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">flags</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">update</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
         
     </div>
@@ -202,7 +202,10 @@ undo history is at the most recent, it will undo, otherwise, it will redo.</p>
     </div>
     <a class="headerlink" href="#undoUp"></a>
     
-            <div class="docstring"><p>Move up in the undo history. This is much like undo in most programs</p>
+            <div class="docstring"><p>Move up in the undo history. This is much like undo in most programs.</p>
+
+<p>Note that in FL Studio 21, the ordering of the undo history was changed,
+so visually this actually moves down.</p>
 
 <h2 id="returns">Returns:</h2>
 
@@ -225,7 +228,10 @@ undo history is at the most recent, it will undo, otherwise, it will redo.</p>
     </div>
     <a class="headerlink" href="#undoDown"></a>
     
-            <div class="docstring"><p>Move down in the undo history. This is much like redo in most programs</p>
+            <div class="docstring"><p>Move down in the undo history. This is much like redo in most programs.</p>
+
+<p>Note that in FL Studio 21, the ordering of the undo history was changed,
+so visually this actually moves up.</p>
 
 <h2 id="returns">Returns:</h2>
 
@@ -270,7 +276,8 @@ undo)</li>
                 </section>
                 <section id="restoreUndo">
                     <div class="attr function">
-            
+                    <div class="decorator">@deprecate(1)</div>
+
         <span class="def">def</span>
         <span class="name">restoreUndo</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
 
@@ -278,15 +285,7 @@ undo)</li>
     </div>
     <a class="headerlink" href="#restoreUndo"></a>
     
-            <div class="docstring"><p>???</p>
-
-<p>This seems to behave in the same way as <code><a href="#undo">undo()</a></code>.</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this do?</li>
-</ul>
+            <div class="docstring"><p>Undo-redo toggle. This behaves in the same way as <code><a href="#undo">undo()</a></code>.</p>
 
 <h2 id="returns">Returns:</h2>
 
@@ -295,13 +294,16 @@ undo)</li>
 </ul>
 
 <p>Included since API version 1</p>
+
+<p>Deprecated since API version 1</p>
 </div>
 
 
                 </section>
                 <section id="restoreUndoLevel">
                     <div class="attr function">
-            
+                    <div class="decorator">@deprecate(1)</div>
+
         <span class="def">def</span>
         <span class="name">restoreUndoLevel</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">level</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
 
@@ -309,20 +311,12 @@ undo)</li>
     </div>
     <a class="headerlink" href="#restoreUndoLevel"></a>
     
-            <div class="docstring"><p>???</p>
-
-<p>This seems to behave in the same way as <code><a href="#undo">undo()</a></code>.</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this do? What is the parameter for?</li>
-</ul>
+            <div class="docstring"><p>Undo-redo toggle. This behaves in the same way as <code><a href="#undo">undo()</a></code>.</p>
 
 <h2 id="args">Args:</h2>
 
 <ul>
-<li><code>level</code> (<code>int</code>): ???</li>
+<li><code>level</code> (<code>int</code>): this parameter is ignored.</li>
 </ul>
 
 <h2 id="returns">Returns:</h2>
@@ -405,7 +399,9 @@ difference?</li>
     </div>
     <a class="headerlink" href="#getUndoHistoryCount"></a>
     
-            <div class="docstring"><p>Returns the length of the undo history</p>
+            <div class="docstring"><p>Returns the total number of items that have ever been added to the undo
+history including items that have been trimmed by <code><a href="#setUndoHistoryPos">setUndoHistoryPos()</a></code>,
+but not items that have been trimmed by <code><a href="#setUndoHistoryCount">setUndoHistoryCount()</a></code>.</p>
 
 <h2 id="returns">Returns:</h2>
 
@@ -452,8 +448,20 @@ position is <code>0</code>, with earlier points in the history having higher ind
     </div>
     <a class="headerlink" href="#setUndoHistoryPos"></a>
     
-            <div class="docstring"><p>Removes recent elements from the undo history, leaving only the first
-<code>index</code> elements</p>
+            <div class="docstring"><p>Removes recent elements from the undo history, leaving only the earliest
+<code>n = index</code> elements in the history.</p>
+
+<p>This will affect the length of the undo history as per
+<code><a href="#getUndoHistoryPos">getUndoHistoryPos()</a></code>, but not affect it as per <code><a href="#getUndoHistoryCount">getUndoHistoryCount()</a></code></p>
+
+<p>This will not actually undo the actions, just remove them from the undo
+history. It could be useful for grouping multiple undo items into one.</p>
+
+<h2 id="known-issues">Known issues:</h2>
+
+<ul>
+<li>The browser will not refresh when this action</li>
+</ul>
 
 <h2 id="args">Args:</h2>
 
@@ -476,8 +484,17 @@ position is <code>0</code>, with earlier points in the history having higher ind
     </div>
     <a class="headerlink" href="#setUndoHistoryCount"></a>
     
-            <div class="docstring"><p>Removes old elements from the undo history, leaving only the last
-<code>index</code> elements</p>
+            <div class="docstring"><p>Removes old elements from the undo history, leaving only the latest
+<code>n = index</code> elements.</p>
+
+<p>This will affect the length of the undo history as per
+<code><a href="#getUndoHistoryCount">getUndoHistoryCount()</a></code>, but not affect it as per <code><a href="#getUndoHistoryPos">getUndoHistoryPos()</a></code></p>
+
+<h2 id="known-issues">Known issues:</h2>
+
+<ul>
+<li>The browser will not refresh when this action</li>
+</ul>
 
 <h2 id="args">Args:</h2>
 
@@ -546,7 +563,8 @@ a bar.</p>
                 </section>
                 <section id="getRecPPQ">
                     <div class="attr function">
-            
+                    <div class="decorator">@since(8)</div>
+
         <span class="def">def</span>
         <span class="name">getRecPPQ</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
 
@@ -668,7 +686,8 @@ version, rather than the FL Studio version</p>
                 </section>
                 <section id="processRECEvent">
                     <div class="attr function">
-            
+                    <div class="decorator">@since(7)</div>
+
         <span class="def">def</span>
         <span class="name">processRECEvent</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">eventId</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">value</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">flags</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
 
@@ -725,7 +744,8 @@ and so on.</p>
                 </section>
                 <section id="dumpScoreLog">
                     <div class="attr function">
-            
+                    <div class="decorator">@since(15)</div>
+
         <span class="def">def</span>
         <span class="name">dumpScoreLog</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">time</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">silent</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
@@ -751,7 +771,8 @@ not (<code>0</code>)</p></li>
                 </section>
                 <section id="clearLog">
                     <div class="attr function">
-            
+                    <div class="decorator">@since(15)</div>
+
         <span class="def">def</span>
         <span class="name">clearLog</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
@@ -869,7 +890,11 @@ not (<code>0</code>)</p></li>
                 let heading;
                 switch (result.doc.type) {
                     case "function":
-                        heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span><span class="signature">${doc.signature}:</span>`;
+                        if (doc.fullname.endsWith(".__init__")) {
+                            heading = `<span class="name">${doc.fullname.replace(/\.__init__$/, "")}</span>${doc.signature}`;
+                        } else {
+                            heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span>${doc.signature}`;
+                        }
                         break;
                     case "class":
                         heading = `<span class="def">class</span> <span class="name">${doc.fullname}</span>`;

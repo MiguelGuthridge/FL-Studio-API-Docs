@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="pdoc 12.0.2"/>
+    <meta name="generator" content="pdoc 12.1.0"/>
     <title>device API documentation</title>
 
     <style>/*! * Bootstrap Reboot v5.0.0 (https://getbootstrap.com/) * Copyright 2011-2021 The Bootstrap Authors * Copyright 2011-2021 Twitter, Inc. * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE) * Forked from Normalize.css, licensed MIT (https://github.com/necolas/normalize.css/blob/master/LICENSE.md) */*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}hr{margin:1rem 0;color:inherit;background-color:currentColor;border:0;opacity:.25}hr:not([size]){height:1px}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}h5{font-size:1.25rem}h6{font-size:1rem}p{margin-top:0;margin-bottom:1rem}abbr[data-bs-original-title],abbr[title]{-webkit-text-decoration:underline dotted;text-decoration:underline dotted;cursor:help;-webkit-text-decoration-skip-ink:none;text-decoration-skip-ink:none}address{margin-bottom:1rem;font-style:normal;line-height:inherit}ol,ul{padding-left:2rem}dl,ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}dt{font-weight:700}dd{margin-bottom:.5rem;margin-left:0}blockquote{margin:0 0 1rem}b,strong{font-weight:bolder}small{font-size:.875em}mark{padding:.2em;background-color:#fcf8e3}sub,sup{position:relative;font-size:.75em;line-height:0;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}a{color:#0d6efd;text-decoration:underline}a:hover{color:#0a58ca}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,kbd,pre,samp{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em;direction:ltr;unicode-bidi:bidi-override}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}pre code{font-size:inherit;color:inherit;word-break:normal}code{font-size:.875em;color:#d63384;word-wrap:break-word}a>code{color:inherit}kbd{padding:.2rem .4rem;font-size:.875em;color:#fff;background-color:#212529;border-radius:.2rem}kbd kbd{padding:0;font-size:1em;font-weight:700}figure{margin:0 0 1rem}img,svg{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}caption{padding-top:.5rem;padding-bottom:.5rem;color:#6c757d;text-align:left}th{text-align:inherit;text-align:-webkit-match-parent}tbody,td,tfoot,th,thead,tr{border-color:inherit;border-style:solid;border-width:0}label{display:inline-block}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input,optgroup,select,textarea{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,select{text-transform:none}[role=button]{cursor:pointer}select{word-wrap:normal}select:disabled{opacity:1}[list]::-webkit-calendar-picker-indicator{display:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}textarea{resize:vertical}fieldset{min-width:0;padding:0;margin:0;border:0}legend{float:left;width:100%;padding:0;margin-bottom:.5rem;font-size:calc(1.275rem + .3vw);line-height:inherit}@media (min-width:1200px){legend{font-size:1.5rem}}legend+*{clear:left}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:textfield}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::file-selector-button{font:inherit}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}output{display:inline-block}iframe{border:0}summary{display:list-item;cursor:pointer}progress{vertical-align:baseline}[hidden]{display:none!important}</style>
@@ -54,12 +54,6 @@
                     <a class="function" href="#sendMsgGeneric">sendMsgGeneric</a>
             </li>
             <li>
-                    <a class="function" href="#processMIDICC">processMIDICC</a>
-            </li>
-            <li>
-                    <a class="function" href="#forwardMIDICC">forwardMIDICC</a>
-            </li>
-            <li>
                     <a class="function" href="#directFeedback">directFeedback</a>
             </li>
             <li>
@@ -67,6 +61,18 @@
             </li>
             <li>
                     <a class="function" href="#stopRepeatMidiEvent">stopRepeatMidiEvent</a>
+            </li>
+            <li>
+                    <a class="function" href="#setMasterSync">setMasterSync</a>
+            </li>
+            <li>
+                    <a class="function" href="#getMasterSync">getMasterSync</a>
+            </li>
+            <li>
+                    <a class="function" href="#processMIDICC">processMIDICC</a>
+            </li>
+            <li>
+                    <a class="function" href="#forwardMIDICC">forwardMIDICC</a>
             </li>
             <li>
                     <a class="function" href="#findEventID">findEventID</a>
@@ -84,6 +90,15 @@
                     <a class="function" href="#getLinkedInfo">getLinkedInfo</a>
             </li>
             <li>
+                    <a class="function" href="#dispatch">dispatch</a>
+            </li>
+            <li>
+                    <a class="function" href="#dispatchReceiverCount">dispatchReceiverCount</a>
+            </li>
+            <li>
+                    <a class="function" href="#dispatchGetReceiverPortNumber">dispatchGetReceiverPortNumber</a>
+            </li>
+            <li>
                     <a class="function" href="#createRefreshThread">createRefreshThread</a>
             </li>
             <li>
@@ -94,30 +109,6 @@
             </li>
             <li>
                     <a class="function" href="#isDoubleClick">isDoubleClick</a>
-            </li>
-            <li>
-                    <a class="function" href="#setHasMeters">setHasMeters</a>
-            </li>
-            <li>
-                    <a class="function" href="#baseTrackSelect">baseTrackSelect</a>
-            </li>
-            <li>
-                    <a class="function" href="#hardwareRefreshMixerTrack">hardwareRefreshMixerTrack</a>
-            </li>
-            <li>
-                    <a class="function" href="#dispatch">dispatch</a>
-            </li>
-            <li>
-                    <a class="function" href="#dispatchReceiverCount">dispatchReceiverCount</a>
-            </li>
-            <li>
-                    <a class="function" href="#dispatchGetReceiverPortNumber">dispatchGetReceiverPortNumber</a>
-            </li>
-            <li>
-                    <a class="function" href="#setMasterSync">setMasterSync</a>
-            </li>
-            <li>
-                    <a class="function" href="#getMasterSync">getMasterSync</a>
             </li>
     </ul>
 
@@ -198,7 +189,8 @@ value of the input port, which is returned by this function.</p>
                 </section>
                 <section id="getName">
                     <div class="attr function">
-            
+                    <div class="decorator">@since(7)</div>
+
         <span class="def">def</span>
         <span class="name">getName</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
 
@@ -221,7 +213,8 @@ value of the input port, which is returned by this function.</p>
                 </section>
                 <section id="midiOutMsg">
                     <div class="attr function">
-            
+                    <div class="decorator">@since(2)</div>
+
         <span class="def">def</span>
         <span class="name">midiOutMsg</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">message</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">channel</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>,</span><span class="param">	<span class="n">data1</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>,</span><span class="param">	<span class="n">data2</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
@@ -321,7 +314,8 @@ same <code>slotIndex</code>.</p>
                 </section>
                 <section id="sendMsgGeneric">
                     <div class="attr function">
-            
+                    <div class="decorator">@deprecate(9)</div>
+
         <span class="def">def</span>
         <span class="name">sendMsgGeneric</span><span class="signature pdoc-code condensed">(<span class="param"><span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">message</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">lastMsg</span><span class="p">:</span> <span class="nb">str</span>, </span><span class="param"><span class="n">offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
 
@@ -355,59 +349,8 @@ function.</p></li>
 </ul>
 
 <p>Included since API version 1</p>
-</div>
 
-
-                </section>
-                <section id="processMIDICC">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">processMIDICC</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">eventData</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#processMIDICC"></a>
-    
-            <div class="docstring"><p>Lets FL Studio process a MIDI CC message.</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><code>eventData</code> (<code>eventData</code>): FL MIDI Event to process.</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="forwardMIDICC">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">forwardMIDICC</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">message</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#forwardMIDICC"></a>
-    
-            <div class="docstring"><p>Forwards a MIDI CC message to the currently focused plugin.</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>message</code> (<code>int</code>): MIDI message to forward</p></li>
-<li><p><code>mode</code> (<code>int</code>, optional): Where to send the message:</p>
-
-<ul>
-<li><p><code>0</code>: Send the message to all plugins</p></li>
-<li><p><code>1</code> (default): ???</p></li>
-<li><p><code>2</code>: Send the message to the selected channels</p></li>
-</ul></li>
-</ul>
-
-<p>Included since API version 7</p>
+<p>Deprecated since API version 9</p>
 </div>
 
 
@@ -416,7 +359,7 @@ function.</p></li>
                     <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">directFeedback</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">eventData</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+        <span class="name">directFeedback</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">eventData</span><span class="p">:</span> <span class="n"><a href="fl_classes.html#FlMidiMsg">fl_classes.FlMidiMsg</a></span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
         
     </div>
@@ -439,7 +382,7 @@ function.</p></li>
                     <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">repeatMidiEvent</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">eventData</span>, </span><span class="param"><span class="n">delay</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span>, </span><span class="param"><span class="n">rate</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+        <span class="name">repeatMidiEvent</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">eventData</span><span class="p">:</span> <span class="n"><a href="fl_classes.html#FlMidiMsg">fl_classes.FlMidiMsg</a></span>,</span><span class="param">	<span class="n">delay</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span>,</span><span class="param">	<span class="n">rate</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
         
     </div>
@@ -477,6 +420,120 @@ to 300.</p></li>
 <p>Refer to <code><a href="#repeatMidiEvent">repeatMidiEvent()</a></code>.</p>
 
 <p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="setMasterSync">
+                    <div class="attr function">
+                    <div class="decorator">@since(18)</div>
+
+        <span class="def">def</span>
+        <span class="name">setMasterSync</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">value</span><span class="p">:</span> <span class="nb">bool</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#setMasterSync"></a>
+    
+            <div class="docstring"><p>Control the value of the "send master sync" option in FL Studio's MIDI
+settings for this device.</p>
+
+<p>This option controls whether stop, pause and play transport notifications
+are sent to the MIDI device. This shouldn't be enabled unless the device
+explicitly requires it, as it can lead to unpredictable and sometimes
+broken behavior.</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><code>value</code> (<code>bool</code>): Whether to enable (or disable</li>
+</ul>
+
+<p>Included since API Version 18</p>
+</div>
+
+
+                </section>
+                <section id="getMasterSync">
+                    <div class="attr function">
+                    <div class="decorator">@since(19)</div>
+
+        <span class="def">def</span>
+        <span class="name">getMasterSync</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">bool</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getMasterSync"></a>
+    
+            <div class="docstring"><p>Returns the value of the "send master sync" option in FL Studio's MIDI
+settings for this device.</p>
+
+<p>This option returns whether stop, pause and play transport notifications
+are sent to the MIDI device, and shouldn't be enabled unless the device
+explicitly requires it, as it can lead to unpredictable and sometimes
+broken behavior.</p>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>bool</code>: Whether master sync is enabled</li>
+</ul>
+
+<p>Included since API Version 19</p>
+</div>
+
+
+                </section>
+                <section id="processMIDICC">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">processMIDICC</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">eventData</span><span class="p">:</span> <span class="n"><a href="fl_classes.html#FlMidiMsg">fl_classes.FlMidiMsg</a></span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#processMIDICC"></a>
+    
+            <div class="docstring"><p>Lets FL Studio process a MIDI CC message.</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><code>eventData</code> (<code>eventData</code>): FL MIDI Event to process.</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="forwardMIDICC">
+                    <div class="attr function">
+                    <div class="decorator">@since(7)</div>
+
+        <span class="def">def</span>
+        <span class="name">forwardMIDICC</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">message</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#forwardMIDICC"></a>
+    
+            <div class="docstring"><p>Forwards a MIDI CC message to the currently focused plugin.</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>message</code> (<code>int</code>): MIDI message to forward</p></li>
+<li><p><code>mode</code> (<code>int</code>, optional): Where to send the message:</p>
+
+<ul>
+<li><p><code>0</code>: Send the message to all plugins</p></li>
+<li><p><code>1</code> (default): ???</p></li>
+<li><p><code>2</code>: Send the message to the selected channels</p></li>
+</ul></li>
+</ul>
+
+<p>Included since API version 7</p>
 </div>
 
 
@@ -556,7 +613,8 @@ if "there is no linked control".</p>
                 </section>
                 <section id="getLinkedValueString">
                     <div class="attr function">
-            
+                    <div class="decorator">@since(10)</div>
+
         <span class="def">def</span>
         <span class="name">getLinkedValueString</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">eventID</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
 
@@ -595,7 +653,8 @@ REC parameter.</p>
                 </section>
                 <section id="getLinkedParamName">
                     <div class="attr function">
-            
+                    <div class="decorator">@since(10)</div>
+
         <span class="def">def</span>
         <span class="name">getLinkedParamName</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">eventID</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
 
@@ -661,6 +720,114 @@ REC parameter.</p>
 </ul>
 
 <p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="dispatch">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">dispatch</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">ctrlIndex</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">message</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">sysex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#dispatch"></a>
+    
+            <div class="docstring"><p>Dispatch a MIDI message (either via a standard MIDI Message or through a
+system exclusive (SysEx) message) that is sent to another controller
+script. This allows communication between different devices provided that
+they have a standardized communication method.</p>
+
+<p>MIDI messages sent through this method are received in the same way as all
+other messages, so it should be ensured that they can be differentiated
+by the receiving controller.</p>
+
+<p>In order to allow a device to receive MIDI messages via a dispatch command,
+it must have a <code>receiveFrom</code> pre-processor comment for FL Studio to detect
+when the script is loaded. This comment should be at the top of the
+<code>device_MyController.py</code> file along with the name and URL, for example:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><code><span class="c1"># name=My Controller</span>
+<span class="c1"># receiveFrom=My Other Controller</span>
+</code></pre></div>
+
+<p>After this declaration, the script named "My Other Controller" will be able
+to dispatch MIDI messages to the script named "My Controller".</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>ctrlIndex</code> (<code>int</code>): index of the controller to dispatch to</p></li>
+<li><p><code>message</code> (<code>int</code>): MIDI message to send (<code>0xF0</code> for a SysEx message)</p></li>
+<li><p><code>sysex</code> (<code>bytes</code>, optional): SysEx data to send, if applicable</p></li>
+</ul>
+
+<h2 id="example-usage">Example Usage:</h2>
+
+<div class="pdoc-code codehilite"><pre><span></span><code><span class="c1"># Send a standard MIDI event (middle C note on) to the device indexed 0.</span>
+<span class="n"><a href="#dispatch">device.dispatch</a></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mh">0x90</span> <span class="o">+</span> <span class="p">(</span><span class="mh">0x3C</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mh">0x7F</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">))</span>
+
+<span class="c1"># Send a sysex MIDI event to the device indexed 0. Note that the full</span>
+<span class="c1"># message is still contained within the bytes object, even though the</span>
+<span class="c1"># `0xF0` is also given as `message`.</span>
+<span class="n"><a href="#dispatch">device.dispatch</a></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">([</span><span class="mh">0xF0</span><span class="p">,</span> <span class="mh">0x7E</span><span class="p">,</span> <span class="mh">0x7F</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">]))</span>
+</code></pre></div>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="dispatchReceiverCount">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">dispatchReceiverCount</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#dispatchReceiverCount"></a>
+    
+            <div class="docstring"><p>Returns the number of device scripts that this script can dispatch to.</p>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code>: number of available receiver devices.</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="dispatchGetReceiverPortNumber">
+                    <div class="attr function">
+                    <div class="decorator">@since(5)</div>
+
+        <span class="def">def</span>
+        <span class="name">dispatchGetReceiverPortNumber</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">ctrlIndex</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#dispatchGetReceiverPortNumber"></a>
+    
+            <div class="docstring"><p>Returns the port of the receiver device specified by <code>ctrlIndex</code>.</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><code>ctrlIndex</code> (<code>int</code>): device script to check</li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code>: MIDI port associated with the receiver device</li>
+</ul>
+
+<p>Included since API version 5</p>
 </div>
 
 
@@ -761,272 +928,6 @@ before, indicating a double click.</p>
 </ul>
 
 <p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="setHasMeters">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">setHasMeters</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#setHasMeters"></a>
-    
-            <div class="docstring"><p>Registers the controller as having peak meters, meaning that the
-<code>OnUpdateMeters()</code> function will be called. This function should be called
-within <code>OnInit()</code>.</p>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="baseTrackSelect">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">baseTrackSelect</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">step</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#baseTrackSelect"></a>
-    
-            <div class="docstring"><p>Base track selection (for control surfaces). Set <code>step</code> to <code>MaxInt</code> to
-reset.</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this do?</li>
-</ul>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>index</code> (<code>int</code>): ???</p></li>
-<li><p><code>step</code> (<code>int</code>): ???</p></li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="hardwareRefreshMixerTrack">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">hardwareRefreshMixerTrack</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#hardwareRefreshMixerTrack"></a>
-    
-            <div class="docstring"><p>Hardware refresh mixer track at <code>index</code>.</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this mean?</li>
-</ul>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><code>index</code> (<code>int</code>): track index. <code>-1</code> refreshes all tracks.</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="dispatch">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">dispatch</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">ctrlIndex</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">message</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">sysex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bytes</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#dispatch"></a>
-    
-            <div class="docstring"><p>Dispatch a MIDI message (either via a standard MIDI Message or through a
-system exclusive (SysEx) message) that is sent to another controller
-script. This allows communication between different devices provided that
-they have a standardized communication method.</p>
-
-<p>MIDI messages sent through this method are received in the same way as all
-other messages, so it should be ensured that they can be differentiated
-by the receiving controller. This can be done by encoding events, for
-example by implementing the Universal Event Forwarder specification
-<a href="https://github.com/MiguelGuthridge/Universal-Controller-Script/blob/main/docs/contributing/devices/event_forward.md#forwarded-event-specification">found here</a>.
-If you choose not to encode messages, you run the risk of having it be
-impossible to differentiate between events from different ports, as sadly
-FL Studio has no built-in mechanism for this.</p>
-
-<h2 id="making-your-device-support-event-forwarding">Making your device support event forwarding</h2>
-
-<p>In order to allow a device to receive MIDI messages via a dispatch command,
-it must have a <code>receiveFrom</code> pre-processor comment for FL Studio to detect
-when the script is loaded. This comment should be at the top of the
-<code>device_MyController.py</code> file along with the name and URL, for example:</p>
-
-<div class="pdoc-code codehilite"><pre><span></span><code><span class="c1"># name=My Controller</span>
-<span class="c1"># receiveFrom=My Other Controller</span>
-</code></pre></div>
-
-<p>After this declaration, the script named "My Other Controller" will be able
-to dispatch MIDI messages to the script named "My Controller".</p>
-
-<p>Note that communication can be bi-directional by listing "My Other
-Controller" as receiving from "My Controller" as well. If multiple devices
-can receive from one device, or if there are multiple instances of the one
-device, each device can be forwarded to from a different ctrlIndex,
-specified in the function arguments.</p>
-
-<h2 id="warning">Warning:</h2>
-
-<p>Running this function in the REPL is a very buggy experience. Often, calls
-to this function will result in an FL Studio crash unless it is run from
-within one of the callbacks, such as <code>OnMidiIn()</code>. As such, it can be best
-to test it by performing the calls from <code>OnMidiIn()</code>, then handling the
-original event, meaning you can trigger the event forwarding process by
-repeatedly pressing keys or buttons on your controller.</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>ctrlIndex</code> (<code>int</code>): index of the controller to dispatch to</p></li>
-<li><p><code>message</code> (<code>int</code>): MIDI message to send (<code>0xF0</code> for a SysEx message)</p></li>
-<li><p><code>sysex</code> (<code>bytes</code>, optional): SysEx data to send, if applicable</p></li>
-</ul>
-
-<h2 id="example-usage">Example Usage:</h2>
-
-<div class="pdoc-code codehilite"><pre><span></span><code><span class="c1"># Send a standard MIDI event (middle C note on) to the device indexed 0.</span>
-<span class="n"><a href="#dispatch">device.dispatch</a></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mh">0x90</span> <span class="o">+</span> <span class="p">(</span><span class="mh">0x3C</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mh">0x7F</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">))</span>
-
-<span class="c1"># Send a sysex MIDI event to the device indexed 0. Note that the full</span>
-<span class="c1"># message is still contained within the bytes object, even though the</span>
-<span class="c1"># `0xF0` is also given as `message`.</span>
-<span class="n"><a href="#dispatch">device.dispatch</a></span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mh">0xF0</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">([</span><span class="mh">0xF0</span><span class="p">,</span> <span class="mh">0x7E</span><span class="p">,</span> <span class="mh">0x7F</span><span class="p">,</span> <span class="mh">0x06</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">,</span> <span class="mh">0xF7</span><span class="p">]))</span>
-</code></pre></div>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="dispatchReceiverCount">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">dispatchReceiverCount</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#dispatchReceiverCount"></a>
-    
-            <div class="docstring"><p>Returns the number of device scripts that this script can dispatch to.</p>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>int</code>: number of available receiver devices.</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="dispatchGetReceiverPortNumber">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">dispatchGetReceiverPortNumber</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">ctrlIndex</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#dispatchGetReceiverPortNumber"></a>
-    
-            <div class="docstring"><p>Returns the port of the receiver device specified by <code>ctrlIndex</code>.</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><code>ctrlIndex</code> (<code>int</code>): device script to check</li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>int</code>: MIDI port associated with the receiver device</li>
-</ul>
-
-<p>Included since API version 5</p>
-</div>
-
-
-                </section>
-                <section id="setMasterSync">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">setMasterSync</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">value</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#setMasterSync"></a>
-    
-            <div class="docstring"><p>Control the value of the "send master sync" option in FL Studio's MIDI
-settings for this device.</p>
-
-<p>This option controls whether stop, pause and play transport notifications
-are sent to the MIDI device. This shouldn't be enabled unless the device
-explicitly requires it, as it can lead to unpredictable and sometimes
-broken behavior.</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><code>value</code> (<code>int</code>): Whether to enable (<code>1</code>) or disable (<code>0</code>)</li>
-</ul>
-
-<p>Included since API Version 18</p>
-</div>
-
-
-                </section>
-                <section id="getMasterSync">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">getMasterSync</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">bool</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getMasterSync"></a>
-    
-            <div class="docstring"><p>Returns the value of the "send master sync" option in FL Studio's MIDI
-settings for this device.</p>
-
-<p>This option controls whether stop, pause and play transport notifications
-are sent to the MIDI device, and shouldn't be enabled unless the device
-explicitly requires it, as it can lead to unpredictable and sometimes
-broken behavior.</p>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>bool</code>: Whether master sync is enabled (<code>1</code>) or disabled (<code>0</code>)</li>
-</ul>
-
-<p>Included since API Version 19</p>
 </div>
 
 
@@ -1134,7 +1035,11 @@ broken behavior.</p>
                 let heading;
                 switch (result.doc.type) {
                     case "function":
-                        heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span><span class="signature">${doc.signature}:</span>`;
+                        if (doc.fullname.endsWith(".__init__")) {
+                            heading = `<span class="name">${doc.fullname.replace(/\.__init__$/, "")}</span>${doc.signature}`;
+                        } else {
+                            heading = `<span class="def">${doc.funcdef}</span> <span class="name">${doc.fullname}</span>${doc.signature}`;
+                        }
                         break;
                     case "class":
                         heading = `<span class="def">class</span> <span class="name">${doc.fullname}</span>`;
