@@ -28,6 +28,15 @@
             <input type="search" placeholder="Search..." role="searchbox" aria-label="search"
                    pattern=".+" required>
 
+        <h2>Contents</h2>
+        <ul>
+  <li><a href="#fl-studios-event-mapping-system-rec-events">FL Studio's event mapping system (REC events)</a>
+  <ul>
+    <li><a href="#control-ids">Control IDs</a></li>
+    <li><a href="#event-ids">Event IDs</a></li>
+  </ul></li>
+</ul>
+
 
 
         <h2>API Documentation</h2>
@@ -127,10 +136,54 @@
                     <h1 class="modulename">
 device    </h1>
 
-                        <div class="docstring"><p>Device Module (FL Studio built-in)</p>
+                        <div class="docstring"><p>FL Studio built-in module</p>
 
 <p>Handles the way that devices connect to FL Studio's MIDI interface, and how
 scripts communicate with each other.</p>
+
+<h1 id="fl-studios-event-mapping-system-rec-events">FL Studio's event mapping system (REC events)</h1>
+
+<p>FL Studio uses an advanced system mapping events from hardware controls to
+software controls, which can be confusing to use without an explanation.</p>
+
+<h2 id="control-ids">Control IDs</h2>
+
+<p>These represent the unique identifier of a single hardware control within FL
+Studio. They are formed from a port number, a MIDI channel and a CC number,
+which are encoded as follows:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><code><span class="n">cc</span> <span class="o">+</span> <span class="p">(</span><span class="n">channel</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">port</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">22</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This encoding can be calculated using the <code>midi.EncodeRemoteControlID</code>
+function.</p>
+
+<h2 id="event-ids">Event IDs</h2>
+
+<p>FL Studio maps events using event IDs, which represent the unique identifier of
+a single software control. When automating these controls, event IDs are mapped
+to control IDs. You can determine this link using the <code><a href="#findEventID">device.findEventID</a></code>
+function.</p>
+
+<p>From this, several functions are available to interact with FL Studio using
+event IDs.</p>
+
+<ul>
+<li><code><a href="#getLinkedValue">device.getLinkedValue</a></code>: get the value associated with this event ID</li>
+<li><code><a href="#getLinkedValueString">device.getLinkedValueString</a></code>: get the value associated with this event ID as
+a string</li>
+<li><code><a href="#getLinkedParamName">device.getLinkedParamName</a></code>: get the name of the parameter linked with this
+event ID</li>
+<li><code><a href="#getLinkedInfo">device.getLinkedInfo</a></code>: get info about the parameter linked with this event
+ID</li>
+<li><code><a href="ui.html#openEventEditor">ui.openEventEditor</a></code>: open an event editor window for the control associated
+with this event ID</li>
+<li><code><a href="channels.html#getRecEventId">channels.getRecEventId</a></code>: return the base value for event IDs associated with
+this channel.</li>
+<li><code><a href="channels.html#incEventValue">channels.incEventValue</a></code>: get an event value increased by a step</li>
+<li><code><a href="general.html#processRECEvent">general.processRECEvent</a></code>: let FL Studio handle a change to the value of this
+event ID</li>
+</ul>
 </div>
 
                 
@@ -548,18 +601,13 @@ broken behavior.</p>
     </div>
     <a class="headerlink" href="#findEventID"></a>
     
-            <div class="docstring"><p>Returns eventID for controlId.</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this do?</li>
-</ul>
+            <div class="docstring"><p>Given a hardware control ID, returns the eventId of the software control
+that it is linked to or <code>midi.REC_InvalidID</code> if it is not linked.</p>
 
 <h2 id="args">Args:</h2>
 
 <ul>
-<li><p><code>controlId</code> (<code>int</code>): ???</p></li>
+<li><p><code>controlId</code> (<code>int</code>):</p></li>
 <li><p><code>flags</code> (<code>int</code>, optional): ???. Defaults to 0.</p></li>
 </ul>
 
@@ -584,27 +632,32 @@ broken behavior.</p>
     </div>
     <a class="headerlink" href="#getLinkedValue"></a>
     
-            <div class="docstring"><p>Returns normalized value of the REC event at <code>eventID</code>. Returns <code>-1</code>
-if "there is no linked control".</p>
-
-<pre><code>&gt;&gt;&gt; channel_rec_id = <a href="channels.html#getRecEventId">channels.getRecEventId</a>(0)
-&gt;&gt;&gt; <a href="#getLinkedValue">device.getLinkedValue</a>(channel_rec_id + midi.REC_Chan_Vol)
-0.78125
-&gt;&gt;&gt; <a href="#getLinkedValue">device.getLinkedValue</a>(channel_rec_id + midi.REC_Chan_Pan)
-0.5
-</code></pre>
+            <div class="docstring"><p>Returns value of the software control associated with <code>eventID</code> between
+<code>0.0</code> and <code>1.0</code>, or <code>-1</code> if there is no linked control.</p>
 
 <h2 id="args">Args:</h2>
 
 <ul>
-<li><code>eventID</code> (<code>int</code>): eventID</li>
+<li><code>eventID</code> (<code>int</code>): eventID (see <code><a href="">device</a></code> module documentation)</li>
 </ul>
 
 <h2 id="returns">Returns:</h2>
 
 <ul>
-<li><code>float</code>: Current value of the controller parameter between [0.0, 1.0]</li>
+<li><code>float</code>: Current value of the controller parameter</li>
 </ul>
+
+<h2 id="example-usage">Example usage</h2>
+
+<pre><code>'''
+Gets the volume and panning of channel 0
+'''
+&gt;&gt;&gt; channel_rec_id = <a href="channels.html#getRecEventId">channels.getRecEventId</a>(0)
+&gt;&gt;&gt; <a href="#getLinkedValue">device.getLinkedValue</a>(channel_rec_id + midi.REC_Chan_Vol)
+0.78125
+&gt;&gt;&gt; <a href="#getLinkedValue">device.getLinkedValue</a>(channel_rec_id + midi.REC_Chan_Pan)
+0.5
+</code></pre>
 
 <p>Included since API version 1</p>
 </div>
@@ -627,17 +680,10 @@ if "there is no linked control".</p>
 <p>The text representation is formatted appropriately based on the
 REC parameter.</p>
 
-<pre><code>&gt;&gt;&gt; channel_rec_id = <a href="channels.html#getRecEventId">channels.getRecEventId</a>(0)
-&gt;&gt;&gt; <a href="#getLinkedValueString">device.getLinkedValueString</a>(channel_rec_id + midi.REC_Chan_Vol)
-'-5.2 dB'
-&gt;&gt;&gt; <a href="#getLinkedValueString">device.getLinkedValueString</a>(channel_rec_id + midi.REC_Chan_Pan)
-'Centered'
-</code></pre>
-
 <h2 id="args">Args:</h2>
 
 <ul>
-<li><code>eventID</code> (<code>int</code>): eventID</li>
+<li><code>eventID</code> (<code>int</code>): eventID (see <code><a href="">device</a></code> module documentation)</li>
 </ul>
 
 <h2 id="returns">Returns:</h2>
@@ -645,6 +691,15 @@ REC parameter.</p>
 <ul>
 <li><code>str</code>: Parameter value string</li>
 </ul>
+
+<h2 id="example-usage">Example usage</h2>
+
+<pre><code>&gt;&gt;&gt; channel_rec_id = <a href="channels.html#getRecEventId">channels.getRecEventId</a>(0)
+&gt;&gt;&gt; <a href="#getLinkedValueString">device.getLinkedValueString</a>(channel_rec_id + midi.REC_Chan_Vol)
+'-5.2 dB'
+&gt;&gt;&gt; <a href="#getLinkedValueString">device.getLinkedValueString</a>(channel_rec_id + midi.REC_Chan_Pan)
+'Centered'
+</code></pre>
 
 <p>Included since API version 10</p>
 </div>
@@ -664,17 +719,10 @@ REC parameter.</p>
     
             <div class="docstring"><p>Returns the parameter name of the REC event at <code>eventID</code>.</p>
 
-<pre><code>&gt;&gt;&gt; channel_rec_id = <a href="channels.html#getRecEventId">channels.getRecEventId</a>(0)
-&gt;&gt;&gt; <a href="#getLinkedParamName">device.getLinkedParamName</a>(channel_rec_id + midi.REC_Chan_Vol)
-'Channel volume'
-&gt;&gt;&gt; <a href="#getLinkedParamName">device.getLinkedParamName</a>(channel_rec_id + midi.REC_Chan_Pan)
-'Channel panning'
-</code></pre>
-
 <h2 id="args">Args:</h2>
 
 <ul>
-<li><code>eventID</code> (<code>int</code>): eventID</li>
+<li><code>eventID</code> (<code>int</code>): eventID (see <code><a href="">device</a></code> module documentation)</li>
 </ul>
 
 <h2 id="returns">Returns:</h2>
@@ -682,6 +730,15 @@ REC parameter.</p>
 <ul>
 <li><code>str</code>: Parameter name</li>
 </ul>
+
+<h2 id="example-usage">Example usage</h2>
+
+<pre><code>&gt;&gt;&gt; channel_rec_id = <a href="channels.html#getRecEventId">channels.getRecEventId</a>(0)
+&gt;&gt;&gt; <a href="#getLinkedParamName">device.getLinkedParamName</a>(channel_rec_id + midi.REC_Chan_Vol)
+'Channel volume'
+&gt;&gt;&gt; <a href="#getLinkedParamName">device.getLinkedParamName</a>(channel_rec_id + midi.REC_Chan_Pan)
+'Channel panning'
+</code></pre>
 
 <p>Included since API version 10</p>
 </div>
@@ -703,7 +760,7 @@ REC parameter.</p>
 <h2 id="args">Args:</h2>
 
 <ul>
-<li><code>eventID</code> (<code>int</code>): eventID</li>
+<li><code>eventID</code> (<code>int</code>): eventID (see <code><a href="">device</a></code> module documentation)</li>
 </ul>
 
 <h2 id="returns">Returns:</h2>

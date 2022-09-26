@@ -1409,16 +1409,27 @@ but it actually returns a <code>str</code>. These stubs document the actual beha
 
 <ul>
 <li><p><code>index</code> (<code>int</code>): track index</p></li>
-<li><p><code>mode</code> (<code>int</code>): track peaks mode (see the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#TrackPeakMode">official documentation</a>)</p></li>
+<li><p><code>mode</code> (<code>int</code>): track peaks mode</p>
+
+<ul>
+<li><p><code>0</code>: left channel</p></li>
+<li><p><code>1</code>: right channel</p></li>
+<li><p><code>2</code>: maximum from left and right channels</p></li>
+<li><p>Values for inverted peaks are present, but appear to be
+incorrect.</p></li>
+</ul></li>
 </ul>
 
 <h2 id="returns">Returns:</h2>
 
 <ul>
-<li><code>float</code>: track peak values:
-    * <code>0.0</code>: silence
-    * <code>1.0</code>: 0 dB
-    * <code>&gt;1.0</code>: clipping</li>
+<li><p><code>float</code>: track peak values:</p>
+
+<ul>
+<li><p><code>0.0</code>: silence</p></li>
+<li><p><code>1.0</code>: 0 dB</p></li>
+<li><p><code>&gt;1.0</code>: clipping</p></li>
+</ul></li>
 </ul>
 
 <p>Included since API version 1</p>
