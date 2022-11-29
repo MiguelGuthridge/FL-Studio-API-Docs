@@ -256,7 +256,7 @@ ui    </h1>
 <ul>
 <li>Many of the functions in this module will simply echo a hotkey into whatever
 application is active, meaning that actions can potentially be sent to the
-wrong application. Functions that have this behaviour are listed with a short
+wrong application. Functions that have this behavior are listed with a short
 warning saying so.</li>
 </ul>
 
@@ -1884,7 +1884,7 @@ drop-down menu).</p>
             <div class="docstring"><p>Returns the current snap mode.</p>
 
 <p>Although the official documentation states that this takes an argument
-<code>value</code>, it does not. This stub reflects the actual behaviour.</p>
+<code>value</code>, it does not. This stub reflects the actual behavior.</p>
 
 <h2 id="returns">Returns:</h2>
 
@@ -2106,12 +2106,6 @@ rectangles.</p>
             <div class="docstring"><p>Returns the filename associated with the currently selected item in the
 browser</p>
 
-<h2 id="warning">WARNING:</h2>
-
-<ul>
-<li>This function has no official documentation</li>
-</ul>
-
 <h2 id="returns">Returns:</h2>
 
 <ul>
@@ -2136,16 +2130,11 @@ browser</p>
     
             <div class="docstring"><p>Returns a value based on the type of the selected file in the browser</p>
 
-<h2 id="warning">WARNING:</h2>
-
-<ul>
-<li>This function has no official documentation</li>
-</ul>
-
 <h2 id="returns">Returns:</h2>
 
 <ul>
-<li><code>int</code>: ???</li>
+<li><code>int</code>: One of the file type constants represented in the FL Studio
+constants.</li>
 </ul>
 
 <p>Included since API Version 20</p>
@@ -2261,30 +2250,45 @@ means the rectangle will be <code>1</code> track wide</p></li>
                 </section>
                 <section id="navigateBrowserMenu">
                     <div class="attr function">
-                    <div class="decorator">@since(20)</div>
+                    <div class="decorator">@since(21)</div>
 
         <span class="def">def</span>
-        <span class="name">navigateBrowserMenu</span><span class="signature pdoc-code condensed">(<span class="param"><span class="o">*</span><span class="n">args</span></span><span class="return-annotation">):</span></span>
+        <span class="name">navigateBrowserMenu</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">direction</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">shiftHeld</span><span class="p">:</span> <span class="nb">bool</span></span><span class="return-annotation">):</span></span>
 
         
     </div>
     <a class="headerlink" href="#navigateBrowserMenu"></a>
     
-            <div class="docstring"><p>Navigate within the browser window???</p>
+            <div class="docstring"><p>Navigates through the browser. <code>direction</code> can be 0 for previous
+or &gt; 0 for next.</p>
 
-<h2 id="warning">WARNING:</h2>
-
-<ul>
-<li>This function has no official documentation</li>
-</ul>
+<p>Shift held will cause the browser item to expand/open  if it's a
+folder/collection ie Node Type &lt;= -100. # similar to keyboard nav</p>
 
 <h2 id="args">Args:</h2>
 
 <ul>
-<li>Unknown</li>
+<li><p><code>direction</code> (<code>int</code>):
+    * <code>40</code>: previous item
+    * <code>41</code>: next item</p></li>
+<li><p><code>shiftHeld</code> (<code>bool</code>): whether to expand the selected item if it is a
+folder.</p></li>
 </ul>
 
-<p>Included since API Version 20</p>
+<h2 id="warning">WARNING:</h2>
+
+<ul>
+<li>This function's behavior changed between API version 20 and 21</li>
+<li>This doesn't seem to work very reliably, at least on my machine</li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>str</code>: the name of the newly selected item in the browser</li>
+</ul>
+
+<p>Included since API Version 21</p>
 </div>
 
 
@@ -2300,13 +2304,9 @@ means the rectangle will be <code>1</code> track wide</p></li>
     </div>
     <a class="headerlink" href="#previewBrowserMenuItem"></a>
     
-            <div class="docstring"><p>Preview the currently selected item in the browser</p>
+            <div class="docstring"><p>Preview the highlighted item in the browser</p>
 
-<h2 id="warning">WARNING:</h2>
-
-<ul>
-<li>This function has no official documentation</li>
-</ul>
+<p>This will play a selected audio clip</p>
 
 <p>Included since API Version 20</p>
 </div>
@@ -2324,12 +2324,14 @@ means the rectangle will be <code>1</code> track wide</p></li>
     </div>
     <a class="headerlink" href="#selectBrowserMenuItem"></a>
     
-            <div class="docstring"><p>???</p>
+            <div class="docstring"><p>Selects the currently highlighted browser menu item, which is the
+equivalent of clicking it.</p>
 
 <h2 id="warning">WARNING:</h2>
 
 <ul>
-<li>This function has no official documentation</li>
+<li>This function appears to open the File menu, rather than navigating the
+browser.</li>
 </ul>
 
 <p>Included since API Version 20</p>
@@ -2356,9 +2358,8 @@ apparent way to link these to the Script output window.</p>
 <h2 id="warning">WARNING:</h2>
 
 <ul>
-<li><p>This function has no official documentation</p></li>
-<li><p>This function appears to cause FL Studio's scripting environment to crash
-when used under Wine on Linux</p></li>
+<li>This function appears to cause FL Studio's scripting environment to crash
+when used under Wine on Linux</li>
 </ul>
 
 <h2 id="args">Args:</h2>
