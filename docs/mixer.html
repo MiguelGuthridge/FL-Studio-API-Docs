@@ -36,13 +36,19 @@
                     <a class="function" href="#trackNumber">trackNumber</a>
             </li>
             <li>
-                    <a class="function" href="#getTrackInfo">getTrackInfo</a>
-            </li>
-            <li>
                     <a class="function" href="#setTrackNumber">setTrackNumber</a>
             </li>
             <li>
-                    <a class="function" href="#trackCount">trackCount</a>
+                    <a class="function" href="#isTrackSelected">isTrackSelected</a>
+            </li>
+            <li>
+                    <a class="function" href="#selectTrack">selectTrack</a>
+            </li>
+            <li>
+                    <a class="function" href="#selectAll">selectAll</a>
+            </li>
+            <li>
+                    <a class="function" href="#deselectAll">deselectAll</a>
             </li>
             <li>
                     <a class="function" href="#getTrackName">getTrackName</a>
@@ -87,12 +93,6 @@
                     <a class="function" href="#isTrackMuteLock">isTrackMuteLock</a>
             </li>
             <li>
-                    <a class="function" href="#getTrackPluginId">getTrackPluginId</a>
-            </li>
-            <li>
-                    <a class="function" href="#isTrackPluginValid">isTrackPluginValid</a>
-            </li>
-            <li>
                     <a class="function" href="#getTrackVolume">getTrackVolume</a>
             </li>
             <li>
@@ -111,18 +111,6 @@
                     <a class="function" href="#setTrackStereoSep">setTrackStereoSep</a>
             </li>
             <li>
-                    <a class="function" href="#isTrackSelected">isTrackSelected</a>
-            </li>
-            <li>
-                    <a class="function" href="#selectTrack">selectTrack</a>
-            </li>
-            <li>
-                    <a class="function" href="#selectAll">selectAll</a>
-            </li>
-            <li>
-                    <a class="function" href="#deselectAll">deselectAll</a>
-            </li>
-            <li>
                     <a class="function" href="#setRouteTo">setRouteTo</a>
             </li>
             <li>
@@ -132,24 +120,6 @@
                     <a class="function" href="#afterRoutingChanged">afterRoutingChanged</a>
             </li>
             <li>
-                    <a class="function" href="#getEventValue">getEventValue</a>
-            </li>
-            <li>
-                    <a class="function" href="#remoteFindEventValue">remoteFindEventValue</a>
-            </li>
-            <li>
-                    <a class="function" href="#getEventIDName">getEventIDName</a>
-            </li>
-            <li>
-                    <a class="function" href="#getEventIDValueString">getEventIDValueString</a>
-            </li>
-            <li>
-                    <a class="function" href="#getAutoSmoothEventValue">getAutoSmoothEventValue</a>
-            </li>
-            <li>
-                    <a class="function" href="#automateEvent">automateEvent</a>
-            </li>
-            <li>
                     <a class="function" href="#getTrackPeaks">getTrackPeaks</a>
             </li>
             <li>
@@ -157,21 +127,6 @@
             </li>
             <li>
                     <a class="function" href="#linkTrackToChannel">linkTrackToChannel</a>
-            </li>
-            <li>
-                    <a class="function" href="#getSongStepPos">getSongStepPos</a>
-            </li>
-            <li>
-                    <a class="function" href="#getCurrentTempo">getCurrentTempo</a>
-            </li>
-            <li>
-                    <a class="function" href="#getRecPPS">getRecPPS</a>
-            </li>
-            <li>
-                    <a class="function" href="#getSongTickPos">getSongTickPos</a>
-            </li>
-            <li>
-                    <a class="function" href="#getLastPeakVol">getLastPeakVol</a>
             </li>
             <li>
                     <a class="function" href="#getTrackDockSide">getTrackDockSide</a>
@@ -194,10 +149,55 @@
             <li>
                     <a class="function" href="#swapTrackChannels">swapTrackChannels</a>
             </li>
+            <li>
+                    <a class="function" href="#getTrackInfo">getTrackInfo</a>
+            </li>
+            <li>
+                    <a class="function" href="#trackCount">trackCount</a>
+            </li>
+            <li>
+                    <a class="function" href="#getSongStepPos">getSongStepPos</a>
+            </li>
+            <li>
+                    <a class="function" href="#getCurrentTempo">getCurrentTempo</a>
+            </li>
+            <li>
+                    <a class="function" href="#getRecPPS">getRecPPS</a>
+            </li>
+            <li>
+                    <a class="function" href="#getSongTickPos">getSongTickPos</a>
+            </li>
+            <li>
+                    <a class="function" href="#getLastPeakVol">getLastPeakVol</a>
+            </li>
+            <li>
+                    <a class="function" href="#getTrackPluginId">getTrackPluginId</a>
+            </li>
+            <li>
+                    <a class="function" href="#isTrackPluginValid">isTrackPluginValid</a>
+            </li>
+            <li>
+                    <a class="function" href="#getEventValue">getEventValue</a>
+            </li>
+            <li>
+                    <a class="function" href="#remoteFindEventValue">remoteFindEventValue</a>
+            </li>
+            <li>
+                    <a class="function" href="#getEventIDName">getEventIDName</a>
+            </li>
+            <li>
+                    <a class="function" href="#getEventIDValueString">getEventIDValueString</a>
+            </li>
+            <li>
+                    <a class="function" href="#getAutoSmoothEventValue">getAutoSmoothEventValue</a>
+            </li>
+            <li>
+                    <a class="function" href="#automateEvent">automateEvent</a>
+            </li>
     </ul>
 
 
-            <footer>FL Studio Python API Stubs (v20)</footer>
+            <footer>FL Studio Python API Stubs (v22)</footer>
 
         <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev" target="_blank">
             built with <span class="visually-hidden">pdoc</span><img
@@ -250,46 +250,6 @@ effects tracks.</p>
 
 
                 </section>
-                <section id="getTrackInfo">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">getTrackInfo</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">mode</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getTrackInfo"></a>
-    
-            <div class="docstring"><p>Returns the index of a special mixer track depending on <code>mode</code>.</p>
-
-<p>This function can serve to help potentially future-proof scripts by
-ensuring that they continue to use the correct indexes for mixer tracks</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>mode</code> (<code>int</code>): Determined the type of information provided:</p>
-
-<ul>
-<li><p><code>TN_Master</code> (<code>0</code>): Index of master track</p></li>
-<li><p><code>TN_FirstIns</code> (<code>1</code>): Index of first insert track</p></li>
-<li><p><code>TN_LastIns</code> (<code>2</code>): Index of last insert track</p></li>
-<li><p><code>TN_Sel</code> (<code>3</code>): Index of the "current" track (the one with the
-large peak meter docked to the left).</p></li>
-</ul></li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>int</code>: requested track index</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
                 <section id="setTrackNumber">
                     <div class="attr function">
             
@@ -332,25 +292,86 @@ selected tracks??? Doesn't seem to work.</p></li>
 
 
                 </section>
-                <section id="trackCount">
+                <section id="isTrackSelected">
                     <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">trackCount</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
+        <span class="name">isTrackSelected</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">bool</span>:</span></span>
 
         
     </div>
-    <a class="headerlink" href="#trackCount"></a>
+    <a class="headerlink" href="#isTrackSelected"></a>
     
-            <div class="docstring"><p>Returns the number of tracks available on the mixer.
-Tracks range = <code>0 - (trackCount()-1)</code>. Includes master and "current track"
-tracks.</p>
+            <div class="docstring"><p>Returns whether the track at <code>index</code> is selected</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><code>index</code> (<code>int</code>): track index</li>
+</ul>
 
 <h2 id="returns">Returns:</h2>
 
 <ul>
-<li><code>int</code>: number of tracks</li>
+<li><code>bool</code>: whether the track is selected</li>
 </ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="selectTrack">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">selectTrack</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#selectTrack"></a>
+    
+            <div class="docstring"><p>Toggles whether the track at <code>index</code> is selected.</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><code>index</code> (<code>int</code>): track index</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="selectAll">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">selectAll</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#selectAll"></a>
+    
+            <div class="docstring"><p>Selects all tracks</p>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="deselectAll">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">deselectAll</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#deselectAll"></a>
+    
+            <div class="docstring"><p>Deselects all tracks</p>
 
 <p>Included since API version 1</p>
 </div>
@@ -752,76 +773,6 @@ tracks are solo or unsolo.</p>
 
 
                 </section>
-                <section id="getTrackPluginId">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">getTrackPluginId</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">plugIndex</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getTrackPluginId"></a>
-    
-            <div class="docstring"><p>Returns the plugin ID of the plugin on track <code>index</code> in slot <code>plugIndex</code></p>
-
-<p>A plugin ID is used internally by FL Studio to represent effects present
-on the mixer. A plugin ID can be used with REC events in order to automate
-plugins, and is also the return value of <code><a href="ui.html#getFocusedFormID">ui.getFocusedFormID()</a></code> if the
-focused window is an effect plugin.</p>
-
-<p>Plugin IDs are represented as <code>((track &lt;&lt; 6) + index) &lt;&lt; 16</code>, although
-the official documentation lists them as <code>(track &lt;&lt; 6 + index) &lt;&lt; 16</code>,
-which uses the order of operations incorrectly.</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p>index (<code>int</code>): track index</p></li>
-<li><p>plugIndex (<code>int</code>): plugin index</p></li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>int</code>: plugin ID</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="isTrackPluginValid">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">isTrackPluginValid</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">plugIndex</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">bool</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#isTrackPluginValid"></a>
-    
-            <div class="docstring"><p>Returns whether a plugin on track <code>index</code> in slot <code>plugIndex</code> is valid
-(has been loaded, so the slot isn't empty)</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>index</code> (<code>int</code>): track index</p></li>
-<li><p><code>plugIndex</code> (<code>int</code>): plugin index</p></li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>bool</code>: whether track is mute locked</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
                 <section id="getTrackVolume">
                     <div class="attr function">
             
@@ -1004,92 +955,6 @@ the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manu
 
 
                 </section>
-                <section id="isTrackSelected">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">isTrackSelected</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">bool</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#isTrackSelected"></a>
-    
-            <div class="docstring"><p>Returns whether the track at <code>index</code> is selected</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><code>index</code> (<code>int</code>): track index</li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>bool</code>: whether the track is selected</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="selectTrack">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">selectTrack</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#selectTrack"></a>
-    
-            <div class="docstring"><p>Toggles whether the track at <code>index</code> is selected.</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><code>index</code> (<code>int</code>): track index</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="selectAll">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">selectAll</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#selectAll"></a>
-    
-            <div class="docstring"><p>Selects all tracks</p>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="deselectAll">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">deselectAll</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#deselectAll"></a>
-    
-            <div class="docstring"><p>Deselects all tracks</p>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
                 <section id="setRouteTo">
                     <div class="attr function">
             
@@ -1159,234 +1024,6 @@ function is called to allow the UI to update correctly.</p>
     <a class="headerlink" href="#afterRoutingChanged"></a>
     
             <div class="docstring"><p>Notify FL Studio that channel routings have changed.</p>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="getEventValue">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">getEventValue</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2147483647</span>, </span><span class="param"><span class="n">smoothTarget</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getEventValue"></a>
-    
-            <div class="docstring"><p>Returns event value from MIDI</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this do?</li>
-</ul>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>index</code> (<code>int</code>): ???</p></li>
-<li><p><code>value</code> (<code>int</code>, optional): ???. Defaults to 'MaxInt'.</p></li>
-<li><p><code>smoothTarget</code> (<code>int</code>, optional): ???. Defaults to 1.</p></li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>int</code>: ???</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="remoteFindEventValue">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">remoteFindEventValue</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">flags</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="nb">float</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#remoteFindEventValue"></a>
-    
-            <div class="docstring"><p>Returns event value</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this do?</li>
-</ul>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>index</code> (<code>int</code>): ???</p></li>
-<li><p><code>flags</code> (<code>int</code>, optional): ???. Defaults to 0.</p></li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>float</code>: ???</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="getEventIDName">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">getEventIDName</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">shortname</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getEventIDName"></a>
-    
-            <div class="docstring"><p>Returns event name for event at <code>index</code></p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this do?</li>
-</ul>
-
-<h2 id="note">NOTE:</h2>
-
-<ul>
-<li>The official documentation states that this function returns <code>None</code>,
-but it actually returns a <code>str</code>. These stubs document the actual behaviour.</li>
-</ul>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>index</code> (<code>int</code>): ???</p></li>
-<li><p><code>shortname</code> (<code>int</code>, optional): ???. Defaults to 0.</p></li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>str</code>: name of event?</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="getEventIDValueString">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">getEventIDValueString</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">value</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getEventIDValueString"></a>
-    
-            <div class="docstring"><p>Returns event value as a string</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this do?</li>
-</ul>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>index</code> (<code>int</code>): ???</p></li>
-<li><p><code>value</code> (<code>int</code>): ???</p></li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>str</code>: ???</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="getAutoSmoothEventValue">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">getAutoSmoothEventValue</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">locked</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getAutoSmoothEventValue"></a>
-    
-            <div class="docstring"><p>Returns auto smooth event value</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this do?</li>
-</ul>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>index</code> (<code>int</code>): ???</p></li>
-<li><p><code>locked</code> (<code>int</code>, optional): ???. Defaults to 1.</p></li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>int</code>: ???</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="automateEvent">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">automateEvent</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">index</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">value</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">flags</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">speed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>,</span><span class="param">	<span class="n">isIncrement</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>,</span><span class="param">	<span class="n">res</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.041666666666666664</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#automateEvent"></a>
-    
-            <div class="docstring"><p>Automate event</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this do?</li>
-</ul>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>index</code> (<code>int</code>): ???</p></li>
-<li><p><code>value</code> (<code>int</code>): ???</p></li>
-<li><p><code>flags</code> (<code>int</code>): refer to the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#RecEventFlags">official documentation</a>.</p></li>
-<li><p><code>speed</code> (<code>int</code>, optional): ???. Defaults to 0.</p></li>
-<li><p><code>isIncrement</code> (<code>int</code>, optional): ???. Defaults to 0.</p></li>
-<li><p><code>res</code> (<code>float</code>, optional): ???. Defaults to midi.EKRes.</p></li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>long</code>: ???</li>
-</ul>
 
 <p>Included since API version 1</p>
 </div>
@@ -1503,148 +1140,6 @@ access being disabled for security reasons.</li>
 </ul>
 
 <p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="getSongStepPos">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">getSongStepPos</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getSongStepPos"></a>
-    
-            <div class="docstring"><p>Returns the current position in the song, measured in steps.</p>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>int</code>: song position</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="getCurrentTempo">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">getCurrentTempo</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">asInt</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="s1">&#39;int | float&#39;</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getCurrentTempo"></a>
-    
-            <div class="docstring"><p>Returns the current tempo of the song</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><code>asInt</code> (<code>int</code>, optional): whether to return the tempo as an <code>int</code> (<code>1</code>)
-or not (<code>0</code>). Defaults to <code>0</code>.</li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>int</code> or <code>float</code>: Current tempo</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="getRecPPS">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">getRecPPS</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getRecPPS"></a>
-    
-            <div class="docstring"><p>Returns the recording PPS</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What is PPS? I can only get this to return 24. Perhaps this is the bit
-depth of the incoming audio?</li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>int</code>: recording PPS</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="getSongTickPos">
-                    <div class="attr function">
-            
-        <span class="def">def</span>
-        <span class="name">getSongTickPos</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="s1">&#39;int | float&#39;</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getSongTickPos"></a>
-    
-            <div class="docstring"><p>Returns the current position in the song, measured in ticks.</p>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>int</code> or <code>float</code>: song position in ticks</li>
-</ul>
-
-<p>Included since API version 1</p>
-</div>
-
-
-                </section>
-                <section id="getLastPeakVol">
-                    <div class="attr function">
-                    <div class="decorator">@since(9)</div>
-
-        <span class="def">def</span>
-        <span class="name">getLastPeakVol</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">section</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">float</span>:</span></span>
-
-        
-    </div>
-    <a class="headerlink" href="#getLastPeakVol"></a>
-    
-            <div class="docstring"><p>Returns last peak volume.</p>
-
-<h2 id="args">Args:</h2>
-
-<ul>
-<li><p><code>section</code> (<code>int</code>): audio channel</p>
-
-<ul>
-<li><p><code>0</code>: left channel</p></li>
-<li><p><code>1</code>: right channel</p></li>
-</ul></li>
-</ul>
-
-<h2 id="returns">Returns:</h2>
-
-<ul>
-<li><code>float</code>: last peak volume (<code>0.0</code> for silence, <code>1.0</code> for 0 dB, <code>&gt;1.0</code> for
-clipping)</li>
-</ul>
-
-<p>Included since API version 9</p>
 </div>
 
 
@@ -1877,6 +1372,511 @@ toggled.</li>
 </ul>
 
 <p>Included since API Version 19</p>
+</div>
+
+
+                </section>
+                <section id="getTrackInfo">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getTrackInfo</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">mode</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getTrackInfo"></a>
+    
+            <div class="docstring"><p>Returns the index of a special mixer track depending on <code>mode</code>.</p>
+
+<p>This function can serve to help potentially future-proof scripts by
+ensuring that they continue to use the correct indexes for mixer tracks</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>mode</code> (<code>int</code>): Determined the type of information provided:</p>
+
+<ul>
+<li><p><code>TN_Master</code> (<code>0</code>): Index of master track</p></li>
+<li><p><code>TN_FirstIns</code> (<code>1</code>): Index of first insert track</p></li>
+<li><p><code>TN_LastIns</code> (<code>2</code>): Index of last insert track</p></li>
+<li><p><code>TN_Sel</code> (<code>3</code>): Index of the "current" track (the one with the
+large peak meter docked to the left).</p></li>
+</ul></li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code>: requested track index</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="trackCount">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">trackCount</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#trackCount"></a>
+    
+            <div class="docstring"><p>Returns the number of tracks available on the mixer.
+Tracks range = <code>0 - (trackCount()-1)</code>. Includes master and "current track"
+tracks.</p>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code>: number of tracks</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="getSongStepPos">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getSongStepPos</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getSongStepPos"></a>
+    
+            <div class="docstring"><p>Returns the current position in the song, measured in steps.</p>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code>: song position</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="getCurrentTempo">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getCurrentTempo</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">asInt</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="s1">&#39;int | float&#39;</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getCurrentTempo"></a>
+    
+            <div class="docstring"><p>Returns the current tempo of the song</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><code>asInt</code> (<code>int</code>, optional): whether to return the tempo as an <code>int</code> (<code>1</code>)
+or not (<code>0</code>). Defaults to <code>0</code>.</li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code> or <code>float</code>: Current tempo</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="getRecPPS">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getRecPPS</span><span class="signature pdoc-code condensed">(<span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getRecPPS"></a>
+    
+            <div class="docstring"><p>Returns the recording PPS</p>
+
+<h2 id="help-wanted">HELP WANTED:</h2>
+
+<ul>
+<li>What is PPS? I can only get this to return 24. Perhaps this is the bit
+depth of the incoming audio?</li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code>: recording PPS</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="getSongTickPos">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getSongTickPos</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">mode</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="s1">&#39;int | float&#39;</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getSongTickPos"></a>
+    
+            <div class="docstring"><p>Returns the current position in the song, measured in ticks.</p>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code> or <code>float</code>: song position in ticks</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="getLastPeakVol">
+                    <div class="attr function">
+                    <div class="decorator">@since(9)</div>
+
+        <span class="def">def</span>
+        <span class="name">getLastPeakVol</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">section</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">float</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getLastPeakVol"></a>
+    
+            <div class="docstring"><p>Returns last peak volume.</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>section</code> (<code>int</code>): audio channel</p>
+
+<ul>
+<li><p><code>0</code>: left channel</p></li>
+<li><p><code>1</code>: right channel</p></li>
+</ul></li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>float</code>: last peak volume (<code>0.0</code> for silence, <code>1.0</code> for 0 dB, <code>&gt;1.0</code> for
+clipping)</li>
+</ul>
+
+<p>Included since API version 9</p>
+</div>
+
+
+                </section>
+                <section id="getTrackPluginId">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getTrackPluginId</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">plugIndex</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getTrackPluginId"></a>
+    
+            <div class="docstring"><p>Returns the plugin ID of the plugin on track <code>index</code> in slot <code>plugIndex</code></p>
+
+<p>A plugin ID is used internally by FL Studio to represent effects present
+on the mixer. A plugin ID can be used with REC events in order to automate
+plugins, and is also the return value of <code><a href="ui.html#getFocusedFormID">ui.getFocusedFormID()</a></code> if the
+focused window is an effect plugin.</p>
+
+<p>Plugin IDs are represented as <code>((track &lt;&lt; 6) + index) &lt;&lt; 16</code>, although
+the official documentation lists them as <code>(track &lt;&lt; 6 + index) &lt;&lt; 16</code>,
+which uses the order of operations incorrectly.</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p>index (<code>int</code>): track index</p></li>
+<li><p>plugIndex (<code>int</code>): plugin index</p></li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code>: plugin ID</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="isTrackPluginValid">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">isTrackPluginValid</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">plugIndex</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">bool</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#isTrackPluginValid"></a>
+    
+            <div class="docstring"><p>Returns whether a plugin on track <code>index</code> in slot <code>plugIndex</code> is valid
+(has been loaded, so the slot isn't empty)</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>index</code> (<code>int</code>): track index</p></li>
+<li><p><code>plugIndex</code> (<code>int</code>): plugin index</p></li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>bool</code>: whether track is mute locked</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="getEventValue">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getEventValue</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2147483647</span>, </span><span class="param"><span class="n">smoothTarget</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getEventValue"></a>
+    
+            <div class="docstring"><p>Returns event value from MIDI</p>
+
+<h2 id="help-wanted">HELP WANTED:</h2>
+
+<ul>
+<li>What does this do?</li>
+</ul>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>index</code> (<code>int</code>): ???</p></li>
+<li><p><code>value</code> (<code>int</code>, optional): ???. Defaults to 'MaxInt'.</p></li>
+<li><p><code>smoothTarget</code> (<code>int</code>, optional): ???. Defaults to 1.</p></li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code>: ???</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="remoteFindEventValue">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">remoteFindEventValue</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">flags</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="nb">float</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#remoteFindEventValue"></a>
+    
+            <div class="docstring"><p>Returns event value</p>
+
+<h2 id="help-wanted">HELP WANTED:</h2>
+
+<ul>
+<li>What does this do?</li>
+</ul>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>index</code> (<code>int</code>): ???</p></li>
+<li><p><code>flags</code> (<code>int</code>, optional): ???. Defaults to 0.</p></li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>float</code>: ???</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="getEventIDName">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getEventIDName</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">shortname</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getEventIDName"></a>
+    
+            <div class="docstring"><p>Returns event name for event at <code>index</code></p>
+
+<h2 id="help-wanted">HELP WANTED:</h2>
+
+<ul>
+<li>What does this do?</li>
+</ul>
+
+<h2 id="note">NOTE:</h2>
+
+<ul>
+<li>The official documentation states that this function returns <code>None</code>,
+but it actually returns a <code>str</code>. These stubs document the actual behaviour.</li>
+</ul>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>index</code> (<code>int</code>): ???</p></li>
+<li><p><code>shortname</code> (<code>int</code>, optional): ???. Defaults to 0.</p></li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>str</code>: name of event?</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="getEventIDValueString">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getEventIDValueString</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">value</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getEventIDValueString"></a>
+    
+            <div class="docstring"><p>Returns event value as a string</p>
+
+<h2 id="help-wanted">HELP WANTED:</h2>
+
+<ul>
+<li>What does this do?</li>
+</ul>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>index</code> (<code>int</code>): ???</p></li>
+<li><p><code>value</code> (<code>int</code>): ???</p></li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>str</code>: ???</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="getAutoSmoothEventValue">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">getAutoSmoothEventValue</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">index</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">locked</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#getAutoSmoothEventValue"></a>
+    
+            <div class="docstring"><p>Returns auto smooth event value</p>
+
+<h2 id="help-wanted">HELP WANTED:</h2>
+
+<ul>
+<li>What does this do?</li>
+</ul>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>index</code> (<code>int</code>): ???</p></li>
+<li><p><code>locked</code> (<code>int</code>, optional): ???. Defaults to 1.</p></li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code>: ???</li>
+</ul>
+
+<p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="automateEvent">
+                    <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">automateEvent</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">index</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">value</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">flags</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">speed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>,</span><span class="param">	<span class="n">isIncrement</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>,</span><span class="param">	<span class="n">res</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.041666666666666664</span></span><span class="return-annotation">) -> <span class="nb">int</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#automateEvent"></a>
+    
+            <div class="docstring"><p>Automate event</p>
+
+<h2 id="help-wanted">HELP WANTED:</h2>
+
+<ul>
+<li>What does this do?</li>
+</ul>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>index</code> (<code>int</code>): ???</p></li>
+<li><p><code>value</code> (<code>int</code>): ???</p></li>
+<li><p><code>flags</code> (<code>int</code>): refer to the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#RecEventFlags">official documentation</a>.</p></li>
+<li><p><code>speed</code> (<code>int</code>, optional): ???. Defaults to 0.</p></li>
+<li><p><code>isIncrement</code> (<code>int</code>, optional): ???. Defaults to 0.</p></li>
+<li><p><code>res</code> (<code>float</code>, optional): ???. Defaults to midi.EKRes.</p></li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>long</code>: ???</li>
+</ul>
+
+<p>Included since API version 1</p>
 </div>
 
 
