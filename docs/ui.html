@@ -726,11 +726,6 @@ to 0.</p></li>
             <div class="docstring"><p>Changes the snap mode, by shifting it by <code>value</code> in the list of modes.
 Note that <code>2</code> (the unused value) is skipped.</p>
 
-<p>Also note that the usage for this function is truly painful. I am sorry.</p>
-
-<p>TODO: Add helper function to provide a better implementation to this
-documentation, so people can copy it into their code.</p>
-
 <h2 id="args">Args:</h2>
 
 <ul>
@@ -742,6 +737,26 @@ documentation, so people can copy it into their code.</p>
 <ul>
 <li><code>int</code>: ???</li>
 </ul>
+
+<p>Also note that the usage for this function is truly painful due to it being
+a relative value rather than an absolute one. You can create a wrapper
+function to resolve this using the following code:</p>
+
+<div class="pdoc-code codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">setSnapMode</span><span class="p">(</span><span class="n">new_mode</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Set the snap mode using an absolute value</span>
+
+<span class="sd">    ## Args:</span>
+<span class="sd">    * `new_mode` (`int`): new mode - one of the values listed in</span>
+<span class="sd">      `getSnapMode()`.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">curr_mode</span> <span class="o">=</span> <span class="n"><a href="#getSnapMode">ui.getSnapMode</a></span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">new_mode</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">curr_mode</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">new_mode</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">new_mode</span> <span class="o">&gt;</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">curr_mode</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">new_mode</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n"><a href="#snapMode">ui.snapMode</a></span><span class="p">(</span><span class="n">new_mode</span> <span class="o">-</span> <span class="n">curr_mode</span><span class="p">)</span>
+</code></pre></div>
 
 <p>Included since API version 1</p>
 </div>
