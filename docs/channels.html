@@ -1262,20 +1262,14 @@ documentation reflects the actual behavior.</li>
     </div>
     <a class="headerlink" href="#getStepParam"></a>
     
-            <div class="docstring"><p>Get step parameter for <code>step</code>.</p>
-
-<h2 id="help-wanted">HELP WANTED:</h2>
-
-<ul>
-<li>What does this do?</li>
-</ul>
+            <div class="docstring"><p>Get the values of properties associated with a step in the step sequencer.
+This provides an interface to access the graph editor.</p>
 
 <h2 id="args">Args:</h2>
 
 <ul>
-<li><p><code>step</code> (<code>int</code>): ?</p></li>
-<li><p><code>param</code> (<code>int</code>): ?? at least there's the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#stepParams">official documentation</a>
-(actually, tbh the docs on this looks kinda dodgy for some values)</p></li>
+<li><p><code>step</code> (<code>int</code>): step (grid bit index) to get parameter for</p></li>
+<li><p><code>param</code> (<code>int</code>): one of the parameter types (see below)</p></li>
 <li><p><code>offset</code> (<code>int</code>): ???</p></li>
 <li><p><code>startPos</code> (<code>int</code>): ????</p></li>
 <li><p><code>padsStride</code> (<code>int</code>, optional): ?????. Defaults to 16.</p></li>
@@ -1284,7 +1278,28 @@ documentation reflects the actual behavior.</li>
 <h2 id="returns">Returns:</h2>
 
 <ul>
-<li><code>int</code>: ??????</li>
+<li><code>int</code>: value for step parameter</li>
+</ul>
+
+<h2 id="see-also">See also:</h2>
+
+<ul>
+<li><code><a href="#getCurrentStepParam">getCurrentStepParam()</a></code></li>
+<li><code><a href="#setStepParameterByIndex">setStepParameterByIndex()</a></code></li>
+</ul>
+
+<h2 id="step-parameter-types">Step parameter types:</h2>
+
+<ul>
+<li><code>0</code>: Note pitch (MIDI note number, default 60 for middle C)</li>
+<li><code>1</code>: Velocity (0 - 127, default 100)</li>
+<li><code>2</code>: Release velocity (0 - 127, default 64)</li>
+<li><code>3</code>: Fine pitch (in cents: 0 - 240, with default 120 for no tuning)</li>
+<li><code>4</code>: Panning (0 - 127, with default 64 for centred)</li>
+<li><code>5</code>: Mod X (0-127, with default 64 for midpoint)</li>
+<li><code>6</code>: Mod Y (0-127, with default 64 for midpoint)</li>
+<li><code>7</code>: Number of ticks to offset the note by (0 - PPQN / 4; , with default
+0 for no shifting)</li>
 </ul>
 
 <p>Included since API version 1</p>
@@ -1321,9 +1336,29 @@ return an int.</li>
 
 <ul>
 <li><p><code>index</code> (<code>int</code>): channel index</p></li>
-<li><p><code>step</code> (<code>int</code>): ???</p></li>
+<li><p><code>step</code> (<code>int</code>): step (grid bit index) to get parameter for</p></li>
 <li><p><code>param</code> (<code>int</code>): step parameter (refer to <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#stepParams">official documentation</a>
 although it looks kinda dodgy for some values)</p></li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>int</code>: value for step parameter</li>
+</ul>
+
+<h2 id="step-parameter-types">Step parameter types:</h2>
+
+<ul>
+<li><code>0</code>: Note pitch (MIDI note number, default 60 for middle C)</li>
+<li><code>1</code>: Velocity (0 - 127, default 100)</li>
+<li><code>2</code>: Release velocity (0 - 127, default 64)</li>
+<li><code>3</code>: Fine pitch (in cents: 0 - 240, with default 120 for no tuning)</li>
+<li><code>4</code>: Panning (0 - 127, with default 64 for centred)</li>
+<li><code>5</code>: Mod X (0-127, with default 64 for midpoint)</li>
+<li><code>6</code>: Mod Y (0-127, with default 64 for midpoint)</li>
+<li><code>7</code>: Number of ticks to offset the note by (0 - PPQN / 4; , with default
+0 for no shifting)</li>
 </ul>
 
 <p>Included since API version 1</p>
@@ -1335,19 +1370,24 @@ although it looks kinda dodgy for some values)</p></li>
                     <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">setStepParameterByIndex</span><span class="signature pdoc-code condensed">(<span class="param"><span class="o">*</span><span class="n">args</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+        <span class="name">setStepParameterByIndex</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="n">index</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">patNum</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">step</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">param</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">value</span><span class="p">:</span> <span class="nb">int</span>,</span><span class="param">	<span class="n">globalIndex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
 
         
     </div>
     <a class="headerlink" href="#setStepParameterByIndex"></a>
     
-            <div class="docstring"><p>???
-TODO</p>
+            <div class="docstring"><p>Set the value of a step parameter at the given location.</p>
 
-<h2 id="warning">WARNING:</h2>
+<h2 id="args">Args:</h2>
 
 <ul>
-<li>This function has no official documentation</li>
+<li><p><code>index</code> (<code>int</code>): channel index</p></li>
+<li><p><code>patNum</code> (<code>int</code>): pattern number to set step parameter on (1-indexed)</p></li>
+<li><p><code>step</code> (<code>int</code>): step index</p></li>
+<li><p><code>param</code> (<code>int</code>): step parameter to set (see below)</p></li>
+<li><p><code>value</code> (<code>int</code>): value to set parameter to</p></li>
+<li><p><code>globalIndex</code> (<code>bool</code>, optional): whether to use a global index for the
+channel. Defaults to <code>True</code>.</p></li>
 </ul>
 
 <p>Included since API Version 1</p>
