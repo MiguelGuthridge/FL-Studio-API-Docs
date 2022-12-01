@@ -727,7 +727,10 @@ and so on.</p>
 
 <ul>
 <li><p><code>eventId</code> (<code>int</code>): Refer to the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#RecEventParams">official documentation</a></p></li>
-<li><p><code>value</code> (<code>int</code>): value of even within range (0 - midi.FromMIDI_Max)</p></li>
+<li><p><code>value</code> (<code>int</code>): value of even within a range. This range depends on the
+plugin, but you can specify for it to be between <code>0 - 2^30</code> by using the
+<code>midi.REC_MIDIController</code> flag. Note that providing an invalid value can
+lead to very strange behavior and sometimes crashes.</p></li>
 <li><p><code>flags</code> (<code>int</code>): Refer to the <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/midi_scripting.htm#RecEventFlags">official documentation</a></p></li>
 </ul>
 
