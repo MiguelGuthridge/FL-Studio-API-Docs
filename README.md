@@ -9,7 +9,9 @@ using [pdoc](https://github.com/mitmproxy/pdoc) to create a static HTML website.
 
 ## Contributing
 
-If you wish to contribute to this documentation, please do so by creating a pull request to [the API stubs repository](https://github.com/MiguelGuthridge/FL-Studio-API-Stubs), and the documentation will automatically update here when your contributions are merged.
+If you wish to contribute to this documentation, please do so by creating a pull request to 
+[the API stubs repository](https://github.com/MiguelGuthridge/FL-Studio-API-Stubs). 
+The documentation will automatically update here when your contributions are merged.
 
 ## Viewing the documentation
 
