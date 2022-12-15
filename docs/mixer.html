@@ -194,6 +194,9 @@
             <li>
                     <a class="function" href="#automateEvent">automateEvent</a>
             </li>
+            <li>
+                    <a class="function" href="#linkChannelToTrack">linkChannelToTrack</a>
+            </li>
     </ul>
 
 
@@ -1877,6 +1880,33 @@ but it actually returns a <code>str</code>. These stubs document the actual beha
 </ul>
 
 <p>Included since API version 1</p>
+</div>
+
+
+                </section>
+                <section id="linkChannelToTrack">
+                    <div class="attr function">
+                    <div class="decorator">@since(23)</div>
+
+        <span class="def">def</span>
+        <span class="name">linkChannelToTrack</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">channel</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">track</span><span class="p">:</span> <span class="nb">int</span>, </span><span class="param"><span class="n">select</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#linkChannelToTrack"></a>
+    
+            <div class="docstring"><p>Link the given channel to the given mixer track.</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><p><code>channel</code> (<code>int</code>): channel index on channel rack (respecting groups)</p></li>
+<li><p><code>track</code> (<code>int</code>): mixer track index</p></li>
+<li><p><code>select</code> (<code>bool</code>, optional): whether to select the mixer track. Defaults
+to <code>False</code>.</p></li>
+</ul>
+
+<p>Included since API Version 23</p>
 </div>
 
 
