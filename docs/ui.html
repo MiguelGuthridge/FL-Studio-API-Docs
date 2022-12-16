@@ -42,6 +42,9 @@
                     <a class="function" href="#navigateBrowser">navigateBrowser</a>
             </li>
             <li>
+                    <a class="function" href="#navigateBrowserTabs">navigateBrowserTabs</a>
+            </li>
+            <li>
                     <a class="function" href="#previewBrowserMenuItem">previewBrowserMenuItem</a>
             </li>
             <li>
@@ -233,7 +236,7 @@
     </ul>
 
 
-            <footer>FL Studio Python API Stubs (v22)</footer>
+            <footer>FL Studio Python API Stubs (v23)</footer>
 
         <a class="attribution" title="pdoc: Python API documentation generator" href="https://pdoc.dev" target="_blank">
             built with <span class="visually-hidden">pdoc</span><img
@@ -309,6 +312,42 @@ folder.</p></li>
 
 <ul>
 <li><code>str</code>: the name of the newly selected item in the browser</li>
+</ul>
+
+<p>Included since API Version 22</p>
+</div>
+
+
+                </section>
+                <section id="navigateBrowserTabs">
+                    <div class="attr function">
+                    <div class="decorator">@since(22)</div>
+
+        <span class="def">def</span>
+        <span class="name">navigateBrowserTabs</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">direction</span><span class="p">:</span> <span class="nb">int</span></span><span class="return-annotation">) -> <span class="nb">str</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#navigateBrowserTabs"></a>
+    
+            <div class="docstring"><p>Navigates between browser tabs, returning the name of the newly selected
+tab.</p>
+
+<p>The direction should be one of the MIDI FPT direction constants.</p>
+
+<h2 id="args">Args:</h2>
+
+<ul>
+<li><code>direction</code> (<code>int</code>): one of:
+    * <code>midi.FPT_Left</code> (<code>42</code>): change tabs left
+    * <code>midi.FPT_Right</code> (<code>43</code>): change tabs right
+    * any other value: navigate to first tab</li>
+</ul>
+
+<h2 id="returns">Returns:</h2>
+
+<ul>
+<li><code>str</code>: name of the newly selected tab</li>
 </ul>
 
 <p>Included since API Version 22</p>
